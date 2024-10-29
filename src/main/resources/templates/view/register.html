@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link  type="text/css" rel = "stylesheet" href="../../static/css/registerCSS.css">
+</head>
+<script>
+    function checkUsername(){
+            var usernameReg = /^[a-zA-Z0-9]{5,10}$/
+            var usernameInput = document.getElementById("username")  
+            var username = usernameInput.value  
+            var usernameMsg = document.getElementById("usernameMsg")
+            if(!usernameReg.test(username)){
+                usernameMsg.innerText="格式有误"
+                return false
+            } 
+            usernameMsg.innerText=""
+            return true 
+        }
+
+
+        function checkUserPwd(){
+            var userPwdReg = /^\d{6}$/
+            var userPwdInput = document.getElementById("userPwd")  
+            var userPwd = userPwdInput.value  
+            var userPwdMsg = document.getElementById("userPwdMsg")
+            if(!userPwdReg.test(userPwd)){
+                userPwdMsg.innerText="格式有误"
+                return false
+            } 
+            userPwdMsg.innerText=""
+            return true 
+        }
+
+
+        function checkReUserPwd(){
+            var userPwdReg = /^\d{6}$/
+            // 再次输入的密码的格式
+            var reUserPwdInput = document.getElementById("userPwdS")  
+            var reUserPwd = reUserPwdInput.value 
+            var reUserPwdMsg = document.getElementById("reUserPwdMsg")
+            if(!userPwdReg.test(reUserPwd)){
+                reUserPwdMsg.innerText="格式有误"
+                return false
+            } 
+            // 获得上次密码,对比两次密码是否一致
+            var userPwdInput = document.getElementById("userPwd")  
+            var userPwd = userPwdInput.value  
+            if(reUserPwd != userPwd){
+                reUserPwdMsg.innerText="两次密码不一致"
+                return false
+            } 
+            reUserPwdMsg.innerText=""
+            return true 
+        }
+
+        function checkUserPhone(){
+            var userPhoneReg =  /^1(3[0-9]|4[57]|5[0-35-9]|7[0678]|8[0-9])\d{8}$/
+            var userPhoneInput = document.getElementById("userPhone")
+            var userPhone = userPhoneInput.value
+            var userPhoneMsg = document.getElementById("userPhoneMsg")
+            if(!userPhoneReg.test(userPhone)){
+                userPhoneMsg.innerText="请输入正确的电话号码"
+                return false
+            }
+            userPhoneMsg.innerText=""
+            return true
+        }
+
+        function checkForm(){
+            var flag1 = checkUsername()
+            var flag2 = checkUserPwd()
+            var flag3 = checkReUserPwd()
+            var flag4 = checkUserPhone()
+
+            return flag1 && flag2 && flag3 && flag4
+        }
+</script>
+<body>
+    <div id="loginContainer">
+        <div id="topTool">
+            <a href="login.html">登录</a>
+            <a href="#.">注册</a>
+        </div>
+        <!-- 这里的表单提交给sevrlet    暂时还没创建 -->
+        <form action="" id="registerForm" onsubmit="return checkForm()">
+            用户名：<input type="text" name="username" id="username" onblur="checkUsername()">
+            <span id="usernameMsg"></span><br>
+            电话：<input type="text" name="userPhone" id="userPhone" onblur="checkUserPhone()">
+            <span id="userPhoneMsg"></span><br>
+            密码：<input type="password" name="userPassword" id="userPwd" onblur="checkUserPwd()">
+            <span id="userPwdMsg"></span><br>
+            确认密码：<input type="password" name="userPasswordSure" id="userPwdS" onblur="checkReUserPwd()">
+            <span id="reUserPwdMsg"></span><br>
+            <input type="submit" value="注册">
+        </form>
+    </div>
+</body>
+</html>
