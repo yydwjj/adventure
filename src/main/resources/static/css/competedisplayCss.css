@@ -382,6 +382,11 @@ header {
     background-color: #5a9a9a;
 }
 
+.page-number.active {
+    background-color: #70B9BB;  /* 选中页码的背景颜色 */
+    color: white; /* 选中页码的文字颜色 */
+}
+
 .page-numbers {
     display: flex;
     margin: 0 10px;

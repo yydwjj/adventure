@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>冒险者工会</title>
-    <link rel="stylesheet" href="../../static/css/indexCss.css">
+    <link rel="stylesheet" href="../../static/css/competedisplayCss.css">
 
 </head>
 <body>
@@ -160,7 +160,7 @@
 
 <!--翻页-->
 <div class="pagination">
-    <button class="page-button">上一页</button>
+    <button class="page-button" id="prev-page">上一页</button>
     <span>第 <strong id="current-page">1</strong> 页</span>
     <div class="page-numbers">
         <button class="page-number" data-page="1">1</button>
@@ -169,11 +169,13 @@
         <button class="page-number" data-page="4">4</button>
         <button class="page-number" data-page="5">5</button>
     </div>
-    <button class="page-button">下一页</button>
+    <button class="page-button" id="next-page">下一页</button>
 </div>
+
 
 <!-- 脚本引入 -->
 <script src="../../static/js/carousel.js"></script>
 <script src="../../static/js/sidebar.js"></script>
+<script src="../../static/js/page.js"></script>
 </body>
 </html>
