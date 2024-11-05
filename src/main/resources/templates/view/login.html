@@ -1,77 +1,77 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>论坛登录</title>
-    <link  type="text/css" rel = "stylesheet" href="../../static/css/loginCSS.css">
+    <title>冒险者协会登录</title>
+    <link rel="stylesheet" href="../../static/css/loginstyle.css">
 </head>
-
-<script>
-    // 检验用户名格式是否合法的函数
-    function checkUsername(){
-        // 定义正则表示字符串的规则
-        var  usernameReg= /^[a-zA-Z0-9]{5,10}$/
-        // 获得用户在页面上输入的信息
-        var usernameInput =document.getElementById("username")
-        var username = usernameInput.value
-        // 获得格式提示的框
-        var usernameMsg =document.getElementById("usernameMsg")
-        // 格式有误时,返回false,在页面上提示
-        if(!usernameReg.test(username)){ 
-            usernameMsg.innerText="用户名格式有误"
-            return false
-        }
-        // 格式OK,返回true
-        usernameMsg.innerText=""
-        return true
-
-    }
-
-    // 检验密码格式是否合法的函数
-    function checkUserPwd(){
-        // 定义正则表示字符串的规则
-        var  userPwdReg= /^[0-9]{6}$/
-        // 获得用户在页面上输入的信息
-        var userPwdInput =document.getElementById("userPassword")
-        var userPwd = userPwdInput.value
-        // 获得格式提示的框
-        var userPwdMsg =document.getElementById("userPwdMsg")
-        // 格式有误时,返回false,在页面上提示
-        if(!userPwdReg.test(userPwd)){ 
-            userPwdMsg.innerText="密码必须是6位数字"
-            return false
-        }
-        // 格式OK,返回true
-        userPwdMsg.innerText="OK"
-        return true
-
-    }
-
-    // 表单在提交时,校验用户名和密码格式,格式OK才会提交
-    function checkForm(){
-        var flag1 =checkUsername()
-        var flag2 =checkUserPwd()
-
-        return flag1&&flag2
-    }
-
-</script>
 <body>
-    <div id="loginContainer">
-        <div id="topTool">
-            <a href="#.">登录</a>
-            <a href="register.html">注册</a>
+
+
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="#" class="sign-in-form">
+
+                    <h2 class="title"><img src="../../static/icon/LogoIcon.svg" alt="Logo" >登录</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="用户名" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="密码" />
+                    </div>
+                    <input type="submit" value="登录" class="btn solid" />
+                </form>
+                <form action="#" class="sign-up-form">
+                    <h2 class="title"><img src="../../static/icon/LogoIcon.svg" alt="Logo" >注册</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="用户名" />
+                    </div>
+                    <div class="input-field">
+                        <i class="	fa fa-mobile"></i>
+                        <input type="email" placeholder="手机号码" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="密码" />
+                    </div>
+                    <input type="submit" class="btn" value="注册" />
+                </form>
+            </div>
         </div>
-        <!-- 这里的表单提交给sevrlet-->
-        <form action="/user/login" id="loginForm" onsubmit="return checkForm()">
-            用户名：<input type="text" id="username" name="username" onblur="checkUsername()">
-            <span id="usernameMsg"></span><br>
-            密码：<input type="password" id="userPassword" name="userPassword" onblur="checkUserPwd()">
-            <span id="userPwdMsg"></span><br>
-            <input type="submit" value="登录">
-        </form>
-<!--        <a href="adminLogin.html" id="adminLogin">管理员</a>-->
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>新来的?</h3>
+                    <p>
+                       点击注册，创建新用户
+                    </p>
+                    <button class="btn transparent" id="sign-up-btn">
+                        注册
+                    </button>
+                </div>
+                <img src="img/log.svg" class="image" alt="" />
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>已有账号</h3>
+                    <p>
+                       点击登录，登录用户
+                    </p>
+                    <button class="btn transparent" id="sign-in-btn">
+                        登录
+                    </button>
+                </div>
+                <img src="img/register.svg" class="image" alt="" />
+            </div>
+        </div>
     </div>
+
+
+    <script src='https://kit.fontawesome.com/64d58efce2.js'></script>
+    <script src="../../static/js/loginscript.js"></script>
 </body>
 </html>
