@@ -1,0 +1,141 @@
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 基础样式：设置字体、页面宽高和隐藏水平滚动 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #E6F5F7;
+}
+
+/* 链接样式：去掉默认下划线 */
+a {
+    text-decoration: none;
+}
+/*不显示小圆点*/
+li {
+    list-style: none;
+}
+
+/*顶部导航栏*/
+header {
+    /*background-color: #333;*/
+    position: fixed;
+    width: 100%;
+    color: black;
+    background-color: White;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+}
+
+.navbar {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.navigation {
+    list-style: none;
+    display: flex;
+}
+
+.navigation li {
+    margin-right: 20px;
+}
+
+.navigation a {
+    font-size: 16px;
+    line-height: 20px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.search-bar input[type="text"] {
+    padding: 5px 10px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    background-color: rgba(239,239,239,1);
+    color: rgba(136,136,136,1);
+    font-size: 14px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+
+    width: 40px;
+    height: 40px;
+    background-color: rgba(239,239,239,1);
+}
+.search-bar button img {
+    width: 25px;
+    height: 22px;
+}
+
+
+.publish-btn {
+    width: 97px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(125,182,191,1);
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto;
+    border: 1px solid rgba(34,191,167,1);
+}
+
+.login-register a {
+    width: 84px;
+    height: 60px;
+    line-height: 20px;
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+    text-align: center;
+}
+
+.navbar-menu img{
+    width: 24px;
+    height: 24px;
+}
+
+/*主题板块*/
+.main-block{
+    padding: 15%;
+    padding-top:10%;
+}
+    /*左侧栏*/
+    .left-block{
+
+    }
