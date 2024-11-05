@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>冒险者工会</title>
-    <link rel="stylesheet" href="../../static/css/indexCssNew.css">
+    <link rel="stylesheet" href="../../static/css/indexCss.css">
+
 </head>
 <body>
 
@@ -56,7 +57,7 @@
     </ul>
 </div>
 
-<!-- 轮播图 -->
+<!-- 轮播图-->
 <div class="carousel-container">
     <div class="carousel-track">
         <div class="carousel-slide active"><img src="../../static/image/advan1.jpg" alt="图片1"></div>
@@ -65,6 +66,110 @@
     </div>
     <button class="carousel-prev">上一张</button>
     <button class="carousel-next">下一张</button>
+</div>
+
+<div class="search-container">
+    <!--    搜索-->
+    <div class="search-frame">
+        <div class="search-box">
+            <input type="text" placeholder="请输入关键词" class="search-input">
+        </div>
+        <button class="search-button">搜索</button>
+    </div>
+    <!--    下拉框-->
+    <div class="filter-container">
+        <select class="filter-dropdown">
+            <option value="" disabled selected>竞赛等级</option>
+            <option value="category1">国家级</option>
+            <option value="category2">省级</option>
+            <option value="category3">市级</option>
+            <option value="category4">区级</option>
+            <option value="category5">校级</option>
+            <option value="category6">其他</option>
+        </select>
+        <select class="filter-dropdown">
+            <option value="" disabled selected>竞赛类别</option>
+        </select>
+        <select class="filter-dropdown">
+            <option value="" disabled selected>岗位分类</option>
+        </select>
+        <select class="filter-dropdown">
+            <option value="" disabled selected>比赛时间</option>
+        </select>
+    </div>
+</div>
+
+<!-- 小组信息展示区 -->
+<div class="group-container">
+    <div class="group-info">
+        <div class="group-left">
+            <p class="competition-name">竞赛名称: XXX</p>
+            <p>招聘岗位: 岗位1</p>
+            <p>描述: 这是一场非常激烈的竞赛，欢迎参加！</p>
+        </div>
+        <div class="group-right">
+            <p>小组名: 小组A</p>
+            <p>组长: 张三</p>
+            <p>组员: 李四, 王五</p>
+        </div>
+        <button class="contact-button">与组长沟通</button>
+    </div>
+    <div class="group-info">
+        <div class="group-left">
+            <p class="competition-name">竞赛名称: YYY</p>
+            <p>招聘岗位: 岗位2</p>
+            <p>描述: 这个竞赛将提供丰富的实习机会。</p>
+        </div>
+        <div class="group-right">
+            <p>小组名: 小组B</p>
+            <p>组长: 赵六</p>
+            <p>组员: 孙七, 周八</p>
+        </div>
+        <button class="contact-button">与组长沟通</button>
+    </div>
+    <div class="group-info">
+        <div class="group-left">
+            <p class="competition-name">竞赛名称: YYY</p>
+            <p>招聘岗位: 岗位2</p>
+            <p>描述: 这个竞赛将提供丰富的实习机会。</p>
+        </div>
+        <div class="group-right">
+            <p>小组名: 小组B</p>
+            <p>组长: 赵六</p>
+            <p>组员: 孙七, 周八</p>
+        </div>
+        <button class="contact-button">与组长沟通</button>
+    </div>
+    <div class="group-info">
+        <div class="group-left">
+            <p class="competition-name">竞赛名称: YYY</p>
+            <p>招聘岗位: 岗位2</p>
+            <p>描述: 这个竞赛将提供丰富的实习机会。</p>
+        </div>
+        <div class="group-right">
+            <p>小组名: 小组B</p>
+            <p>组长: 赵六</p>
+            <p>组员: 孙七, 周八</p>
+        </div>
+        <button class="contact-button">与组长沟通</button>
+    </div>
+</div>
+
+<!-- 发布按钮 -->
+<button class="publish-button">发布</button>
+
+<!--翻页-->
+<div class="pagination">
+    <button class="page-button">上一页</button>
+    <span>第 <strong id="current-page">1</strong> 页</span>
+    <div class="page-numbers">
+        <button class="page-number" data-page="1">1</button>
+        <button class="page-number" data-page="2">2</button>
+        <button class="page-number" data-page="3">3</button>
+        <button class="page-number" data-page="4">4</button>
+        <button class="page-number" data-page="5">5</button>
+    </div>
+    <button class="page-button">下一页</button>
 </div>
 
 <!-- 脚本引入 -->
