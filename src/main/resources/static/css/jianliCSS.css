@@ -130,12 +130,167 @@ header {
     height: 24px;
 }
 
-/*主题板块*/
-.main-block{
-    padding: 15%;
-    padding-top:10%;
+/*居中*/
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/*主题板块*/
+#main-block{
+    padding: 15%;
+    padding-top:6%;
+    display:grid;
+    grid-template-columns: repeat(15,1fr);
+    grid-template-areas:"a a a b b b b b b b b b c c c";
+}
+
+
     /*左侧栏*/
-    .left-block{
+    #left-block{
+        grid-area:a;
+    }
+    #left1{
+        background-color:white;
+        border-radius: 20px ;
+        margin:10px;
+        padding-bottom:10px;
+    }
+    #left1-title{
+        border-radius:20px 20px 0 0;
+        padding:10px;
+        background-color:#EFEFEF;
+    }
+    #left1>a>div{
+        margin: 20px auto;
 
     }
+
+    /*中间板块*/
+    #middle-block{
+            overflow: auto;
+            grid-area:b;
+    }
+    #middle1{
+
+        margin: 10px auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    /*中间部分标题*/
+    #middle1-title{
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 20px 20px 0 0;
+            padding: 10px;
+            background-color: #EFEFEF;
+            align-items: center;
+        }
+    #middle1-title span{
+        width:75%;
+    }
+    button {
+        padding: 3px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #007bff;
+        color: white;
+        margin:10px;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+    /*基本信息*/
+    .profile {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .info {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .info h1 {
+        margin: 0;
+        font-size: 60px;
+        width:30%
+
+    }
+    .info div {
+        margin: 5px 0;
+        width:25%
+    }
+    .contact {
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+    }
+    .icon {
+        margin-right: 10px;
+        font-size: 1.5em;
+    }
+    /*简历信息*/
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .section {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 10px;
+        background: #e9f0f5;
+        border-radius: 5px;
+        border-left: 4px solid #00FFFF;
+    }
+
+    .section h3 {
+        margin-top: 0;
+        color: #007bff;
+    }
+
+    /*中间板块
+
+
+
+    div[id^="infor-title"] {
+        width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #e9f0f5;
+            border-radius: 5px;
+        border-left: 2px solid #00FFFF;
+    }
+
+    }*/
+    /*右边栏*/
+    #right-block{
+        grid-area:c;
+    }
+    #right1{
+        background-color:white;
+        border-radius: 20px;
+        margin:10px;
+    }
+    #right1-title{
+                border-radius:20px 20px 0 0;
+                padding:10px;
+                background-color:#EFEFEF;
+    }
+    #right2{
+        background-color:white;
+        border-radius: 20px;
+        margin:10px;
+    }
+    #right2-title{
+                    border-radius:20px 20px 0 0;
+                    padding:10px;
+                    background-color:#EFEFEF;
+        }
