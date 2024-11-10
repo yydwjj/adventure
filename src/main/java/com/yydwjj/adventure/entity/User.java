@@ -13,6 +13,7 @@ public class User {
   private java.sql.Timestamp updatedAt;
   private java.sql.Timestamp deletedAt;
   private long userAvatarId;
+  private String userPwd;
 
 
   public long getUserId() {
@@ -104,4 +105,11 @@ public class User {
     this.userAvatarId = userAvatarId;
   }
 
+  public String getUserPwd() {
+    return userPwd;
+  }
+
+  public void setUserPwd(String userPwd) {
+    this.userPwd = userPwd;
+  }
 }
