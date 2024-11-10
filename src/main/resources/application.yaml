@@ -3,3 +3,12 @@ jwt:
   token:
     tokenExpiration: 120 #有效时间,单位分钟
     tokenSignKey: headline123456  #当前程序签名秘钥 自定义
+
+
+#数据库配置
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1/adventure
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
