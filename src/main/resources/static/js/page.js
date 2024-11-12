@@ -1,56 +1,59 @@
-// 获取所有必要的 DOM 元素
-const prevButton = document.getElementById('prev-page');
-const nextButton = document.getElementById('next-page');
-const currentPageElem = document.getElementById('current-page');
-const pageNumbers = document.querySelectorAll('.page-number');
+// 获取当前页面元素
+const currentPageElement = document.getElementById("current-page");
+let currentPage = 1; // 默认初始页面
 
-// 初始化当前页码
-let currentPage = 1;
-const totalPages = pageNumbers.length;
+// 获取所有页码按钮
+const pageButtons = document.querySelectorAll(".page-number");
+const prevButton = document.getElementById("prev-page");
+const nextButton = document.getElementById("next-page");
 
-// 更新页码显示和按钮状态
-function updatePagination() {
-    // 更新当前页码文本
-    currentPageElem.textContent = currentPage;
-
-    // 更新每个页码按钮的样式
-    pageNumbers.forEach(button => {
-        const pageNumber = parseInt(button.dataset.page);
-        if (pageNumber === currentPage) {
-            button.classList.add('active');  // 给当前页添加 active 样式
-        } else {
-            button.classList.remove('active'); // 移除其他页的 active 样式
-        }
-    });
-
-    // 上一页和下一页按钮的禁用状态
-    prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage === totalPages;
+// 更新页码显示
+function updatePageNumber(page) {
+    currentPage = page;
+    currentPageElement.textContent = currentPage;
+    updateButtonState();
 }
 
-// 处理上一页按钮点击
-prevButton.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        updatePagination();
-    }
-});
+// 更新上一页和下一页按钮的状态
+function updateButtonState() {
+    // 设置上一页和下一页按钮的禁用状态
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === pageButtons.length;
 
-// 处理下一页按钮点击
-nextButton.addEventListener('click', () => {
-    if (currentPage < totalPages) {
-        currentPage++;
-        updatePagination();
-    }
-});
+    // 更新页码按钮的选中样式
+    pageButtons.forEach(button => {
+        const page = parseInt(button.getAttribute("data-page"));
+        if (page === currentPage) {
+            button.classList.add("active"); // 高亮当前页
+        } else {
+            button.classList.remove("active");
+        }
+    });
+}
 
-// 处理页码按钮点击
-pageNumbers.forEach(button => {
-    button.addEventListener('click', () => {
-        currentPage = parseInt(button.dataset.page);
-        updatePagination();
+// 为每个页码按钮绑定点击事件
+pageButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        const page = parseInt(e.target.getAttribute("data-page"));
+        if (page !== currentPage) {
+            updatePageNumber(page);
+        }
     });
 });
 
-// 初始化分页显示
-updatePagination();
+// 上一页按钮点击事件
+prevButton.addEventListener("click", () => {
+    if (currentPage > 1) {
+        updatePageNumber(currentPage - 1);
+    }
+});
+
+// 下一页按钮点击事件
+nextButton.addEventListener("click", () => {
+    if (currentPage < pageButtons.length) {
+        updatePageNumber(currentPage + 1);
+    }
+});
+
+// 初始化页面状态
+updatePageNumber(currentPage);
