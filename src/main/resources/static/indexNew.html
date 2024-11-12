@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险者工会</title>
+    <link rel="stylesheet" href="css/indexCssNew.css">
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+
+<!-- 轮播图 -->
+<div class="carousel-container">
+    <div class="carousel-track">
+        <div class="carousel-slide active"><img src="image/advan1.jpg" alt="图片1"></div>
+        <div class="carousel-slide"><img src="image/advan2.jpg" alt="图片2"></div>
+        <div class="carousel-slide"><img src="image/advan3.jpg" alt="图片3"></div>
+    </div>
+    <button class="carousel-prev">上一张</button>
+    <button class="carousel-next">下一张</button>
+</div>
+
+<!-- 内容容器 -->
+<div id="context-container">
+    <!-- 排行榜 -->
+    <div id="ranking-container">
+        <div id="ranking-title">排行榜</div>
+        <ul id="ranking-user-list">
+            <li class="ranking-user-info" data-id="1"><a href="">1 小明</a></li>
+            <li class="ranking-user-info" data-id="2"><a href="">2 小军</a></li>
+            <li class="ranking-user-info" data-id="3"><a href="">3 小红</a></li>
+            <li class="ranking-user-info" data-id="4"><a href="">4 小李</a></li>
+
+        </ul>
+    </div>
+
+    <!-- 新闻内容 -->
+    <div id="news-container">
+        <div id="news-container-title">新闻</div>
+<!--   新闻板块     -->
+        <div id="news-div">
+            <div class="news">
+                <span class="news-title">近300项北大成果促转化 这场校企双进实现“双向奔赴”</span>
+                <div class="news-feature">
+                    <div>学科竞赛</div>
+                    <div>优秀成果</div>
+                    <div>校企合作</div>
+                </div>
+                <div class="news-context">11月29日，由北京大学科技开发部、北京大学前沿交叉学科研究院、成都市科学技术局联合主办的“校企双进·找矿挖宝”科技成果对接北京大学
+                    专场活动在京举行，旨在推动产业链、创新链、资金链、人才链深度融合，加快在科技创新和成果转化上的校院地协同创新发展。</div>
+                <div class="news-data">2024-10-1</div>
+            </div>
+            <div class="news">
+                <span class="news-title">近300项北大成果促转化 这场校企双进实现“双向奔赴”</span>
+                <div class="news-feature">
+                    <div>学科竞赛</div>
+                    <div>优秀成果</div>
+                    <div>校企合作</div>
+                </div>
+                <div class="news-context">11月29日，由北京大学科技开发部、北京大学前沿交叉学科研究院、成都市科学技术局联合主办的“校企双进·找矿挖宝”科技成果对接北京大学
+                    专场活动在京举行，旨在推动产业链、创新链、资金链、人才链深度融合，加快在科技创新和成果转化上的校院地协同创新发展。</div>
+                <div class="news-data">2024-10-1</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 脚本引入 -->
+<script src="js/carousel.js"></script>
+<script src="js/sidebar.js"></script>
+</body>
+</html>
