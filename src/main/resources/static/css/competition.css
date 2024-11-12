@@ -431,17 +431,13 @@ header {
     padding: 0 20px;  /* 给左右两边留点空白 */
 }
 .left-content, .right-content {
-    overflow: hidden;
     display: flex;
     align-items: center;
-    white-space: nowrap; /* 禁止文本换行 */
 }
 
 .left-content span, .right-content span {
     font-size: 14px;
     color: #808080;
-    text-overflow: ellipsis; /* 超出部分显示省略号 */
-    overflow: hidden; /* 隐藏溢出的内容 */
 }
 
 .left-content span:not(:last-child), .right-content span:not(:last-child) {

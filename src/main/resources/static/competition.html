@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险者工会</title>
+    <link rel="stylesheet" href="css/team.css">
+
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+
+<!-- 轮播图-->
+<div class="carousel-container">
+    <div class="carousel-track">
+        <div class="carousel-slide active"><img src="image/advan1.jpg" alt="图片1"></div>
+        <div class="carousel-slide"><img src="image/advan2.jpg" alt="图片2"></div>
+        <div class="carousel-slide"><img src="image/advan3.jpg" alt="图片3"></div>
+    </div>
+    <button class="carousel-prev">上一张</button>
+    <button class="carousel-next">下一张</button>
+</div>
+
+<div class="search-container">
+    <!--    搜索-->
+    <div class="search-frame">
+        <div class="search-box">
+            <input type="text" placeholder="请输入关键词" class="search-input">
+        </div>
+        <button class="search-button">搜索</button>
+    </div>
+    <!--    下拉框-->
+    <div class="filter-container">
+        <select class="filter-dropdown">
+            <option value="" disabled selected>竞赛等级</option>
+            <option value="category1">国家级</option>
+            <option value="category2">省级</option>
+            <option value="category3">市级</option>
+            <option value="category4">区级</option>
+            <option value="category5">校级</option>
+            <option value="category6">其他</option>
+        </select>
+        <select class="filter-dropdown">
+            <option value="" disabled selected>竞赛类别</option>
+        </select>
+        <select class="filter-dropdown">
+            <option value="" disabled selected>报名时间</option>
+        </select>
+        <select class="filter-dropdown">
+            <option value="" disabled selected>比赛时间</option>
+        </select>
+    </div>
+</div>
+
+<!-- 小组信息展示区 -->
+<div class="group-container">
+    <div class="group-info">
+        <div class="group-top">
+            <div class="group-left">
+                <p class="competition-name">竞赛名称: XXX</p>
+                <p class="job-title">竞赛级别: <span class="job-name">国家级</span></p>
+                <p class="job-title">竞赛类别: <span class="job-name">理科</span></p>
+            </div>
+            <div class="group-right">
+                <p>报名时间: 2024.09.05 ~ 2024.12.05</p>
+                <p></p>
+                <p>竞赛时间: 2024.09.05 ~ 2024.12.05</p>
+            </div>
+            <button class="contact-button">报名</button>
+        </div>
+        <div class="green-space">
+            <div class="left-content">
+                <span>通过赛事选拔更多优秀人才，全面提升当代大学生和其他人群的阅读能力和素养，培养和发现优秀的语言应用人才.后面是用来测试是否超出的文案</span>
+            </div>
+        </div>
+    </div>
+    <div class="group-info">
+        <div class="group-top">
+            <div class="group-left">
+                <p class="competition-name">竞赛名称: XXX</p>
+                <p class="job-title">竞赛级别: <span class="job-name">国家级</span></p>
+                <p class="job-title">竞赛类别: <span class="job-name">理科</span></p>
+            </div>
+            <div class="group-right">
+                <p>报名时间: 2024.09.05 ~ 2024.12.05</p>
+                <p></p>
+                <p>竞赛时间: 2024.09.05 ~ 2024.12.05</p>
+            </div>
+            <button class="contact-button">报名</button>
+        </div>
+        <div class="green-space">
+            <div class="left-content">
+                <span>通过赛事选拔更多优秀人才，全面提升当代大学生和其他人群的阅读能力和素养，培养和发现优秀的语言应用人才.后面是用来测试是否超出的文案</span>
+            </div>
+        </div>
+    </div>
+    <div class="group-info">
+        <div class="group-top">
+            <div class="group-left">
+                <p class="competition-name">竞赛名称: XXX</p>
+                <p class="job-title">竞赛级别: <span class="job-name">国家级</span></p>
+                <p class="job-title">竞赛类别: <span class="job-name">理科</span></p>
+            </div>
+            <div class="group-right">
+                <p>报名时间: 2024.09.05 ~ 2024.12.05</p>
+                <p></p>
+                <p>竞赛时间: 2024.09.05 ~ 2024.12.05</p>
+            </div>
+            <button class="contact-button">报名</button>
+        </div>
+        <div class="green-space">
+            <div class="left-content">
+                <span>通过赛事选拔更多优秀人才，全面提升当代大学生和其他人群的阅读能力和素养，培养和发现优秀的语言应用人才.后面是用来测试是否超出的文案</span>
+            </div>
+        </div>
+    </div>
+    <div class="group-info">
+        <div class="group-top">
+            <div class="group-left">
+                <p class="competition-name">竞赛名称: XXX</p>
+                <p class="job-title">竞赛级别: <span class="job-name">国家级</span></p>
+                <p class="job-title">竞赛类别: <span class="job-name">理科</span></p>
+            </div>
+            <div class="group-right">
+                <p>报名时间: 2024.09.05 ~ 2024.12.05</p>
+                <p></p>
+                <p>竞赛时间: 2024.09.05 ~ 2024.12.05</p>
+            </div>
+            <button class="contact-button">报名</button>
+        </div>
+        <div class="green-space">
+            <div class="left-content">
+                <span>通过赛事选拔更多优秀人才，全面提升当代大学生和其他人群的阅读能力和素养，培养和发现优秀的语言应用人才.后面是用来测试是否超出的文案</span>
+            </div>
+        </div>
+    </div>
+    <div class="group-info">
+        <div class="group-top">
+            <div class="group-left">
+                <p class="competition-name">竞赛名称: XXX</p>
+                <p class="job-title">竞赛级别: <span class="job-name">国家级</span></p>
+                <p class="job-title">竞赛类别: <span class="job-name">理科</span></p>
+            </div>
+            <div class="group-right">
+                <p>报名时间: 2024.09.05 ~ 2024.12.05</p>
+                <p></p>
+                <p>竞赛时间: 2024.09.05 ~ 2024.12.05</p>
+            </div>
+            <button class="contact-button">报名</button>
+        </div>
+        <div class="green-space">
+            <div class="left-content">
+                <span>通过赛事选拔更多优秀人才，全面提升当代大学生和其他人群的阅读能力和素养，培养和发现优秀的语言应用人才.后面是用来测试是否超出的文案</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 发布按钮 -->
+<button class="publish-button">发布</button>
+
+<!--翻页-->
+<div class="pagination">
+    <button class="page-button" id="prev-page">上一页</button>
+    <span>第 <strong id="current-page">1</strong> 页</span>
+    <div class="page-numbers">
+        <button class="page-number" data-page="1">1</button>
+        <button class="page-number" data-page="2">2</button>
+        <button class="page-number" data-page="3">3</button>
+        <button class="page-number" data-page="4">4</button>
+        <button class="page-number" data-page="5">5</button>
+    </div>
+    <button class="page-button" id="next-page">下一页</button>
+</div>
+
+
+
+<!-- 脚本引入 -->
+<script src="js/carousel.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/page.js"></script>
+</body>
+</html>
