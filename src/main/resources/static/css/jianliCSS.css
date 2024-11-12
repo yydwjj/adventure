@@ -156,6 +156,7 @@ header {
         border-radius: 20px ;
         margin:10px;
         padding-bottom:10px;
+        height:280px;
     }
     #left1-title{
         border-radius:20px 20px 0 0;
@@ -164,10 +165,16 @@ header {
     }
     #left1>a>div{
         margin: 20px auto;
-
+        height:50px;
+    }
+    #left1 a div:hover{
+        background-color:#BBBBBB;
     }
 
     /*中间板块*/
+    #middle1 a{
+        color:white;
+    }
     #middle-block{
             overflow: auto;
             grid-area:b;
@@ -187,22 +194,24 @@ header {
             padding: 10px;
             background-color: #EFEFEF;
             align-items: center;
+
         }
     #middle1-title span{
         width:75%;
     }
-    button {
+    #middle1-title button {
         padding: 3px 25px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        background: #007bff;
+        background: rgba(125, 182, 191, 1);
         color: white;
         margin:10px;
+        white-space: nowrap;
     }
 
-    button:hover {
-        background: #0056b3;
+    #middle1-title button:hover {
+        background: #377F7F;
     }
     /*基本信息*/
     .profile {
@@ -229,7 +238,7 @@ header {
     .contact {
         display: flex;
         align-items: center;
-        margin: 5px 0;
+        margin: 5px ;
     }
     .icon {
         margin-right: 10px;
@@ -244,16 +253,17 @@ header {
 
     .section {
         width: 100%;
-        margin-bottom: 20px;
         padding: 10px;
-        background: #e9f0f5;
+        background: #E6F5F7;
         border-radius: 5px;
-        border-left: 4px solid #00FFFF;
+        border-left: 4px solid #54BCBD;
+        margin:20px
     }
 
     .section h3 {
         margin-top: 0;
-        color: #007bff;
+        color: #377F7F;
+
     }
 
     /*中间板块
@@ -278,6 +288,7 @@ header {
         background-color:white;
         border-radius: 20px;
         margin:10px;
+        height:360px;
     }
     #right1-title{
                 border-radius:20px 20px 0 0;
@@ -288,6 +299,7 @@ header {
         background-color:white;
         border-radius: 20px;
         margin:10px;
+        height:360px;
     }
     #right2-title{
                     border-radius:20px 20px 0 0;
