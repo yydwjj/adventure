@@ -95,6 +95,7 @@ public class UserServiceImpl implements UserService {
         else{
             user.setUserPwd("");
             Map<String,User> data = new HashMap<>();
+            user.setUserPwd("******");
             data.put("loginUser",user);
             result = Result.ok(data);
         }
