@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险者工会</title>
+    <link rel="stylesheet" href="css/postCss.css">
+
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>&Aogon;</div>
+
+<div id="post-task-container">
+    <h4>发布任务</h4>
+
+    <!-- 任务发布 -->
+    <form action="/submit_task" method="POST">
+        <!-- 任务名 -->
+        <label for="task_name">任务名:</label>
+        <input type="text" id="task_name" name="task_name" required>
+        <br><br>
+
+        <!-- 任务等级 -->
+        <label for="task_category_id">任务等级:</label>
+        <select id="task_category_id" name="task_category_id" required>
+            <option value="">请选择任务等级</option>
+            <option value="1">初级</option>
+            <option value="2">中级</option>
+            <option value="3">高级</option>
+            <!-- 可根据实际等级增加选项 -->
+        </select>
+        <br><br>
+
+        <!-- 任务分类 -->
+        <label for="task_level_id">任务分类:</label>
+        <select id="task_level_id" name="task_level_id" required>
+            <option value="">请选择任务分类</option>
+            <option value="A">分类A</option>
+            <option value="B">分类B</option>
+            <option value="C">分类C</option>
+            <!-- 可根据实际分类增加选项 -->
+        </select>
+        <br><br>
+
+        <!-- 任务报名开始结束时间 -->
+        <label for="registration_start">任务报名开始时间:</label>
+        <input type="date" id="registration_start" name="registration_start" required>
+        <label for="registration_end">任务报名结束时间:</label>
+        <input type="date" id="registration_end" name="registration_end" required>
+        <br><br>
+
+        <!-- 任务开始结束时间 -->
+        <label for="task_start">任务开始时间:</label>
+        <input type="date" id="task_start" name="task_start" required>
+        <label for="task_end">任务结束时间:</label>
+        <input type="date" id="task_end" name="task_end" required>
+        <br><br>
+
+        <!-- 人数限制 -->
+        <label for="participant_limit">人数限制:</label>
+        <input type="number" id="participant_limit" name="participant_limit" min="1" required>
+        <br><br>
+
+        <!-- 任务地点 -->
+        <label for="location">任务地点:</label>
+        <input type="text" id="location" name="location" required>
+        <br><br>
+
+        <!-- 任务详情 -->
+        <label for="task_info">任务详情:</label>
+        <textarea id="task_info" name="task_info" rows="5" cols="33" required></textarea>
+        <br><br>
+
+        <!-- 提交按钮 -->
+        <button type="submit">发布任务</button>
+    </form>
+</div>
+
+<!-- 脚本引入 -->
+<!--<script src="../../static/js/carousel.js"></script>-->
+<!--<script src="../../static/js/sidebar.js"></script>-->
+<!--发帖js-->
+
+</body>
+</html>
