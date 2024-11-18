@@ -120,20 +120,7 @@
 <!--获取用户信息-->
 <!--方法引入-->
 <script src="js/getUserInfo.js"></script>
-<script>
-    getUserInfo().then(data => {
-        if (data) {
-            console.log('User Info:', data);
-            // 保存用户信息
-            sessionStorage.setItem('myInfo',data)
-
-            let name = document.getElementsByClassName('login-register').item(0);
-            // 对用户名部分的修改
-            name.innerHTML=`${data.data.loginUser.username}`
-        } else {
-            console.log('Failed to fetch user info.');
-        }
-    });
-</script>
+<!--将修改共享模块的方法封装在方法中-->
+<script src="js/updateTopLab.js"></script>
 </body>
 </html>
