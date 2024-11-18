@@ -68,24 +68,24 @@
         <input type="text" id="task_name" name="taskName" required>
         <br><br>
 
-        <!-- 任务等级 -->
-        <label for="task_category_id">任务等级:</label>
-        <select id="task_category_id" name="taskCategoryId" required>
-            <option value="">请选择任务等级</option>
-            <option value="1">初级</option>
-            <option value="2">中级</option>
-            <option value="3">高级</option>
-            <!-- 可根据实际等级增加选项 -->
-        </select>
-        <br><br>
-
         <!-- 任务分类 -->
-        <label for="task_level_id">任务分类:</label>
-        <select id="task_level_id" name="taskLevelId" required>
+        <label for="task_category_id">任务分类:</label>
+        <select id="task_category_id" name="taskCategoryId" required>
             <option value="">请选择任务分类</option>
             <option value="1">分类A</option>
             <option value="2">分类B</option>
             <option value="3">分类C</option>
+            <!-- 可根据实际等级增加选项 -->
+        </select>
+        <br><br>
+
+        <!-- 任务等级 -->
+        <label for="task_level_id">任务等级:</label>
+        <select id="task_level_id" name="taskLevelId" required>
+            <option value="">请选择任务等级</option>
+            <option value="1">初级</option>
+            <option value="2">中级</option>
+            <option value="3">高级</option>
             <!-- 可根据实际分类增加选项 -->
         </select>
         <br><br>
@@ -155,6 +155,8 @@
             if (response.ok) {
                 const result = await response.json();
                 console.log('Task posted successfully:', result);
+                alert("发布成功！");
+                window.location.href='indexNew.html';
                 // 处理成功响应
             } else {
                 const error = await response.json();
@@ -164,6 +166,77 @@
         } catch (error) {
             console.error('Network error:', error);
             // 处理网络错误
+        }
+    });
+</script>
+<!--获取分类和级别信息-->
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/task/category', {
+                method: 'GET'
+            });
+            if (response.ok) {
+                const result = await response.json();
+                const cate = document.getElementById("task_category_id");
+
+                // 清除现有的选项
+                while (cate.firstChild) {
+                    cate.removeChild(cate.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择任务分类';
+                cate.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.taskCategoryId;
+                    option.textContent = item.categoryName;
+                    cate.appendChild(option);
+                });
+            } else {
+                console.error('Error fetching task categories:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+        }
+    });
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/task/levels', {
+                method: 'GET'
+            });
+            if (response.ok) {
+                const result = await response.json();
+                const cate = document.getElementById("task_level_id");
+
+                // 清除现有的选项
+                while (cate.firstChild) {
+                    cate.removeChild(cate.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择任务级别';
+                cate.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.taskLevelId;
+                    option.textContent = item.levelName;
+                    cate.appendChild(option);
+                });
+            } else {
+                console.error('Error fetching task categories:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
         }
     });
 </script>
