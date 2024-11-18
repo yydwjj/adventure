@@ -26,4 +26,11 @@ public class ShowController {
 //        System.out.println("aaa");
         return "redirect:/login.html";
     }
+
+
+    @RequestMapping(value = "post-task",method = RequestMethod.GET)
+    public String postTask(){
+        return "redirect:/post.html";
+    }
+
 }
