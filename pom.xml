@@ -41,13 +41,13 @@
             <scope>test</scope>
         </dependency>
 
-        <!--    jwt    -->
+<!--    jwt    -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
         </dependency>
-        <!--    lombok    -->
+<!--    lombok    -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -60,7 +60,7 @@
             <version>1.2.23</version>
         </dependency>
 
-        <!--    mysql数据库依赖    -->
+<!--    mysql数据库依赖    -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

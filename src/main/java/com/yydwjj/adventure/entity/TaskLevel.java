@@ -1,4 +1,4 @@
-package com.sample;
+package com.yydwjj.adventure.entity;
 
 
 public class TaskLevel {

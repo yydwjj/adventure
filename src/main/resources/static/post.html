@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险者工会</title>
+    <link rel="stylesheet" href="css/postCss.css">
+
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>&Aogon;</div>
+
+<div id="post-task-container">
+    <h4>发布任务</h4>
+
+    <!-- 任务发布 -->
+    <form action="/task/post" method="POST" id="task_form">
+        <!-- 任务名 -->
+        <label for="task_name">任务名:</label>
+        <input type="text" id="task_name" name="taskName" required>
+        <br><br>
+
+        <!-- 任务分类 -->
+        <label for="task_category_id">任务分类:</label>
+        <select id="task_category_id" name="taskCategoryId" required>
+            <option value="">请选择任务分类</option>
+            <option value="1">分类A</option>
+            <option value="2">分类B</option>
+            <option value="3">分类C</option>
+            <!-- 可根据实际等级增加选项 -->
+        </select>
+        <br><br>
+
+        <!-- 任务等级 -->
+        <label for="task_level_id">任务等级:</label>
+        <select id="task_level_id" name="taskLevelId" required>
+            <option value="">请选择任务等级</option>
+            <option value="1">初级</option>
+            <option value="2">中级</option>
+            <option value="3">高级</option>
+            <!-- 可根据实际分类增加选项 -->
+        </select>
+        <br><br>
+
+        <!-- 任务报名开始结束时间 -->
+        <label for="registration_start">任务报名开始时间:</label>
+        <input type="date" id="registration_start" name="registrationStart" required>
+        <label for="registration_end">任务报名结束时间:</label>
+        <input type="date" id="registration_end" name="registrationEnd" required>
+        <br><br>
+
+        <!-- 任务开始结束时间 -->
+        <label for="task_start">任务开始时间:</label>
+        <input type="date" id="task_start" name="taskStart" required>
+        <label for="task_end">任务结束时间:</label>
+        <input type="date" id="task_end" name="taskEnd" required>
+        <br><br>
+
+        <!-- 人数限制 -->
+        <label for="participant_limit">人数限制:</label>
+        <input type="number" id="participant_limit" name="participantLimit" min="1" required>
+        <br><br>
+
+        <!-- 任务地点 -->
+        <label for="location">任务地点:</label>
+        <input type="text" id="location" name="location" required>
+        <br><br>
+
+        <!-- 任务详情 -->
+        <label for="task_info">任务详情:</label>
+        <textarea id="task_info" name="taskInfo" rows="5" cols="33" required></textarea>
+        <br><br>
+
+        <!-- 提交按钮 -->
+        <button type="submit">发布任务</button>
+    </form>
+</div>
+
+<!-- 脚本引入 -->
+<!--<script src="../../static/js/carousel.js"></script>-->
+<!--<script src="../../static/js/sidebar.js"></script>-->
+
+<!--从数据库中获取任务分类和分类等级信息，并更新下拉框中的value和text-->
+<!--提交表单-->
+<script>
+    document.getElementById('task_form').addEventListener('submit', async (event) => {
+        event.preventDefault(); // 阻止表单的默认提交行为
+
+        // 获取表单数据
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData.entries());
+
+        // 获取 localStorage 中的 authToken
+        const authToken = localStorage.getItem('authToken');
+
+        // 发送 POST 请求
+        try {
+            const response = await fetch('/task/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'token': authToken
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Task posted successfully:', result);
+                alert("发布成功！");
+                window.location.href='indexNew.html';
+                // 处理成功响应
+            } else {
+                const error = await response.json();
+                console.error('Error posting task:', error);
+                // 处理错误响应
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+            // 处理网络错误
+        }
+    });
+</script>
+<!--获取分类和级别信息-->
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/task/category', {
+                method: 'GET'
+            });
+            if (response.ok) {
+                const result = await response.json();
+                const cate = document.getElementById("task_category_id");
+
+                // 清除现有的选项
+                while (cate.firstChild) {
+                    cate.removeChild(cate.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择任务分类';
+                cate.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.taskCategoryId;
+                    option.textContent = item.categoryName;
+                    cate.appendChild(option);
+                });
+            } else {
+                console.error('Error fetching task categories:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+        }
+    });
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/task/levels', {
+                method: 'GET'
+            });
+            if (response.ok) {
+                const result = await response.json();
+                const cate = document.getElementById("task_level_id");
+
+                // 清除现有的选项
+                while (cate.firstChild) {
+                    cate.removeChild(cate.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择任务级别';
+                cate.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.taskLevelId;
+                    option.textContent = item.levelName;
+                    cate.appendChild(option);
+                });
+            } else {
+                console.error('Error fetching task categories:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+        }
+    });
+</script>
+</body>
+</html>
