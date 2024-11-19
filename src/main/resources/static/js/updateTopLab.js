@@ -15,11 +15,18 @@ getUserInfo().then(data => {
         const menuItems = document.getElementById('sidebar').querySelectorAll('.menu-item span');
         // 定义每个菜单项对应的 URL
         const menuUrls = {
-            '个人信息': `/profile`,
-            '我的简历': `/resume`,
-            '我的队伍': `/team`,
-            '历史任务': `/history`
+            '个人信息': `/show/profile`,
+            '我的简历': `/show/resume`,
+            '我的队伍': `/show/team`,
+            '历史任务': `/show/history`
         };
+        // 为“发布”按钮添加点击事件监听器
+        const publishButton = document.querySelector('.publish-btn');
+        if (publishButton) {
+            publishButton.addEventListener('click', () => {
+                window.location.href = '/show/post-task';
+            });
+        }
         // 为每个 span 元素添加点击事件监听器
         menuItems.forEach((span) => {
             span.addEventListener('click', () => {
