@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="css/presonifm.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">
+                <img src="icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>&nbsp;</div>
+<div>
+    <h1>我的信息</h1>
+</div>
+<div class="contain">
+    <div class="main">
+        <form id="form1">
+            <label for="name" class="label">昵称:
+                <input type="text" id="name" placeholder="请输入" class="input">
+            </label><br><div>&nbsp;</div><div>&nbsp;</div>
+            <label for="username" class="label">用户名:
+                <input type="text" id="username" value="gwjdtqfpjxrjt" class="input">
+            </label><br><div>&nbsp;</div><div>&nbsp;</div>
+            <label for="signature" class="label">我的签名:
+                <input type="text" id="signature" placeholder="请输入" class="input">
+            </label>
+        </form>
+    </div>
+    <div class="main1">
+        <form id="form2" class="label">
+            <label for="email" class="label">邮箱:
+                <input type="email" id="email" placeholder="请输入" class="input">
+            </label><br><div>&nbsp;</div><div>&nbsp;</div>
+            <label for="phone" class="label">电话:
+                <input type="text" id="phone" placeholder="请输入" class="input">
+            </label><br><div>&nbsp;</div><div>&nbsp;</div>
+            <label for="school" class="label">学校信息:
+                <input type="text" id="school" placeholder="请输入" class="input">
+            </label>
+        </form>
+        <button type="submit" id="submit" class="btn">保存
+            <span class="ripple"></span></button>
+    </div>
+</div>
+<script src="js/carousel.js"></script>
+<script src="js/sidebar.js"></script>
+</body>
+</html>
