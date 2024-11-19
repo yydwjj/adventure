@@ -4,6 +4,7 @@ import com.yydwjj.adventure.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  *  User 调用持久层
@@ -24,4 +25,9 @@ public interface UserMapper {
 
     @Select("select * from user where user_id = #{userId}")
     User selectById(Long userId);
+
+    @Update("UPDATE adventure.user SET username = #{username} ,email = #{email}," +
+                    "phone_number = #{phoneNumber},updated_at = NOW(),notes = #{notes}," +
+                    " school_id = #{schoolId} WHERE user_id = #{userId}")
+    int updateById(User user);
 }
