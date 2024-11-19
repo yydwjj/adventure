@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface SchoolMapper {
     @Select("select * from adventure.school")
-    public List<School> getAllSchool();
+    List<School> getAllSchool();
 }
