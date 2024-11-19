@@ -7,6 +7,7 @@ import com.yydwjj.adventure.result.ResultCodeEnum;
 import com.yydwjj.adventure.service.UserService;
 import com.yydwjj.adventure.utils.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -94,6 +95,7 @@ public class UserServiceImpl implements UserService {
         else{
             user.setUserPwd("");
             Map<String,User> data = new HashMap<>();
+            user.setUserPwd("******");
             data.put("loginUser",user);
             result = Result.ok(data);
         }
