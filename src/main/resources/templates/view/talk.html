@@ -7,9 +7,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../static/css/reset.min.css">
     <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/indexCss.css">
 
 </head>
 <body>
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../../static/icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="../../static/icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="../../static/icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="../../static/icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="../../static/icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="../../static/icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="../../static/icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
     <div class="wrapper">
         <div class="container">
             <div class="left">
@@ -193,8 +238,7 @@
             </div>
         </div>
     </div>
-    <script src="../../static/js/index.js"></script>
-
+    <script src="../../static/js/talk.js"></script>
     <script>
         const username = 'dtg'; // 用户名
         const ws = new WebSocket('ws://localhost:8080/chat/' + username);
@@ -240,5 +284,7 @@
         }
 
     </script>
+    <script src="../../static/js/carousel.js"></script>
+    <script src="../../static/js/sidebar.js"></script>
 </body>
 </html>
