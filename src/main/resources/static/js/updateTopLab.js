@@ -46,6 +46,9 @@ getUserInfo().then(data => {
             }
         });
     } else {
+        let name = document.getElementsByClassName('login-register').item(0);
+// 将登录注册按钮替换成用户名称 并设置用户主页超链接
+        name.innerHTML=`<a href="show/login">登录/注册</a>`
         console.log('Failed to fetch user info.');
     }
 });
