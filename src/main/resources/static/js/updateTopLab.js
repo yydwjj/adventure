@@ -3,8 +3,10 @@
 getUserInfo().then(data => {
     if (data) {
         console.log('User Info:', data);
+        // 将对象转换为 JSON 字符串
+        const userInfoString = JSON.stringify(data.data.loginUser);
         // 保存用户信息
-        sessionStorage.setItem('myInfo',data)
+        sessionStorage.setItem('myInfo', userInfoString);
 
         let name = document.getElementsByClassName('login-register').item(0);
         // 将登录注册按钮替换成用户名称 并设置用户主页超链接
@@ -20,7 +22,7 @@ getUserInfo().then(data => {
         };
         // 为每个 span 元素添加点击事件监听器
         menuItems.forEach((span) => {
-            span.addEventListener('click', (event) => {
+            span.addEventListener('click', () => {
                 const text = span.textContent.trim();
                 const url = menuUrls[text];
                 if (url) {
