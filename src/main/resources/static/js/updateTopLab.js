@@ -28,27 +28,27 @@ getUserInfo().then(data => {
                 }
             });
         });
-        // 顶部超链接
-        const navigationLinks = document.querySelectorAll('.navigation a');
-        // 定义每个链接的新目标 URL
-        const newUrls = {
-            '首页': '/index',
-            '组队': '/team',
-            '人才': '/talent',
-            '任务': '/tasks'
-        };
-        // 修改每个超链接的 href 属性
-        navigationLinks.forEach((link) => {
-            const text = link.textContent.trim();
-            const newUrl = newUrls[text];
-            if (newUrl) {
-                link.href = newUrl;
-            }
-        });
     } else {
         let name = document.getElementsByClassName('login-register').item(0);
         // 将登录注册按钮替换成用户名称 并设置用户主页超链接
         name.innerHTML=`<a href="show/login">登录 / 注册</a>`;
         console.log('Failed to fetch user info.');
     }
+    // 顶部超链接
+    const navigationLinks = document.querySelectorAll('.navigation a');
+    // 定义每个链接的新目标 URL
+    const newUrls = {
+        '首页': '/show/index',
+        '组队': '/show/team',
+        '人才': '/show/talent',
+        '任务': '/show/tasks'
+    };
+    // 修改每个超链接的 href 属性
+    navigationLinks.forEach((link) => {
+        const text = link.textContent.trim();
+        const newUrl = newUrls[text];
+        if (newUrl) {
+            link.href = newUrl;
+        }
+    });
 });
