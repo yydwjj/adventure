@@ -55,47 +55,47 @@
     <!--中间简历部分-->
     <div id="middle-block">
         <div id="middle1">
-            <div id="middle1-title" >
+            <div id="middle1-title">
                 <span>我的在线目录</span>
-                <a><button>编辑</button></a>
-                <a href="yulan.html"><button>预览</button></a>
+                <a href="edit.html"><button>编辑</button></a>
+                <a href="showResume.html"><button>预览</button></a>
             </div>
-            <!-- 基本信息-->
+            <!-- 基本信息 -->
             <div class="profile">
                 <div class="info">
-                    <h1>阮精特</h1>
+                    <h1 id="name"></h1>
                     <div class="contact">
                         <span class="icon">🎓</span>
-                        <span>浙大城市学院</span>
+                        <span id="school"></span>
                     </div>
                     <div class="contact">
                         <span class="icon">🎓</span>
-                        <span>软件工程</span>
+                        <span id="major"></span>
                     </div>
                     <div class="contact">
                         <span class="icon">📞</span>
-                        <span>12345678901</span>
+                        <span id="phone"></span>
                     </div>
                     <div class="contact">
                         <span class="icon">✉️</span>
-                        <span>2642290126@qq.com</span>
+                        <span id="email"></span>
                     </div>
 
                 </div>
             </div>
-            <!--简历信息-->
+            <!-- 简历信息 -->
             <div class="sections">
                 <div class="section">
                     <h3>期望职位</h3>
-                    <!-- 期望职位内容 -->
+                    <div id="desired-position"></div>
                 </div>
                 <div class="section">
                     <h3>个人优势</h3>
-                    <!-- 个人优势内容 -->
+                    <div id="personal-strengths"></div>
                 </div>
                 <div class="section">
                     <h3>个人经历</h3>
-                    <!-- 个人经历内容 -->
+                    <div id="personal-experience"></div>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
     <div id="right-block">
         <div id="right1">
             <div id="right1-title" class="center">
-                <span>简历附件</span>
+                <span>我的简历</span>
             </div>
 
         </div>
@@ -115,6 +115,39 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', async function () {
+
+      // 获取 localStorage 中的 authToken
+        const authToken = localStorage.getItem('authToken');
+
+      // 发送请求获取基本信息
+      try {
+        const InfoResponse = await fetch('/resume/firstInfo',{
+                method: 'GET',
+                headers:{
+                    'token :authToken'
+                }
+        });
+
+        if (InfoResponse.ok) {
+          const Info = await InfoResponse.json();
+          document.getElementById('name').textContent = Info.name;
+          document.getElementById('school').textContent = Info.school;
+          document.getElementById('major').textContent = Info.major;
+          document.getElementById('phone').textContent = Info.phone;
+          document.getElementById('email').textContent = Info.email;
+          document.getElementById('desired-position').textContent =Info.desired_position;
+          document.getElementById('personal-strengths').textContent = Info.personal_strengths;
+          document.getElementById('personal-experience').textContent = Info.personal_experience;
+        } else {
+          console.error('获取基本信息失败:',InfoResponse.statusText);
+        }
+      } catch (error) {
+        console.error('网络错误（获取基本信息）:', error);
+      }
+    });
+</script>
 </body>
 
 </html>

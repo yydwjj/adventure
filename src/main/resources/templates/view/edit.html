@@ -33,52 +33,61 @@
         </nav>
     </header>
     <div id="main-block">
-        <form class="resume-form">
-           <div class="info">
-              <div class="form-group">
-                  <label for="name">姓名：</label>
-                  <input type="text" id="name" placeholder="请输入内容">
-              </div>
-              <div class="form-group">
-                  <label>性别：</label>
-                  <input type="radio" name="gender" value="male"> 男
-                  <input type="radio" name="gender" value="female"> 女
-              </div>
-              <div class="form-group">
-                  <label for="college">学校：</label>
-                  <input type="text" id="college" placeholder="请输入内容">
-              </div>
-              <div class="form-group">
-              <label for="major">专业：</label>
-              <input type="text" id="major" placeholder="请输入内容">
-              </div>
-              <div class="form-group">
+        <form class="resume-form" id="resume_form">
+            <div class="info">
+                <div class="form-group">
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" placeholder="请输入内容">
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label>性别：</label>-->
+<!--                    <input type="radio" name="gender" value="male"> 男-->
+<!--                    <input type="radio" name="gender" value="female"> 女-->
+<!--                </div>-->
+                <div class="form-group">
+                    <label for="college">学校：</label>
+                    <input type="text" id="college" placeholder="请输入内容">
+                </div>
+                <div class="form-group">
+                    <label for="major">专业：</label>
+                    <input type="text" id="major" placeholder="请输入内容">
+                </div>
+                <div class="form-group">
                     <label for="phone">电话：</label>
                     <input type="text" id="phone" placeholder="请输入内容">
-              </div>
-              <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="email">邮箱：</label>
                     <input type="email" id="email" placeholder="请输入内容">
-              </div>
+                </div>
 
-              <div class="form-group">
+                <div class="form-group">
                     <label for="position">期望职位</label>
                     <input type="text" id="position" placeholder="请输入内容">
-              </div>
-              <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="advantages">个人优势</label>
                     <textarea id="advantages" placeholder="请输入"></textarea>
-              </div>
-              <div class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="experience">个人经历</label>
                     <textarea id="experience" placeholder="请输入"></textarea>
-              </div>
-           </div>
-              <div class="form-actions">
-                  <a href="jianli.html"><button class="btn-exit">退出</button></a>
-                  <a><button class="btn-save">保存</button></a>
-              </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <a href="resume.html"><button class="btn-exit">退出</button></a>
+                <a><button class="btn-save">保存</button></a>
+            </div>
         </form>
     </div>
+    <script src="js/resumeEdit.js"></script>
+<!--    退出按钮-->
+    <script>
+        const btnExit = document.querySelector('.btn-exit');
+        btnExit.addEventListener('click', function () {
+        localStorage.removeItem('resumeData');
+        window.location.href = 'resume.html';
+        });
+    </script>
 </body>
 </html>
