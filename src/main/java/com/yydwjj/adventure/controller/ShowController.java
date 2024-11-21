@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("show")
 public class ShowController {
     /**
-     * 重定向到首页
+     * 首页
      * @return
      */
     @RequestMapping(value = "index",method = RequestMethod.GET)
@@ -19,7 +19,7 @@ public class ShowController {
     }
 
     /**
-     * 重定向到登录页
+     * 登录页
      * @return
      */
     @RequestMapping(value = "login",method = RequestMethod.GET)
@@ -28,14 +28,21 @@ public class ShowController {
         return "redirect:/login.html";
     }
 
-
+    /**
+     * 任务发布页
+     * @return
+     */
     @RequestMapping(value = "post-task",method = RequestMethod.GET)
     public String postTask(){
         return "redirect:/post.html";
     }
 
+    /**
+     * 个人信息页
+     */
     @GetMapping(value = "profile")
     public String profile(){
         return "redirect:/presonifm.html";
     }
+
 }
