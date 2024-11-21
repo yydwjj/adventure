@@ -47,4 +47,11 @@ public interface TaskService {
      * @return  任务列表
      */
     Result searchTasks(String keyword);
+
+    /**
+     * 返回任务相关的详细信息，包括用户名（任务发布者）
+     * @param id
+     * @return
+     */
+    Result getTaskInfo(int id);
 }

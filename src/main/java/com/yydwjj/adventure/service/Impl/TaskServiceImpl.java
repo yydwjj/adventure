@@ -2,6 +2,7 @@ package com.yydwjj.adventure.service.Impl;
 
 import com.yydwjj.adventure.entity.Task;
 import com.yydwjj.adventure.mapper.TaskMapper;
+import com.yydwjj.adventure.model.TaskInfo;
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.result.ResultCodeEnum;
 import com.yydwjj.adventure.service.TaskService;
@@ -59,5 +60,14 @@ public class TaskServiceImpl implements TaskService {
             return Result.build(null,506,"search task error");
         }
         return Result.ok(tasks);
+    }
+
+    @Override
+    public Result getTaskInfo(int id) {
+        List<TaskInfo> taskInfosList = taskMapper.findTaskInfoById(id);
+        if(taskInfosList==null|| taskInfosList.isEmpty()){
+            return Result.build(null,506,"get task info error");
+        }
+        return Result.ok(taskInfosList);
     }
 }
