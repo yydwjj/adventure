@@ -1,0 +1,238 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+/*顶部导航栏*/
+header {
+    /*background-color: #333;*/
+    position: fixed;
+    width: 100%;
+    color: black;
+    background-color: White;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+}
+
+.navbar {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.navigation {
+    list-style: none;
+    display: flex;
+}
+
+.navigation li {
+    margin-right: 20px;
+}
+
+.navigation a {
+    font-size: 16px;
+    line-height: 20px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.search-bar input[type="text"] {
+    padding: 5px 10px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    background-color: rgba(239,239,239,1);
+    color: rgba(136,136,136,1);
+    font-size: 14px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+
+    width: 40px;
+    height: 40px;
+    background-color: rgba(239,239,239,1);
+}
+.search-bar button img {
+    width: 25px;
+    height: 22px;
+}
+
+
+.publish-btn {
+    width: 97px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(125,182,191,1);
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto;
+    border: 1px solid rgba(34,191,167,1);
+}
+
+.login-register a {
+    width: 84px;
+    height: 60px;
+    line-height: 20px;
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+    text-align: center;
+}
+
+.navbar-menu img{
+    width: 24px;
+    height: 24px;
+}
+
+
+/*侧边栏*/
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -200px; /* 初始位置隐藏在右侧 */
+    width: 200px;
+    height: 100%;
+    z-index: 1;
+    background-color: #f5f5f5;
+    transition: right 0.3s ease;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.menu-item span {
+    line-height: 20px;
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+    text-align: center;
+    font-family: 'PingFang SC', light;
+}
+
+#sidebarToggle {
+    z-index: 1000;
+}
+
+/*任务最外层*/
+#show-task-container{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 160px auto 0;
+    gap: 30px; /* 创建间隔 */
+    border: 1px solid rgba(187,187,187,1);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+
+    border-radius: 6px;
+}
+/*任务容器*/
+#task-container{
+    padding-left: 100px;
+    gap: 10px;
+}
+.info-container{
+    padding-left: 50px;
+}
+.task-info{
+    line-height: 60px;
+    font-size: 18px;
+}
+.task-title{
+    font-size: 28px;
+}
+.username{
+    font-size: 18px;
+}
+.task-details-title{
+    font-size: 18px;
+    width: 72px;
+    border-bottom: 1px dotted #42424291;
+}
+.task-details{
+    width: 80%;
+    color: #4c4c4c;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    margin: 20px 0 0 50px;
+    margin-bottom: 40px;
+    /*border-bottom: 1px dotted #42424291;*/
+}
+
+
+/*发帖相关标题*/
+#show-task-container form label{
+    line-height: 24px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 16px;
+    font-weight: 600;
+}
+#show-task-container form input{
+    padding: 5px;
+    margin-left: 10px;
+    border: 0px;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+#task_info{
+    border: 1px solid rgba(187, 187, 187, 1);
+    border-radius: 6px;
+}
