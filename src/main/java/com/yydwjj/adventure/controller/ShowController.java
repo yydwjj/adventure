@@ -1,7 +1,9 @@
 package com.yydwjj.adventure.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -45,7 +47,7 @@ public class ShowController {
         return "forward:/presonifm.html";
     }
 
-    @GetMapping(value = "taskinfo")
+    @GetMapping(value = "taskinfo/{id}")
     public String taskInfo(){
         return "forward:/taskinfo.html";
     }

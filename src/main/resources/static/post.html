@@ -126,7 +126,7 @@
 
 <!-- 脚本引入 -->
 <!--<script src="../../static/js/carousel.js"></script>-->
-<script src="js/sidebar.js"></script>
+<script src="/js/sidebar.js"></script>
 
 <!--从数据库中获取任务分类和分类等级信息，并更新下拉框中的value和text-->
 <!--提交表单-->
@@ -156,7 +156,7 @@
                 const result = await response.json();
                 console.log('Task posted successfully:', result);
                 alert("发布成功！");
-                window.location.href='indexNew.html';
+                window.location.href='/index';
                 // 处理成功响应
             } else {
                 const error = await response.json();
@@ -241,7 +241,7 @@
     });
 </script>
 <!--通用方法 更新顶部和侧边的按钮-->
-<script src="js/getUserInfo.js"></script>
-<script src="js/updateTopLab.js"></script>
+<script src="/js/getUserInfo.js"></script>
+<script src="/js/updateTopLab.js"></script>
 </body>
 </html>
