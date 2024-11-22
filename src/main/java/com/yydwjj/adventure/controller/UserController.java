@@ -50,4 +50,11 @@ public class UserController {
         Result result = userService.getUserInfo(token);
         return result;
     }
+
+    @PostMapping(value = "update")
+    public Result update(@RequestBody User user , @RequestHeader String token) {
+        //可能获取token的意义不是很大
+        Result result = userService.update(user);
+        return result;
+    }
 }

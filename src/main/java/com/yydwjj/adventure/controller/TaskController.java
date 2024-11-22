@@ -91,5 +91,9 @@ public class TaskController {
     }
 
 
-
+    @GetMapping(value = "info/{id}")
+    public Result getTaskInfoById(@PathVariable int id){
+        Result result = taskService.getTaskInfo(id);
+        return result;
+    }
 }

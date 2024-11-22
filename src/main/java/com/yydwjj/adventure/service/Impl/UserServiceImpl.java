@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -101,5 +102,33 @@ public class UserServiceImpl implements UserService {
             result = Result.ok(data);
         }
         return result;
+    }
+
+    /**
+     * 用户更新信息的方法，判断：电话号不能重复
+     * @param user 更新后的用户信息
+     * @return  Result 响应结果
+     */
+    @Override
+    public Result update(User user) {
+        User userByPhone = userMapper.getUserByPhone(user.getPhoneNumber());
+        User dbUser = userMapper.selectById(user.getUserId());
+        if(userByPhone != null && !Objects.equals(dbUser.getPhoneNumber(), user.getPhoneNumber())){
+            //电话号被使用
+            return Result.build(null,505,"phone has been used");
+        }
+//        更新
+        dbUser.setUsername(user.getUsername());
+        dbUser.setEmail(user.getEmail());
+        dbUser.setPhoneNumber(user.getPhoneNumber());
+        dbUser.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        dbUser.setNotes(user.getNotes());
+        dbUser.setSchoolId(user.getSchoolId());
+
+        int result = userMapper.updateById(dbUser);
+        if(result == 0){
+            return Result.build(null,506,"update failed");
+        }
+        return Result.ok(dbUser);
     }
 }
