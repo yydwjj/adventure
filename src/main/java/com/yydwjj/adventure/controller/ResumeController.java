@@ -18,7 +18,7 @@ import java.util.Optional;
 
 //创建Controller类并注入依赖
 @RestController
-@RequestMapping("/resumes")
+@RequestMapping("/resume")
 public class ResumeController {
 
     @Autowired
@@ -46,13 +46,19 @@ public class ResumeController {
         return resumeservice.saveresume(resume);
     }
 
-    @RequestMapping(value = "firstInfo")
+    @RequestMapping(value = "lastInfo")
     public Result getFirstResume(@RequestHeader String token){
         Long userId = jwtHelper.getUserId(token);
 
-        return resumeservice.getFirstResume(userId);
+        return resumeservice.getLastResume(userId);
     }
 
+    @RequestMapping(value = "showResume")
+    public Result showResume(@RequestHeader String token){
+        Long userId = jwtHelper.getUserId(token);
+
+        return resumeservice.showResume(userId);
+    }
 //    // 根据ID获取单份简历信息的接口
 //    @GetMapping("/{id}")
 //    public ResponseEntity<Resume> getResumeById(@PathVariable("id") Long id) {

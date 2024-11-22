@@ -51,4 +51,19 @@ public class ShowController {
     public String taskInfo(){
         return "forward:/taskinfo.html";
     }
+
+    @GetMapping(value = "resume")
+    public String resume(){
+        return "forward:/resume.html";
+    }
+
+    @GetMapping(value = "resumeEdit")
+    public String resumeEdit(){
+        return "forward:/edit.html";
+    }
+
+    @GetMapping(value = "showresume")
+    public String showresume(){
+        return "forward:/showResume.html";
+    }
 }

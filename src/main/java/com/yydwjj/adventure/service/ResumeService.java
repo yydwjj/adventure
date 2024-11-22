@@ -17,5 +17,11 @@ public interface ResumeService {
     /*
     * 获取该用户的第一份简历
     * */
-    Result getFirstResume(Long userId);
+    Result getLastResume(Long userId);
+
+
+    /*
+    * 获取要预览的简历信息
+    * */
+    Result showResume(Long userId);
 }

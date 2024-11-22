@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>在线个人简历</title>
-    <link rel="stylesheet" href="../../static/css/resumeCSS.css">
+    <link rel="stylesheet" href="/css/resumeCSS.css">
 </head>
 <body>
 
@@ -12,7 +12,7 @@
 <header>
     <nav class="navbar">
         <div class="logo">
-            <img src="../../static/icon/LogoIcon.svg" alt="Logo">
+            <img src="/icon/LogoIcon.svg" alt="Logo">
         </div>
         <ul class="navigation">
             <li><a href="#">首页</a></li>
@@ -22,14 +22,14 @@
         </ul>
         <div class="search-bar">
             <input type="text" placeholder="搜索...">
-            <button type="submit"><img src="../../static/icon/搜索.svg" alt="搜索"></button>
+            <button type="submit"><img src="/icon/搜索.svg" alt="搜索"></button>
         </div>
         <button class="publish-btn">发布</button>
         <div class="login-register">
             <a href="#">登录 / 注册</a>
         </div>
         <div class="navbar-menu" id="sidebarToggle">
-            <img src="../../static/icon/菜单_o.svg" alt="菜单">
+            <img src="/icon/菜单_o.svg" alt="菜单">
         </div>
     </nav>
 </header>
@@ -87,16 +87,16 @@
             <div class="sections">
                 <div class="section">
                     <h3>期望职位</h3>
-                    <div id="desired-position"></div>
                 </div>
+                <div id="desired-position" class="detailInfo"></div>
                 <div class="section">
                     <h3>个人优势</h3>
-                    <div id="personal-strengths"></div>
                 </div>
+                <div id="personal-strengths" class="detailInfo"></div>
                 <div class="section">
                     <h3>个人经历</h3>
-                    <div id="personal-experience"></div>
                 </div>
+                <div id="personal-experience" class="detailInfo"></div>
             </div>
         </div>
     </div>
@@ -126,20 +126,61 @@
         const InfoResponse = await fetch('/resume/lastInfo',{
                 method: 'GET',
                 headers:{
-                    'token :authToken'
+                    'token' :authToken
                 }
         });
 
         if (InfoResponse.ok) {
           const Info = await InfoResponse.json();
-          document.getElementById('name').textContent = Info.name;
-          document.getElementById('school').textContent = Info.school;
-          document.getElementById('major').textContent = Info.major;
-          document.getElementById('phone').textContent = Info.phone;
-          document.getElementById('email').textContent = Info.email;
-          document.getElementById('desired-position').textContent =Info.desired_position;
-          document.getElementById('personal-strengths').textContent = Info.personal_strengths;
-          document.getElementById('personal-experience').textContent = Info.personal_experience;
+          const resumeData = Info.data;
+
+          // 处理姓名展示，添加默认值逻辑
+          const nameElement = document.getElementById('name');
+          if (nameElement) {
+            nameElement.textContent = resumeData.name || '暂无姓名信息';
+          }
+
+          // 处理学校信息展示
+          const schoolElement = document.getElementById('school');
+          if (schoolElement) {
+            schoolElement.textContent = resumeData.school || '暂无学校信息';
+          }
+
+          // 处理专业信息展示
+          const majorElement = document.getElementById('major');
+          if (majorElement) {
+            majorElement.textContent = resumeData.major || '暂无专业信息';
+          }
+
+          // 处理电话号码展示
+          const phoneElement = document.getElementById('phone');
+          if (phoneElement) {
+            phoneElement.textContent = resumeData.phoneNumber || '暂无电话号码';
+          }
+
+          // 处理邮箱信息展示
+          const emailElement = document.getElementById('email');
+          if (emailElement) {
+            emailElement.textContent = resumeData.email || '暂无邮箱信息';
+          }
+
+          // 处理期望职位信息展示
+          const desiredPositionElement = document.getElementById('desired-position');
+          if (desiredPositionElement) {
+            desiredPositionElement.textContent = resumeData.desiredPosition || '暂无期望职位信息';
+          }
+
+          // 处理个人优势信息展示
+          const personalStrengthsElement = document.getElementById('personal-strengths');
+          if (personalStrengthsElement) {
+            personalStrengthsElement.textContent = resumeData.personalStrengths || '暂无个人优势信息';
+          }
+
+          // 处理个人经历信息展示
+          const personalExperienceElement = document.getElementById('personal-experience');
+          if (personalExperienceElement) {
+            personalExperienceElement.textContent = resumeData.previousExperience || '暂无个人经历信息';
+          }
         } else {
           console.error('获取基本信息失败:',InfoResponse.statusText);
         }

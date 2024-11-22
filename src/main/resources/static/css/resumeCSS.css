@@ -266,6 +266,14 @@ header {
 
     }
 
+    .detailInfo{
+        padding-left:40px;
+        padding-right:40px;
+    }
+
+    #personal-experience{
+        padding-bottom:50px;
+    }
     /*中间板块
 
 

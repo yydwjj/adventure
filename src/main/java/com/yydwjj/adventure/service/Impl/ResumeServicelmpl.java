@@ -37,14 +37,22 @@ public class ResumeServicelmpl implements ResumeService {
 
 //    获取该用户的第一份简历
     @Override
-    public Result getFirstResume(Long userId) {
-        Resume firstresume = resumemapper.findFirstResumes(userId);
+    public Result getLastResume(Long userId) {
+        Resume firstresume = resumemapper.findLastResumes(userId);
         if (firstresume==null) {
             return Result.build(null,507,"无简历");
         }
         return Result.ok(firstresume);
     }
 
+    @Override
+    public Result showResume(Long userId) {
+        Resume showresume = resumemapper.showResumes(userId);
+        if (showresume==null) {
+            return Result.build(null,507,"无简历");
+        }
+        return Result.ok(showresume);
+    }
 
 
 }
