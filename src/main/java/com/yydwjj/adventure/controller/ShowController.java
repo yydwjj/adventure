@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller()
-@RequestMapping("show")
+//@RequestMapping("show")
 public class ShowController {
     /**
      * 首页
@@ -15,7 +15,7 @@ public class ShowController {
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public String test() {
 //        System.out.println("aaa");
-        return "redirect:/indexNew.html";
+        return "forward:/indexNew.html";
     }
 
     /**
@@ -25,7 +25,7 @@ public class ShowController {
     @RequestMapping(value = "login",method = RequestMethod.GET)
     public String login() {
 //        System.out.println("aaa");
-        return "redirect:/login.html";
+        return "forward:/login.html";
     }
 
     /**
@@ -34,7 +34,7 @@ public class ShowController {
      */
     @RequestMapping(value = "post-task",method = RequestMethod.GET)
     public String postTask(){
-        return "redirect:/post.html";
+        return "forward:/post.html";
     }
 
     /**
@@ -42,7 +42,11 @@ public class ShowController {
      */
     @GetMapping(value = "profile")
     public String profile(){
-        return "redirect:/presonifm.html";
+        return "forward:/presonifm.html";
     }
 
+    @GetMapping(value = "taskinfo")
+    public String taskInfo(){
+        return "forward:/taskinfo.html";
+    }
 }

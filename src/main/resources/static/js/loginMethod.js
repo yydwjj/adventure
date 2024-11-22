@@ -23,7 +23,7 @@ document.getElementById('login-form').addEventListener('click', async function(e
                 storeToken(token);
 
                 // 重定向到用户首页或其他页面
-                window.location.href = 'show/index';
+                window.location.href = 'index';
             } else {
                 throw new Error('Token not found in response data');
             }
