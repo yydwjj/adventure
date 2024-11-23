@@ -216,6 +216,30 @@ header {
     margin-bottom: 40px;
     /*border-bottom: 1px dotted #42424291;*/
 }
+/*参加按钮*/
+#create-team-button {
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block; /* 行内块级元素 */
+
+    cursor: pointer; /* 鼠标指针样式 */
+
+    transition: background-color 0.3s; /* 背景颜色过渡效果 */
+    width: 97px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(125, 182, 191, 1);
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto;
+    border: 1px solid rgba(34, 191, 167, 1);
+}
+
+#create-team-button:hover {
+    background-color: rgb(225, 237, 234); /* 悬停时的背景颜色 */
+}
 
 
 /*发帖相关标题*/

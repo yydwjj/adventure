@@ -61,36 +61,34 @@
 <div id="show-task-container">
     <h4>任务详情</h4>
     <div id="task-container">
-        <h6 class="task-title" id="task-title">任务标题示例</h6>
-        <p class="username" id="username">用户名示例</p>
+        <h6 class="task-title" id="task-title"></h6>
+        <p class="username" id="username"></p>
         <div class="info-container">
-            <p class="task-info" id="task-level"><strong>任务级别：</strong>一级</p>
-            <p class="task-info" id="task-category"><strong>任务分类：</strong>分类A</p>
-            <p class="task-info" id="signup-time"><strong>报名时间：</strong>2024-11-01 至 2024-11-10</p>
-            <p class="task-info" id="task-time"><strong>任务时间：</strong>2024-11-11 至 2024-11-20</p>
-            <p class="task-info" id="task-location"><strong>任务地点：</strong>地点A</p>
-            <p class="task-info" id="number-of-people"><strong>人数：</strong>10人</p>
+            <p class="task-info" id="task-level"><strong>任务级别：</strong></p>
+            <p class="task-info" id="task-category"><strong>任务分类：</strong></p>
+            <p class="task-info" id="signup-time"><strong>报名时间：</strong></p>
+            <p class="task-info" id="task-time"><strong>任务时间：</strong></p>
+            <p class="task-info" id="task-location"><strong>任务地点：</strong></p>
+            <p class="task-info" id="number-of-people"><strong>人数：</strong></p>
         </div>
         <div class="task-details-title">详细信息</div>
         <div class="task-details">
-                24343fe
         </div>
     </div>
+    <button id="create-team-button">报名参加</button>
 </div>
 
 <!-- 脚本引入 -->
 <!--<script src="../../static/js/carousel.js"></script>-->
 <script src="/js/sidebar.js"></script>
-<!--获取分类和级别信息-->
+<!--获取任务详情信息-->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // 获取当前 URL 的路径部分
         const path = window.location.pathname;
-
         // 提取 id
         const parts = path.split('/');
         const taskId = parts[parts.length - 1];
-
         if (taskId) {
             // 发送请求
             fetch(`/task/info/${taskId}`)
@@ -98,33 +96,28 @@
                 .then(data => {
                     if (data.code === 200 && data.message === 'success') {
                         const taskData = data.data[0];
-
                         // 更新任务标题
                         document.getElementById('task-title').textContent = taskData.taskName;
-
                         // 更新用户名
                         document.getElementById('username').textContent = taskData.username;
-
                         // 更新任务级别
                         document.getElementById('task-level').textContent = `任务级别：${taskData.levelName}`;
-
                         // 更新任务分类
                         document.getElementById('task-category').textContent = `任务分类：${taskData.categoryName}`;
-
                         // 更新报名时间
                         document.getElementById('signup-time').textContent = `报名时间：${formatDate(taskData.registrationStart)} 至 ${formatDate(taskData.registrationEnd)}`;
-
                         // 更新任务时间
                         document.getElementById('task-time').textContent = `任务时间：${formatDate(taskData.taskStart)} 至 ${formatDate(taskData.taskEnd)}`;
-
                         // 更新任务地点
                         document.getElementById('task-location').textContent = `任务地点：${taskData.location}`;
-
                         // 更新人数
                         document.getElementById('number-of-people').textContent = `人数：${taskData.participantLimit}人`;
-
                         // 更新详细信息
                         document.querySelector('.task-details').textContent = taskData.taskInfo;
+
+                        document.getElementById('create-team-button').addEventListener('click', function() {
+                            window.location.href = `/createTeam/${taskId}`;
+                        });
                     } else {
                         console.error('请求失败:', data.message);
                     }
@@ -146,9 +139,6 @@
 <!--通用方法 更新顶部和侧边的按钮-->
 <script src="/js/getUserInfo.js"></script>
 <script src="/js/updateTopLab.js"></script>
-<!--通过地址栏获取task-id 并更新-->
-<script>
-
-</script>
+<!--创建队伍-->
 </body>
 </html>
