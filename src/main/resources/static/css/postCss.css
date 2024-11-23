@@ -211,3 +211,61 @@ header {
     border: 1px solid rgba(187, 187, 187, 1);
     border-radius: 6px;
 }
+
+
+/*队伍发布的css 直接在postCss中写了*/
+/* 创建队伍容器 */
+#create-team-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 160px auto 0;
+    gap: 30px; /* 创建间隔 */
+    border: 1px solid rgba(187,187,187,1);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    border-radius: 6px;
+}
+
+/* 创建队伍表单 */
+#create-team-container form {
+    padding-left: 100px;
+    gap: 10px;
+}
+
+/* 创建队伍标题 */
+#create-team-container h4 {
+    line-height: 28px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 20px;
+}
+
+/* 创建队伍相关标题 */
+#create-team-container form label {
+    line-height: 24px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* 创建队伍输入框 */
+#create-team-container form input {
+    padding: 5px;
+    margin-left: 10px;
+    border: 0px;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+
+/* 创建队伍只读输入框 */
+#create-team-container form input[readonly] {
+    background-color: rgba(240, 240, 240, 1); /* 设置只读输入框的背景色 */
+    cursor: not-allowed; /* 设置鼠标指针为禁止状态 */
+}
+
+/* 创建队伍介绍文本区域 */
+#team_info {
+    border: 1px solid rgba(187, 187, 187, 1);
+    border-radius: 6px;
+}
