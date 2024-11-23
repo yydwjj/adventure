@@ -19,7 +19,7 @@ public class TeamController {
     JwtHelper jwtHelper;
 
     @PostMapping(value = "create")
-    public Result<Integer> create(@RequestHeader String token, @RequestBody Team team) {
+    public Result<Team> create(@RequestHeader String token, @RequestBody Team team) {
         Long userId = jwtHelper.getUserId(token);
         team.setCaptainId(userId);
         team.setCreatedAt(new Timestamp(System.currentTimeMillis()));

@@ -8,7 +8,7 @@ public interface TeamService {
     /**
      * 创建队伍
      * @param team 队伍信息
-     * @return  创建成功data是1，失败data是0
+     * @return  返回的int 队伍id
      */
-    Result<Integer> add(Team team);
+    Result<Team> add(Team team);
 }

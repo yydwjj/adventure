@@ -12,10 +12,11 @@ public class TeamServiceImpl implements TeamService {
     @Autowired
     TeamMapper teamMapper;
     @Override
-    public Result<Integer> add(Team team) {
-        int result = teamMapper.addTeam(team);
-        if (result == 1) {
-            return Result.ok(result);
+    public Result<Team> add(Team team) {
+        teamMapper.addTeam(team);
+        int result = (int) team.getTeamId();
+        if (result != 0) {
+            return Result.ok(team);
         }
         return Result.build(null,506,"add failed");
     }
