@@ -84,39 +84,15 @@
         <select class="filter-dropdown" data-type="category">
             <option value="" disabled selected>竞赛类别</option>
         </select>
-        <select class="filter-dropdown">
-            <option value="" disabled selected>报名时间</option>
-        </select>
-        <select class="filter-dropdown">
-            <option value="" disabled selected>比赛时间</option>
-        </select>
+        <input type="date" class="filter-dropdown" id="registration_date" name="registrationDate">
+        <input type="date" class="filter-dropdown" id="task_date" name="taskDate">
     </div>
 </div>
 
 <!-- 小组信息展示区 -->
-<div class="group-container">
-    <div class="group-info">
-        <div class="group-top">
-            <div class="group-left">
-                <p class="competition-name">竞赛名称: XXX</p>
-                <p class="job-title">竞赛级别: <span class="job-name">国家级</span></p>
-                <p class="job-title">竞赛类别: <span class="job-name">理科</span></p>
-            </div>
-            <div class="group-right">
-                <p>报名时间: 2024.09.05 ~ 2024.12.05</p>
-                <p></p>
-                <p>竞赛时间: 2024.09.05 ~ 2024.12.05</p>
-            </div>
-            <button class="contact-button">报名</button>
-        </div>
-        <div class="green-space">
-            <div class="left-content">
-                <span>通过赛事选拔更多优秀人才，全面提升当代大学生和其他人群的阅读能力和素养，培养和发现优秀的语言应用人才.后面是用来测试是否超出的文案</span>
-            </div>
-        </div>
-    </div>
+<div class="group-container" id="competitionContainer">
+    <!-- 竞赛列表将通过JavaScript动态生成 -->
 </div>
-
 
 <!-- 发布按钮 -->
 <button class="publish-button">发布</button>
@@ -173,10 +149,66 @@
             .catch(error => console.error('获取竞赛类别失败:', error));
     }
 
+    // 加载竞赛列表
+    function loadCompetitions() {
+        fetch('/api/competition/list')
+            .then(response => response.json())
+            .then(result => {
+                if(result.code === 200) {
+                    const container = document.getElementById('competitionContainer');
+                    container.innerHTML = '';
+
+                    result.data.forEach(competition => {
+                        const element = document.createElement('div');
+                        element.className = 'group-info';
+                        // 将整个group-info添加点击事件
+                        element.onclick = () => {
+                            window.location.href = `/taskinfo/${competition.taskId}`;
+                        };
+                        element.style.cursor = 'pointer'; // 添加鼠标悬停效果
+
+                        element.innerHTML = `
+                            <div class="group-top">
+                                <div class="group-left">
+                                    <p class="competition-name">竞赛名称: ${competition.taskName}</p>
+                                    <p class="job-title">竞赛级别: <span class="job-name">${competition.levelName}</span></p>
+                                    <p class="job-title">竞赛类别: <span class="job-name">${competition.categoryName}</span></p>
+                                </div>
+                                <div class="group-right">
+                                    <p>报名时间: ${formatDate(competition.registrationStart)} ~ ${formatDate(competition.registrationEnd)}</p>
+                                    <p></p>
+                                    <p>竞赛时间: ${formatDate(competition.taskStart)} ~ ${formatDate(competition.taskEnd)}</p>
+                                </div>
+                                <button class="contact-button" onclick="event.stopPropagation(); window.location.href='/taskinfo/${competition.taskId}'">报名</button>
+                            </div>
+                            <div class="green-space">
+                                <div class="left-content">
+                                    <span>${competition.taskInfo}</span>
+                                </div>
+                            </div>
+                        `;
+                        container.appendChild(element);
+                    });
+                }
+            })
+            .catch(error => console.error('加载竞赛失败:', error));
+    }
+
+    // 格式化日期
+    function formatDate(timestamp) {
+        const date = new Date(timestamp);
+        return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+    }
+
     // 页面加载完成后执行
     document.addEventListener('DOMContentLoaded', () => {
         initDropdowns();
+        loadCompetitions();
     });
 </script>
+<!--方法引入-->
+<script src="js/getUserInfo.js"></script>
+<!--将修改共享模块的方法封装在方法中-->
+<script src="js/updateTopLab.js"></script>
 </body>
 </html>

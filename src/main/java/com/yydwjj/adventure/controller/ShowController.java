@@ -52,7 +52,7 @@ public class ShowController {
         return "forward:/taskinfo.html";
     }
 
-    @GetMapping(value = "competition")
+    @GetMapping(value = "tasks")
     public String competition(){
         return "forward:/competition.html";
     }
