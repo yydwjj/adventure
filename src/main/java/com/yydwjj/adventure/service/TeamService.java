@@ -14,4 +14,13 @@ public interface TeamService {
      * @return  返回的int 队伍id
      */
     Result<Team> add(Team team);
+
+    /**
+     * 获取队伍详细信息
+     * @param teamId 队伍的id
+     * @return  包含队长和成员等的详细信息
+     */
+    Result<Team> getTeamInfo(Long teamId);
+
+    Result<List<Team>> getTeamsByCaptionId(int captionId);
 }

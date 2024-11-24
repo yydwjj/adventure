@@ -35,4 +35,8 @@ public class TeamController {
         return teamService.getTeamList();
     }
 
+    @GetMapping("/info/{teamId}")
+    public Result<Team> getTeamInfo(@PathVariable Long teamId) {
+        return teamService.getTeamInfo(teamId);
+    }
 }
