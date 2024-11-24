@@ -4,7 +4,8 @@ getUserInfo().then(data => {
     if (data) {
         console.log('User Info:', data);
         // 保存用户信息
-        sessionStorage.setItem('myInfo',data)
+        const userInfoString = JSON.stringify(data.data.loginUser);
+        sessionStorage.setItem('myInfo', userInfoString);
 
         let name = document.getElementsByClassName('login-register').item(0);
         // 将登录注册按钮替换成用户名称 并设置用户主页超链接

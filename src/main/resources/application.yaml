@@ -8,7 +8,7 @@ jwt:
 #数据库配置
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1/adventure
+    url: jdbc:mysql://124.71.219.89/adventure
     username: root
     password: qq2845166476
     driver-class-name: com.mysql.cj.jdbc.Driver
