@@ -121,28 +121,72 @@
     // 初始化下拉列表
     function initDropdowns() {
         // 加载竞赛等级
-        fetch('/api/team/levels')
-            .then(response => response.json())
-            .then(levels => {
+        fetch('/task/levels', {
+            method: 'GET'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('获取竞赛等级失败');
+            })
+            .then(result => {
                 const levelSelect = document.querySelector('select[data-type="level"]');
-                levels.forEach(level => {
+
+                // 清除现有的选项
+                while (levelSelect.firstChild) {
+                    levelSelect.removeChild(levelSelect.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择竞赛级别';
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                levelSelect.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
                     const option = document.createElement('option');
-                    option.value = level.value;
-                    option.textContent = level.label;
+                    option.value = item.taskLevelId;
+                    option.textContent = item.levelName;
                     levelSelect.appendChild(option);
                 });
             })
             .catch(error => console.error('获取竞赛等级失败:', error));
 
         // 加载竞赛类别
-        fetch('/api/team/categories')
-            .then(response => response.json())
-            .then(categories => {
+        fetch('/task/category', {
+            method: 'GET'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('获取竞赛类别失败');
+            })
+            .then(result => {
                 const categorySelect = document.querySelector('select[data-type="category"]');
-                categories.forEach(category => {
+
+                // 清除现有的选项
+                while (categorySelect.firstChild) {
+                    categorySelect.removeChild(categorySelect.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择竞赛类别';
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                categorySelect.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
                     const option = document.createElement('option');
-                    option.value = category.value;
-                    option.textContent = category.label;
+                    option.value = item.taskCategoryId;
+                    option.textContent = item.categoryName;
                     categorySelect.appendChild(option);
                 });
             })
@@ -151,7 +195,7 @@
 
     // 加载竞赛列表
     function loadCompetitions() {
-        fetch('/api/competition/list')
+        fetch('/competition/list')
             .then(response => response.json())
             .then(result => {
                 if(result.code === 200) {
