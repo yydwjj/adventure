@@ -18,7 +18,7 @@ public class JobServiceImpl implements JobService {
     @Override
     public Result<Integer> add(List<JobPost> job) {
         int result = jobPostMapper.batchInsert(job);
-        if (result > 1) {
+        if (result >= 1) {
             return Result.ok(result);
         }
         return Result.build(null,506,"job not created");
