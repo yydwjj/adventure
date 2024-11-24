@@ -60,4 +60,14 @@ public class ShowController {
     public String postJob(@PathVariable int teamId){
         return "forward:/post-job.html";
     }
+
+    @GetMapping(value = "tasks")
+    public String competition(){
+        return "forward:/competition.html";
+    }
+
+    @GetMapping(value = "team")
+    public String team(){
+        return "forward:/team.html";
+    }
 }

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险者工会</title>
+    <link rel="stylesheet" href="css/team.css">
+
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+
+<!-- 轮播图-->
+<div class="carousel-container">
+    <div class="carousel-track">
+        <div class="carousel-slide active"><img src="image/advan1.jpg" alt="图片1"></div>
+        <div class="carousel-slide"><img src="image/advan2.jpg" alt="图片2"></div>
+        <div class="carousel-slide"><img src="image/advan3.jpg" alt="图片3"></div>
+    </div>
+    <button class="carousel-prev">上一张</button>
+    <button class="carousel-next">下一张</button>
+</div>
+
+<div class="search-container">
+    <!--    搜索-->
+    <div class="search-frame">
+        <div class="search-box">
+            <input type="text" placeholder="请输入关键词" class="search-input">
+        </div>
+        <button class="search-button">搜索</button>
+    </div>
+    <!--    下拉框-->
+    <div class="filter-container">
+        <select class="filter-dropdown" data-type="level">
+            <option value="" disabled selected>竞赛等级</option>
+        </select>
+        <select class="filter-dropdown" data-type="category">
+            <option value="" disabled selected>竞赛类别</option>
+        </select>
+        <input type="date" class="filter-dropdown" id="registration_date" name="registrationDate">
+        <input type="date" class="filter-dropdown" id="task_date" name="taskDate">
+    </div>
+</div>
+
+<!-- 小组信息展示区 -->
+<div class="group-container" id="competitionContainer">
+    <!-- 竞赛列表将通过JavaScript动态生成 -->
+</div>
+
+<!-- 发布按钮 -->
+<button class="publish-button">发布</button>
+
+<!--翻页-->
+<div class="pagination">
+    <button class="page-button" id="prev-page">上一页</button>
+    <span>第 <strong id="current-page">1</strong> 页</span>
+    <div class="page-numbers">
+        <button class="page-number" data-page="1">1</button>
+        <button class="page-number" data-page="2">2</button>
+        <button class="page-number" data-page="3">3</button>
+        <button class="page-number" data-page="4">4</button>
+        <button class="page-number" data-page="5">5</button>
+    </div>
+    <button class="page-button" id="next-page">下一页</button>
+</div>
+
+
+
+<!-- 脚本引入 -->
+<script src="js/carousel.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="js/page.js"></script>
+<script>
+    // 初始化下拉列表
+    function initDropdowns() {
+        // 加载竞赛等级
+        fetch('/api/team/levels')
+            .then(response => response.json())
+            .then(levels => {
+                const levelSelect = document.querySelector('select[data-type="level"]');
+                levels.forEach(level => {
+                    const option = document.createElement('option');
+                    option.value = level.value;
+                    option.textContent = level.label;
+                    levelSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('获取竞赛等级失败:', error));
+
+        // 加载竞赛类别
+        fetch('/api/team/categories')
+            .then(response => response.json())
+            .then(categories => {
+                const categorySelect = document.querySelector('select[data-type="category"]');
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.value;
+                    option.textContent = category.label;
+                    categorySelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('获取竞赛类别失败:', error));
+    }
+
+    // 加载竞赛列表
+    function loadCompetitions() {
+        fetch('/api/competition/list')
+            .then(response => response.json())
+            .then(result => {
+                if(result.code === 200) {
+                    const container = document.getElementById('competitionContainer');
+                    container.innerHTML = '';
+
+                    result.data.forEach(competition => {
+                        const element = document.createElement('div');
+                        element.className = 'group-info';
+                        // 将整个group-info添加点击事件
+                        element.onclick = () => {
+                            window.location.href = `/taskinfo/${competition.taskId}`;
+                        };
+                        element.style.cursor = 'pointer'; // 添加鼠标悬停效果
+
+                        element.innerHTML = `
+                            <div class="group-top">
+                                <div class="group-left">
+                                    <p class="competition-name">竞赛名称: ${competition.taskName}</p>
+                                    <p class="job-title">竞赛级别: <span class="job-name">${competition.levelName}</span></p>
+                                    <p class="job-title">竞赛类别: <span class="job-name">${competition.categoryName}</span></p>
+                                </div>
+                                <div class="group-right">
+                                    <p>报名时间: ${formatDate(competition.registrationStart)} ~ ${formatDate(competition.registrationEnd)}</p>
+                                    <p></p>
+                                    <p>竞赛时间: ${formatDate(competition.taskStart)} ~ ${formatDate(competition.taskEnd)}</p>
+                                </div>
+                                <button class="contact-button" onclick="event.stopPropagation(); window.location.href='/taskinfo/${competition.taskId}'">报名</button>
+                            </div>
+                            <div class="green-space">
+                                <div class="left-content">
+                                    <span>${competition.taskInfo}</span>
+                                </div>
+                            </div>
+                        `;
+                        container.appendChild(element);
+                    });
+                }
+            })
+            .catch(error => console.error('加载竞赛失败:', error));
+    }
+
+    // 格式化日期
+    function formatDate(timestamp) {
+        const date = new Date(timestamp);
+        return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+    }
+
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', () => {
+        initDropdowns();
+        loadCompetitions();
+    });
+</script>
+<!--方法引入-->
+<script src="js/getUserInfo.js"></script>
+<!--将修改共享模块的方法封装在方法中-->
+<script src="js/updateTopLab.js"></script>
+</body>
+</html>

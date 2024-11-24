@@ -8,6 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "team")
@@ -25,4 +30,9 @@ public class TeamController {
         team.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         return teamService.add(team);
     }
+    @GetMapping("/list")
+    public List<Map<String, Object>> getTeamList() {
+        return teamService.getTeamList();
+    }
+
 }
