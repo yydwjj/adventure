@@ -1,6 +1,7 @@
 package com.yydwjj.adventure.mapper;
 
 import com.yydwjj.adventure.entity.Task;
+import com.yydwjj.adventure.model.TaskInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -38,4 +39,14 @@ public interface TaskMapper {
      */
     @Select("select * from adventure.task where task_name like CONCAT('%', #{keyword}, '%') or task_info like CONCAT('%', #{keyword}, '%') order by task_id desc ")
     List<Task> findTask(String keyword);
+
+    @Select("select r.task_id,r.task_name,r.publisher_id,u.username,r.task_level_id,l.level_name,r.task_category_id ,t.category_name,\n" +
+            "r.registration_start,r.registration_end,r.task_start,r.task_end,r.participant_limit,r.location,r.created_at,r.updated_at,r.deleted_at,\n" +
+            "r.task_info,r.is_exist\n" +
+            "from task as r\n" +
+            "inner join task_categorie as t on t.task_category_id = r.task_category_id\n" +
+            "INNER JOIN task_level as l on l.task_level_id = r.task_level_id\n" +
+            "INNER JOIN `user` as u on u.user_id = r.publisher_id\n" +
+            "where task_id = #{id};")
+    List<TaskInfo> findTaskInfoById(int id);
 }

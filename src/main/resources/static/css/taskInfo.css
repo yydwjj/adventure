@@ -169,8 +169,8 @@ header {
     z-index: 1000;
 }
 
-/*发帖容器*/
-#post-task-container{
+/*任务最外层*/
+#show-task-container{
     display: flex;
     flex-direction: column;
     width: 70%;
@@ -183,24 +183,73 @@ header {
 
     border-radius: 6px;
 }
-/*发帖表单*/
-#post-task-container form{
+/*任务容器*/
+#task-container{
     padding-left: 100px;
     gap: 10px;
 }
-#post-task-container h4{
-    line-height: 28px;
-    color: rgba(16, 16, 16, 1);
-    font-size: 20px;
+.info-container{
+    padding-left: 50px;
 }
+.task-info{
+    line-height: 60px;
+    font-size: 18px;
+}
+.task-title{
+    font-size: 28px;
+}
+.username{
+    font-size: 18px;
+}
+.task-details-title{
+    font-size: 18px;
+    width: 72px;
+    border-bottom: 1px dotted #42424291;
+}
+.task-details{
+    width: 80%;
+    color: #4c4c4c;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    margin: 20px 0 0 50px;
+    margin-bottom: 40px;
+    /*border-bottom: 1px dotted #42424291;*/
+}
+/*参加按钮*/
+#create-team-button {
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block; /* 行内块级元素 */
+
+    cursor: pointer; /* 鼠标指针样式 */
+
+    transition: background-color 0.3s; /* 背景颜色过渡效果 */
+    width: 97px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(125, 182, 191, 1);
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto;
+    border: 1px solid rgba(34, 191, 167, 1);
+}
+
+#create-team-button:hover {
+    background-color: rgb(225, 237, 234); /* 悬停时的背景颜色 */
+}
+
+
 /*发帖相关标题*/
-#post-task-container form label{
+#show-task-container form label{
     line-height: 24px;
     color: rgba(16, 16, 16, 1);
     font-size: 16px;
     font-weight: 600;
 }
-#post-task-container form input{
+#show-task-container form input{
     padding: 5px;
     margin-left: 10px;
     border: 0px;
@@ -208,64 +257,6 @@ header {
     border-bottom: 1px solid black;
 }
 #task_info{
-    border: 1px solid rgba(187, 187, 187, 1);
-    border-radius: 6px;
-}
-
-
-/*队伍发布的css 直接在postCss中写了*/
-/* 创建队伍容器 */
-#create-team-container {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    margin: 160px auto 0;
-    gap: 30px; /* 创建间隔 */
-    border: 1px solid rgba(187,187,187,1);
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    border-radius: 6px;
-}
-
-/* 创建队伍表单 */
-#create-team-container form {
-    padding-left: 100px;
-    gap: 10px;
-}
-
-/* 创建队伍标题 */
-#create-team-container h4 {
-    line-height: 28px;
-    color: rgba(16, 16, 16, 1);
-    font-size: 20px;
-}
-
-/* 创建队伍相关标题 */
-#create-team-container form label {
-    line-height: 24px;
-    color: rgba(16, 16, 16, 1);
-    font-size: 16px;
-    font-weight: 600;
-}
-
-/* 创建队伍输入框 */
-#create-team-container form input {
-    padding: 5px;
-    margin-left: 10px;
-    border: 0px;
-    outline: none;
-    border-bottom: 1px solid black;
-}
-
-/* 创建队伍只读输入框 */
-#create-team-container form input[readonly] {
-    background-color: rgba(240, 240, 240, 1); /* 设置只读输入框的背景色 */
-    cursor: not-allowed; /* 设置鼠标指针为禁止状态 */
-}
-
-/* 创建队伍介绍文本区域 */
-#team_info {
     border: 1px solid rgba(187, 187, 187, 1);
     border-radius: 6px;
 }

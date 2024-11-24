@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布岗位</title>
+    <link rel="stylesheet" href="/css/postJob.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="page-title">发布新岗位</h1>
+
+    <div class="job-form-container" id="jobFormsContainer">
+        <!-- 单个岗位表单 -->
+        <div class="job-form">
+            <h2 class="form-section-title">岗位信息</h2>
+
+            <div class="form-group">
+                <label>岗位名称</label>
+                <input type="text" name="jobTitle" placeholder="请输入岗位名称" required>
+            </div>
+
+            <div class="form-group">
+                <label>岗位介绍</label>
+                <textarea name="jobDescription" placeholder="请详细描述该岗位的主要职责和工作内容" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>招聘要求</label>
+                <textarea name="jobRequirements" placeholder="请描述对应聘者的要求（如学历、工作经验、技能等）" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>联系方式</label>
+                <input type="text" name="contactInfo" placeholder="请输入联系方式" required>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加岗位按钮 -->
+    <div class="submit-container">
+        <button class="add-job-btn" onclick="addNewJobForm()">添加新岗位</button>
+    </div>
+
+    <!-- 提交按钮 -->
+    <div class="submit-container">
+        <button class="submit-btn" onclick="submitJobs()">发布所有岗位</button>
+    </div>
+</div>
+
+<!-- 弹窗 -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <h3>发布成功！</h3>
+        <p>所有岗位已成功发布</p>
+        <div class="modal-buttons">
+            <button onclick="window.location.href='/index'">返回首页</button>
+            <button onclick="addNewJob()">继续发布</button>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="/js/post-job.js"></script>
+</html>

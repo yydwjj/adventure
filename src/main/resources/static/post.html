@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>冒险者工会</title>
-    <link rel="stylesheet" href="css/postCss.css">
+    <link rel="stylesheet" href="/css/postCss.css">
 
 </head>
 <body>
@@ -13,7 +13,7 @@
 <header>
     <nav class="navbar">
         <div class="logo">
-            <img src="icon/LogoIcon.svg" alt="Logo">
+            <img src="/icon/LogoIcon.svg" alt="Logo">
         </div>
         <ul class="navigation">
             <li><a href="#">首页</a></li>
@@ -23,14 +23,14 @@
         </ul>
         <div class="search-bar">
             <input type="text" placeholder="搜索...">
-            <button type="submit"><img src="icon/搜索.svg" alt="搜索"></button>
+            <button type="submit"><img src="/icon/搜索.svg" alt="搜索"></button>
         </div>
         <button class="publish-btn">发布</button>
         <div class="login-register">
             <a href="#">登录 / 注册</a>
         </div>
         <div class="navbar-menu" id="sidebarToggle">
-            <img src="icon/菜单_o.svg" alt="菜单">
+            <img src="/icon/菜单_o.svg" alt="菜单">
         </div>
     </nav>
 </header>
@@ -39,19 +39,19 @@
 <div class="sidebar" id="sidebar">
     <ul class="sidebar-menu">
         <li class="menu-item">
-            <img src="icon/UserIcon.svg" alt="个人信息图标">
+            <img src="/icon/UserIcon.svg" alt="个人信息图标">
             <span>个人信息</span>
         </li>
         <li class="menu-item">
-            <img src="icon/ResumeIcon.svg" alt="我的简历图标">
+            <img src="/icon/ResumeIcon.svg" alt="我的简历图标">
             <span>我的简历</span>
         </li>
         <li class="menu-item">
-            <img src="icon/TeamIcon.svg" alt="我的队伍图标">
+            <img src="/icon/TeamIcon.svg" alt="我的队伍图标">
             <span>我的队伍</span>
         </li>
         <li class="menu-item">
-            <img src="icon/historyTask.svg" alt="历史任务图标">
+            <img src="/icon/historyTask.svg" alt="历史任务图标">
             <span>历史任务</span>
         </li>
     </ul>
@@ -126,7 +126,7 @@
 
 <!-- 脚本引入 -->
 <!--<script src="../../static/js/carousel.js"></script>-->
-<!--<script src="../../static/js/sidebar.js"></script>-->
+<script src="/js/sidebar.js"></script>
 
 <!--从数据库中获取任务分类和分类等级信息，并更新下拉框中的value和text-->
 <!--提交表单-->
@@ -156,7 +156,7 @@
                 const result = await response.json();
                 console.log('Task posted successfully:', result);
                 alert("发布成功！");
-                window.location.href='indexNew.html';
+                window.location.href='/index';
                 // 处理成功响应
             } else {
                 const error = await response.json();
@@ -240,7 +240,8 @@
         }
     });
 </script>
-<SCRIPT SRC="js/getUserInfo.js"></SCRIPT>
-<script src="js/updateTopLab.js"></script>
+<!--通用方法 更新顶部和侧边的按钮-->
+<script src="/js/getUserInfo.js"></script>
+<script src="/js/updateTopLab.js"></script>
 </body>
 </html>

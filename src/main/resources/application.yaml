@@ -12,7 +12,14 @@ spring:
     username: root
     password: qq2845166476
     driver-class-name: com.mysql.cj.jdbc.Driver
+# 重定向
+#  mvc:
+#    static-path-pattern: /static/**
+#  web:
+#    resources:
+#      static-locations: classpath:/static/
 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*
