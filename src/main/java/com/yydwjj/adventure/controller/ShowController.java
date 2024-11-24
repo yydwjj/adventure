@@ -47,8 +47,17 @@ public class ShowController {
         return "forward:/presonifm.html";
     }
 
-    @GetMapping(value = "taskinfo/{id}")
-    public String taskInfo(){
+    @GetMapping(value = "taskinfo/{taskId}")
+    public String taskInfo(@PathVariable int taskId){
         return "forward:/taskinfo.html";
+    }
+    @GetMapping(value = "createTeam/{taskId}")
+    public String createTeam(@PathVariable int taskId){
+        return "forward:/createTeam.html";
+    }
+
+    @GetMapping(value = "postJob/{teamId}")
+    public String postJob(@PathVariable int teamId){
+        return "forward:/post-job.html";
     }
 }
