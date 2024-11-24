@@ -146,38 +146,45 @@
 <script>
     // 获取队伍数据并展示
     function loadTeams() {
-        fetch('/api/team/list')
+        fetch('/team/list')
             .then(response => response.json())
             .then(teams => {
                 const container = document.querySelector('.group-container');
                 container.innerHTML = ''; // 清空现有内容
 
                 teams.forEach(team => {
-                    const teamHtml = `
-                        <div class="group-info">
-                            <div class="group-top">
-                                <div class="group-left">
-                                    <p class="competition-name">竞赛名称: ${team.taskName || '未知竞赛'}</p>
-                                    <p class="job-title">招聘岗位: <span class="job-name">${team.jobTitle || '暂无岗位'}</span></p>
-                                    <p>描述: ${team.teamInfo || '暂无描述'}</p>
-                                </div>
-                                <div class="group-right">
-                                    <p>小组名: ${team.teamName}</p>
-                                    <p>组长: ${team.captainName || '未知'}</p>
-                                </div>
-                                <button class="contact-button" onclick="contactTeam(${team.teamId})">与组长沟通</button>
+                    const element = document.createElement('div');
+                    element.className = 'group-info';
+                    // 添加点击事件和鼠标样式
+                    element.onclick = () => {
+                        window.location.href = `/teaminfo/${team.teamId}`;
+                    };
+                    element.style.cursor = 'pointer';
+
+                    element.innerHTML = `
+                        <div class="group-top">
+                            <div class="group-left">
+                                <p class="competition-name">竞赛名称: ${team.taskName || '未知竞赛'}</p>
+                                <p class="job-title">招聘岗位: <span class="job-name">${team.jobTitle || '暂无岗位'}</span></p>
+                                <p>描述: ${team.teamInfo || '暂无描述'}</p>
                             </div>
-                            <div class="green-space">
-                                <div class="left-content">
-                                    <span>${team.levelName || '未知级别'}</span> | <span>${team.categoryName || '未知类型'}</span>
-                                </div>
-                                <div class="right-content">
-                                    <span>协作</span> | <span>创新</span> | <span>效率</span>
-                                </div>
+                            <div class="group-right">
+                                <p>小组名: ${team.teamName}</p>
+                                <p>组长: ${team.captainName || '未知'}</p>
+                            </div>
+                            <!-- 添加 stopPropagation 防止触发父元素的点击事件 -->
+                            <button class="contact-button" onclick="event.stopPropagation(); contactTeam(${team.teamId})">与组长沟通</button>
+                        </div>
+                        <div class="green-space">
+                            <div class="left-content">
+                                <span>${team.levelName || '未知级别'}</span> | <span>${team.categoryName || '未知类型'}</span>
+                            </div>
+                            <div class="right-content">
+                                <span>协作</span> | <span>创新</span> | <span>效率</span>
                             </div>
                         </div>
                     `;
-                    container.innerHTML += teamHtml;
+                    container.appendChild(element);
                 });
             })
             .catch(error => console.error('获取队伍数据失败:', error));
@@ -186,28 +193,72 @@
     // 初始化下拉列表
     function initDropdowns() {
         // 加载竞赛等级
-        fetch('/api/team/levels')
-            .then(response => response.json())
-            .then(levels => {
+        fetch('/task/levels', {
+            method: 'GET'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('获取竞赛等级失败');
+            })
+            .then(result => {
                 const levelSelect = document.querySelector('select[data-type="level"]');
-                levels.forEach(level => {
+
+                // 清除现有的选项
+                while (levelSelect.firstChild) {
+                    levelSelect.removeChild(levelSelect.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择竞赛级别';
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                levelSelect.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
                     const option = document.createElement('option');
-                    option.value = level.value;
-                    option.textContent = level.label;
+                    option.value = item.taskLevelId;
+                    option.textContent = item.levelName;
                     levelSelect.appendChild(option);
                 });
             })
             .catch(error => console.error('获取竞赛等级失败:', error));
 
         // 加载竞赛类别
-        fetch('/api/team/categories')
-            .then(response => response.json())
-            .then(categories => {
+        fetch('/task/category', {
+            method: 'GET'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('获取竞赛类别失败');
+            })
+            .then(result => {
                 const categorySelect = document.querySelector('select[data-type="category"]');
-                categories.forEach(category => {
+
+                // 清除现有的选项
+                while (categorySelect.firstChild) {
+                    categorySelect.removeChild(categorySelect.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择竞赛类别';
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                categorySelect.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
                     const option = document.createElement('option');
-                    option.value = category.value;
-                    option.textContent = category.label;
+                    option.value = item.taskCategoryId;
+                    option.textContent = item.categoryName;
                     categorySelect.appendChild(option);
                 });
             })
