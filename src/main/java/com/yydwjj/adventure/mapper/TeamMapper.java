@@ -36,6 +36,6 @@ public interface TeamMapper {
             "ORDER BY t.created_at DESC")
     List<Map<String, Object>> selectTeamList();
 
-    @Select("select * from team where captain_id = #{captionId}")
-    List<Team> getTeamsByCaptionId(int captionId);
+    @Select("select * from team where captain_id = #{captionId} and task_id = #{taskId}")
+    List<Team> getTeamsByCaptionId(int captionId,int taskId);
 }

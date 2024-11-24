@@ -25,8 +25,8 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Result<List<Team>> getTeamsByCaptionId(int captionId) {
-        List<Team> teamsByCaptionId = teamMapper.getTeamsByCaptionId(captionId);
-        return Result.ok(teamsByCaptionId);
+
+        return Result.build(null,405,"this method is creating");
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public Result<Team> add(Team team) {
         //判断是否重复参加比赛
-        List<Team> teamsByCaptionId = teamMapper.getTeamsByCaptionId((int) team.getCaptainId());
+        List<Team> teamsByCaptionId = teamMapper.getTeamsByCaptionId((int) team.getCaptainId(),(int) team.getTaskId());
         if(!teamsByCaptionId.isEmpty()){
             return Result.build(null,506,"Duplicate participation is not permitted");
         }
