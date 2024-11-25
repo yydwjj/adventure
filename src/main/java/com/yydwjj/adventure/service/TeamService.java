@@ -1,6 +1,7 @@
 package com.yydwjj.adventure.service;
 
 import com.yydwjj.adventure.entity.Team;
+import com.yydwjj.adventure.model.TeamInfo;
 import com.yydwjj.adventure.result.Result;
 import java.util.List;
 import java.util.Map;
@@ -18,9 +19,11 @@ public interface TeamService {
     /**
      * 获取队伍详细信息
      * @param teamId 队伍的id
-     * @return  包含队长和成员等的详细信息
+     * @return  基础队伍信息
      */
-    Result<Team> getTeamInfo(Long teamId);
+    Result<Team> getTeam(Long teamId);
 
     Result<List<Team>> getTeamsByCaptionId(int captionId);
+
+    TeamInfo getTeamInfo(long teamId);
 }

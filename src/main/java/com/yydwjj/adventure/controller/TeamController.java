@@ -1,6 +1,7 @@
 package com.yydwjj.adventure.controller;
 
 import com.yydwjj.adventure.entity.Team;
+import com.yydwjj.adventure.model.TeamInfo;
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.TeamService;
 import com.yydwjj.adventure.utils.JwtHelper;
@@ -35,8 +36,18 @@ public class TeamController {
         return teamService.getTeamList();
     }
 
+    /**
+     * 根据teamId获得基础的team信息
+     * @param teamId    teamId
+     * @return 队伍的基本信息
+     */
+//    @GetMapping("/info/{teamId}")
+//    public Result<Team> getTeam(@PathVariable Long teamId) {
+//        return teamService.getTeam(teamId);
+//    }
+
     @GetMapping("/info/{teamId}")
-    public Result<Team> getTeamInfo(@PathVariable Long teamId) {
-        return teamService.getTeamInfo(teamId);
+    public Result<TeamInfo> getTeamInfo(@PathVariable Long teamId) {
+        return Result.ok(teamService.getTeamInfo(teamId));
     }
 }

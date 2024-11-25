@@ -70,4 +70,19 @@ public class ShowController {
     public String team(){
         return "forward:/team.html";
     }
+
+    /**
+     * 队伍详情页
+     * @param teamid
+     * @return
+     */
+    @GetMapping(value = "teaminfo/{teamid}")
+    public String teamInfo(@PathVariable int teamid){
+        return "forward:/teaminfo.html";
+    }
+
+    @GetMapping(value = "teaminfo/{teamid}/talk/{uid}")
+    public String talk(){
+        return "forward:/talk.html";
+    }
 }

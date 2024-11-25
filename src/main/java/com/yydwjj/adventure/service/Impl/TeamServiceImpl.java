@@ -4,6 +4,7 @@ import com.yydwjj.adventure.entity.Team;
 import com.yydwjj.adventure.entity.TeamMember;
 import com.yydwjj.adventure.mapper.TeamMapper;
 import com.yydwjj.adventure.mapper.TeamMemberMapper;
+import com.yydwjj.adventure.model.TeamInfo;
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.TeamMemberService;
 import com.yydwjj.adventure.service.TeamService;
@@ -38,7 +39,7 @@ public class TeamServiceImpl implements TeamService {
      * 判断是否重复参赛，
      * 创建队伍的同时，将队长添加到队伍成员表中
      * @param team 队伍信息
-     * @return
+     * @return 添加完成的队伍结果
      */
     @Override
     public Result<Team> add(Team team) {
@@ -64,8 +65,19 @@ public class TeamServiceImpl implements TeamService {
         return Result.build(null,506,"add failed");
     }
 
+
+    /**
+     * 根据id获得队伍基本信息
+     * @param teamId 队伍的id
+     * @return 队伍基本信息
+     */
     @Override
-    public Result<Team> getTeamInfo(Long teamId) {
-        return null;
+    public Result<Team> getTeam(Long teamId) {
+        Team team = teamMapper.getTeamByTeamId(teamId);
+        return Result.ok(team);
+    }
+
+    public TeamInfo getTeamInfo(long teamId) {
+        return teamMapper.getTeamInfoById(teamId);
     }
 }

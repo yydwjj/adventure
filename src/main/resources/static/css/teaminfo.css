@@ -1,0 +1,466 @@
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 基础样式：设置字体、页面宽高和隐藏水平滚动 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* 链接样式：去掉默认下划线 */
+a {
+    text-decoration: none;
+}
+/*不显示小圆点*/
+li {
+    list-style: none;
+}
+
+/* 顶部导航栏样式 */
+header {
+    position: fixed;
+    width: 100%;
+    color: black;
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* 确保导航栏位于最上层 */
+
+}
+
+/* 顶部导航栏内容容器 */
+.navbar {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo 样式 */
+.logo img {
+    height: 40px;
+}
+
+/* 导航菜单列表样式 */
+.navigation {
+    list-style: none;
+    display: flex;
+}
+
+/* 导航菜单项间距 */
+.navigation li {
+    margin-right: 20px;
+}
+
+/* 导航链接样式 */
+.navigation a {
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(16, 16, 16, 1);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* 搜索栏容器样式 */
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 搜索框输入和按钮样式 */
+.search-bar input[type="text"],
+.search-bar button {
+    height: 40px;
+    border: none;
+    background-color: rgba(239, 239, 239, 1);
+}
+
+/* 搜索框输入样式 */
+.search-bar input[type="text"] {
+    padding: 5px 10px;
+    width: 200px;
+    border-radius: 5px 0 0 5px;
+    color: rgba(136, 136, 136, 1);
+    font-size: 14px;
+}
+
+/* 搜索按钮样式 */
+.search-bar button {
+    padding: 5px;
+    width: 40px;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0 ;
+
+}
+
+/* 搜索按钮图标样式 */
+.search-bar button img {
+    width: 25px;
+    height: 22px;
+}
+
+/* 发布按钮样式 */
+.publish-btn {
+    width: 97px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(125, 182, 191, 1);
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid rgba(34, 191, 167, 1);
+    font-family: Roboto, sans-serif;
+}
+
+/* 登录注册链接样式 */
+.login-register a {
+    width: 84px;
+    height: 60px;
+    line-height: 20px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* 导航栏菜单图标样式 */
+.navbar-menu img {
+    width: 24px;
+    height: 24px;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -200px; /* 初始隐藏在右侧 */
+    width: 200px;
+    height: 100%;
+    background-color: #f5f5f5;
+    transition: right 0.3s ease; /* 平滑展开 */
+    padding-top: 20px;
+    z-index: 1;
+}
+
+/* 侧边栏列表样式 */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* 侧边栏项样式 */
+.sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 侧边栏图标样式 */
+.sidebar img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+/* 侧边栏菜单项文本样式 */
+.menu-item span {
+    line-height: 20px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 14px;
+    text-align: center;
+    font-family: 'PingFang SC', light;
+}
+
+/* 侧边栏切换按钮样式 */
+#sidebarToggle {
+    z-index: 1000; /* 使切换按钮位于最前 */
+}
+
+/* 轮播图容器样式 */
+.carousel-container {
+    position: relative;
+    /*top: 60px;*/
+    width: 100%;
+    max-width: 1920px;
+    height: 520px;
+    overflow: hidden;
+}
+
+/* 轮播图轨道样式 */
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* 平滑过渡 */
+    transform: translateX(0);
+}
+
+/* 激活状态的轮播幻灯片 */
+.carousel-slide.active {
+    display: block;
+}
+
+/* 非激活状态的轮播幻灯片 */
+.carousel-slide:not(.active) {
+    display: none;
+}
+
+/* 轮播图幻灯片基础样式 */
+.carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+/* 轮播图图片样式 */
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 轮播图左右导航按钮样式 */
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+/* 左导航按钮 */
+.carousel-prev {
+    left: 10px;
+}
+
+/* 右导航按钮 */
+.carousel-next {
+    right: 10px;
+}
+
+/*内容区*/
+#context-container{
+    display: flex;
+    width: 70%;
+    margin: 80px auto 0;
+    gap: 50px; /* 创建间隔 */
+}
+/*排行榜*/
+#ranking-container{
+    flex: 2;
+    height: auto;
+    border-radius: 7px;
+    background-color: rgba(255,255,255,1);
+    border: 1px solid rgba(187,187,187,1);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+/*排行榜标题*/
+#ranking-title{
+    line-height: 28px;
+    color: rgba(16,16,16,1);
+    font-size: 20px;
+}
+#ranking-user-list{
+    margin-left: 10px;
+    margin-top:30px;
+}
+/*排行榜信息*/
+.ranking-user-info{
+    line-height: 20px;
+    color: rgba(0,0,0,0.87);
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+/*新闻*/
+#news-container{
+    flex: 7;
+    height: auto;
+    border-radius: 6px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+    /*font-family: Roboto;*/
+    border: 1px solid rgba(187,187,187,1);
+    padding: 20px 30px 20px 30px;
+}
+/*新闻容器标题*/
+#news-container-title{
+    line-height: 28px;
+    color: rgba(16,16,16,1);
+    font-size: 20px;
+}
+#news-div{
+    width: 80%;
+    margin: 0 auto;
+}
+.news{
+    margin: 30px 0 30px 0;
+    border-bottom: 1px solid rgba(187,187,187,1);
+    min-height: 200px;
+}
+.news-title{
+    height: 24px;
+    line-height: 24px;
+    color: rgba(16,16,16,1);
+    font-size: 16px;
+    font-weight: 600;
+
+    margin-bottom: 30px;
+}
+.news-feature{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+.news-feature div{
+    height: 22px;
+    line-height: 22px;
+    border-radius: 3px;
+    background-color: rgba(247,247,247,1);
+    color: rgba(16,16,16,1);
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid rgba(217,217,217,1);
+}
+.news-context{
+    line-height: 23px;
+    color: rgba(101,101,101,1);
+    font-size: 14px;
+
+    margin-bottom: 30px;
+}
+.news-data{
+    height: 23px;
+    line-height: 23px;
+    color: rgba(101,101,101,1);
+    font-size: 14px;
+
+}
+h1{
+    margin-top: 100px;
+    margin-left: 220px;
+    font-size: 30px;
+    color: rgba(34, 191, 167, 1);;
+}
+
+label{
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.main1{
+    margin-top:  80px;
+    margin-left: 300px;
+}
+#submit{
+    margin-top: 60px;
+    margin-left: -160px;
+    margin-bottom: 60px;
+    padding: 10px 40px;
+}
+.input {
+    max-width: 190px;
+    height: 44px;
+    background-color: #05060f0a;
+    border-radius: .5rem;
+    padding: 0 1rem;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+}
+
+.label {
+    display: block;
+    margin-bottom: .3rem;
+    font-size: .9rem;
+    font-weight: bold;
+    color: #05060f99;
+    transition: color .3s cubic-bezier(.25,.01,.25,1) 0s;
+}
+
+.input:hover, .input:focus, .input-group:hover .input {
+    outline: none;
+    border-color: #05060f;
+}
+
+.input-group:hover .label, .input:focus {
+    color: #05060fc2;
+}
+.contain {
+    height: auto;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(16, 16, 16, 1);
+    font-size: 14px;
+    border: 1px solid rgba(187, 187, 187, 1);
+    margin: 10px auto 0;
+    width: 76%;
+    display: flex;
+
+}
+/*按钮样式*/
+.btn {
+    border: 1px solid;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+.btn:hover {
+    color: white;
+    border: 0;
+    background-color: rgba(34, 191, 167, 1);
+
+    transition: all ease-in 0.5s;
+}
+.teamname{
+    font-size: 30px;
+    margin: 30px 40px 30px 40px;
+}
+.competitionname{
+    font-size: 30px;
+    margin: 20px 60px ;
+}
+.introduction{
+    font-size: 20px;
+    margin: 20px 100px ;
+}
+h2{
+    margin: 20px 60px ;
+}
+.teammumber{
+    font-size: 20px;
+    display: flex;
+    flex-wrap:wrap;
+    margin: 20px 100px ;
+}
+.teammleader{
+    font-size: 20px;
+    display: flex;
+    flex-wrap:wrap;
+    margin: 20px 100px ;
+}
+.need{
+    display: flex;
+    flex-wrap:wrap;
+    font-size: 20px;
+    margin: 20px 100px ;
+}
