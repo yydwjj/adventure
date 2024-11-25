@@ -101,10 +101,13 @@
                     '<span class="preview">我想知道...</span>';
                 let ulElement=document.getElementById('people');
                 let newLi =document.createElement('li');
-                newLi.className='person active';
+                newLi.className='person';
                 newLi.setAttribute('data-chat', 'person1');
                 newLi.innerHTML += messageHTML;
                 ulElement.append(newLi);
+                document.querySelector('.chat[data-chat=person1]').classList.add('active-chat');
+                document.querySelector('.person[data-chat=person1]').classList.add('active');
+
             }//若没有跟该用户聊过天则新建一个
             else{
                 console.log('The div exists.');

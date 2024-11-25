@@ -63,12 +63,54 @@
                     <a href="javascript:;" class="search"></a>
                 </div>
                 <ul class="people" id="people">
+                    <li class="person" data-chat="person2">
+                        <img src="imgs/dog.png" alt="" />
+                        <span class="name">在东北玩泥巴</span>
+                        <span class="time">1:44 PM</span>
+                        <span class="preview">我以前被遗忘的感觉</span>
+                    </li>
+                    <li class="person" data-chat="person3">
+                        <img src="imgs/louis-ck.jpeg" alt="" />
+                        <span class="name">来爆一个傻佬</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">但我们可能需要一个新的地毯.</span>
+                    </li>
                 </ul>
             </div>
             <div class="right">
                 <div class="top"><span><span class="name"></span></span></div>
                 <div class="chat" data-chat="person1" id="msg">
+                </div>
+                <div class="chat" data-chat="person2" id="person2">
                     <div class="conversation-start">
+                        <span>今天, 3:38 AM</span>
+                    </div>
+                    <div class="bubble you">
+                        Hey哥们!
+                    </div>
+                </div>
+                <div class="chat" data-chat="person3" id="person3">
+                    <div class="conversation-start">
+                        <span>昨天, 4:20 PM</span>
+                    </div>
+                    <div class="bubble you">
+                        妹的
+                    </div>
+                    <div class="bubble you">
+
+                        简直是糟糕的一天...
+                    </div>
+                    <div class="bubble me">
+                        ... 什么？.
+
+                    </div>
+                    <div class="bubble me">
+
+                        嗯……我在走廊上踩到了狗屎。
+                    </div>
+                    <div class="bubble you">
+
+                        你是来搞笑的?
                     </div>
 
                 </div>
@@ -105,20 +147,30 @@
                         '<span class="preview">我想知道...</span>';
                     let ulElement=document.getElementById('people');
                     let newLi =document.createElement('li');
-                    newLi.className='person active';
-                    newLi.setAttribute('data-chat', 'person1');
+                    newLi.className='person';
+                    newLi.setAttribute('data-chat', 'person'+toname);
                     newLi.innerHTML += messageHTML;
                     ulElement.append(newLi);
+                    //创建左侧
+
+                     document.querySelector('.chat[data-chat=person'+toname+']').classList.add('active-chat');
+                     document.querySelector('.person[data-chat=person'+toname+']').classList.add('active');
                 }//若没有跟该用户聊过天则新建一个
+
                 else{
                     console.log('The div exists.');
                 }
             })
+            .then(data=>{
+                let script = document.createElement('script');
+                script.src = '/js/talk.js'
+                document.body.appendChild(script);
+            })
             .catch(error => {
                 console.error('请求出错:', error);
             });//将id转化为姓名
-        const divElement = document.getElementById('msg');
-        divElement.id = toname+"msg";//修改id
+            const divElement = document.getElementById('msg');
+        divElement.id = toname+'msg';//修改id
         console.log(divElement);
         ws.onopen = function() {
             console.log("WebSocket 连接已建立");
@@ -183,7 +235,6 @@
         }
 
     </script>
-    <script src="/js/talk.js"></script>
     <script src="/js/carousel.js"></script>
     <script src="/js/sidebar.js"></script>
     <SCRIPT SRC="/js/getUserInfo.js"></SCRIPT>

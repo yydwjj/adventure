@@ -1,5 +1,3 @@
-document.querySelector('.chat[data-chat=person1]').classList.add('active-chat');
-document.querySelector('.person[data-chat=person1]').classList.add('active');
 
 var friends = {
   list: document.querySelector('ul.people'),
@@ -25,6 +23,7 @@ function setAciveChat(f) {
   chat.current = chat.container.querySelector('.active-chat');
   chat.person = f.getAttribute('data-chat');
   chat.current.classList.remove('active-chat');
+  console.log(f);
   chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat');
   friends.name = f.querySelector('.name').innerText;
   chat.name.innerHTML = friends.name;

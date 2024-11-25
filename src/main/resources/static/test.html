@@ -18,7 +18,7 @@
         <input type="text" placeholder="搜索" />
         <a href="javascript:;" class="search"></a>
       </div>
-      <ul class="people">
+      <ul class="people" id="people">
         <li class="person" data-chat="person1">
           <img src="imgs/dog.png" alt="" />
           <span class="name">dtg</span>
@@ -65,11 +65,13 @@
         <div class="conversation-start">
           <span>今天, 6:48 AM</span>
         </div>
-
+        <div class="bubble you">
+          Hey哥们!
+        </div>
 
 
       </div>
-      <div class="chat" data-chat="person3" id="person3">
+      <div class="chat" data-chat="person2" id="person2">
         <div class="conversation-start">
           <span>今天, 3:38 AM</span>
         </div>
@@ -97,7 +99,7 @@
 
         </div>
       </div>
-      <div class="chat" data-chat="person4" id="person4">
+      <div class="chat" data-chat="person3" id="person3">
         <div class="conversation-start">
           <span>昨天, 4:20 PM</span>
         </div>
@@ -122,7 +124,7 @@
         </div>
 
       </div>
-      <div class="chat" data-chat="person5" id="person5">
+      <div class="chat" data-chat="person4" id="person4">
         <div class="conversation-start">
           <span>今天, 6:28 AM</span>
         </div>
@@ -136,7 +138,7 @@
           我需要三件东西：爱情友谊和图书。然而这三者之间何其相通！炽热的爱情可以充实图书的内容，图书又是人们最忠实的朋友
         </div>
       </div>
-      <div class="chat" data-chat="person6">
+      <div class="chat" data-chat="person5">
         <div class="conversation-start">
           <span>星期五, 1:27 PM</span>
         </div>
@@ -211,9 +213,11 @@
     newDiv.innerHTML = data.text;
     parentElement.appendChild(newDiv);
   }
-
+  let script = document.createElement('script');
+  script.src = 'js/talk.js'
+  document.body.appendChild(script);
 </script>
-<script src="js/talk.js"></script>
+
 <script src="js/carousel.js"></script>
 <script src="js/sidebar.js"></script>
 <SCRIPT SRC="js/getUserInfo.js"></SCRIPT>
