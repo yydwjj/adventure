@@ -131,6 +131,8 @@
                     updateField('phone', resumeData.phoneNumber, '暂无电话号码');
                     updateField('email', resumeData.email, '暂无邮箱信息');
                     updateField('desired-position', resumeData.desiredPosition, '暂无期望职位信息');
+                    updateField('personal-strengths', resumeData.personalStrengths, '未填写个人优势');
+                    updateField('related-experience', resumeData.previousExperience, '暂无相关经历');
                 } else {
                     console.error('获取简历数据失败:', response.statusText);
                 }
