@@ -1,8 +1,8 @@
 package com.yydwjj.adventure.controller;
 
-//import cn.hutool.json.JSONArray;
-//import cn.hutool.json.JSONObject;
-//import cn.hutool.json.JSONUtil;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
@@ -25,19 +25,19 @@ public class WebSocketServer {
      * 连接建立成功调用的方法
      */
     @OnOpen
-//    public void onOpen(Session session, @PathParam("username") String username) {
-//        sessionMap.put(username, session);
-//        log.info("有新用户加入，username={}, 当前在线人数为：{}", username, sessionMap.size());
-//        JSONObject result = new JSONObject();
-//        JSONArray array = new JSONArray();
-//        result.set("users", array);
-//        for (Object key : sessionMap.keySet()) {
-//            JSONObject jsonObject = new JSONObject();
-//            jsonObject.set("username", key);
-//            // {"username", "zhang", "username": "admin"}
-//            array.add(jsonObject);
-//        }
-//    }
+    public void onOpen(Session session, @PathParam("username") String username) {
+        sessionMap.put(username, session);
+        log.info("有新用户加入，username={}, 当前在线人数为：{}", username, sessionMap.size());
+        JSONObject result = new JSONObject();
+        JSONArray array = new JSONArray();
+        result.set("users", array);
+        for (Object key : sessionMap.keySet()) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.set("username", key);
+            // {"username", "zhang", "username": "admin"}
+            array.add(jsonObject);
+        }
+    }
     /**
      * 连接关闭调用的方法
      */
@@ -54,26 +54,26 @@ public class WebSocketServer {
 // * @param message 客户端发送过来的消息
 // */
     @OnMessage
-//    public void onMessage(String message, Session session, @PathParam("username") String username) {
-//        log.info("服务端收到用户username={}的消息:{}", username, message);
-//        JSONObject obj = JSONUtil.parseObj(message);
-//        String toUsername = obj.getStr("to"); // to表示发送给哪个用户，比如 admin
-//        String text = obj.getStr("text"); // 发送的消息文本  hello
-//        // {"to": "admin", "text": "聊天文本"}
-//        Session toSession = sessionMap.get(toUsername); // 根据 to用户名来获取 session，再通过session发送消息文本
-//        if (toSession != null) {
-//            // 服务器端 再把消息组装一下，组装后的消息包含发送人和发送的文本内容
-//            // {"from": "zhang", "text": "hello"}
-//            JSONObject jsonObject = new JSONObject();
-//            jsonObject.set("from", username);  // from 是 zhang
-//            jsonObject.set("text", text);  // text 同上面的text
-//            this.sendMessage(jsonObject.toString(), toSession);
-//            log.info("发送给用户username={}，消息：{}", toUsername, jsonObject.toString());
-//        } else {
-//            log.info("发送失败，未找到用户username={}的session", toUsername);
-//        }
-//        System.out.println("收到用户 " + username + " 的消息: " + message);
-//    }
+    public void onMessage(String message, Session session, @PathParam("username") String username) {
+        log.info("服务端收到用户username={}的消息:{}", username, message);
+        JSONObject obj = JSONUtil.parseObj(message);
+        String toUsername = obj.getStr("to"); // to表示发送给哪个用户，比如 admin
+        String text = obj.getStr("text"); // 发送的消息文本  hello
+        // {"to": "admin", "text": "聊天文本"}
+        Session toSession = sessionMap.get(toUsername); // 根据 to用户名来获取 session，再通过session发送消息文本
+        if (toSession != null) {
+            // 服务器端 再把消息组装一下，组装后的消息包含发送人和发送的文本内容
+            // {"from": "zhang", "text": "hello"}
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.set("from", username);  // from 是 zhang
+            jsonObject.set("text", text);  // text 同上面的text
+            this.sendMessage(jsonObject.toString(), toSession);
+            log.info("发送给用户username={}，消息：{}", toUsername, jsonObject.toString());
+        } else {
+            log.info("发送失败，未找到用户username={}的session", toUsername);
+        }
+        System.out.println("收到用户 " + username + " 的消息: " + message);
+    }
     @OnError
     public void onError(Session session, Throwable error) {
         log.error("发生错误");

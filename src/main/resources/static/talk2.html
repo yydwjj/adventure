@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天窗口界面</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/reset.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/indexCssNew.css">
+
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="/icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="/icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="/icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div class="wrapper">
+    <div class="container">
+        <div class="left">
+            <div class="top">
+                <input type="text" placeholder="搜索" />
+                <a href="javascript:;" class="search"></a>
+            </div>
+            <ul class="people" id="people">
+            </ul>
+        </div>
+        <div class="right">
+            <div class="top"><span><span class="name"></span></span></div>
+            <div class="chat" data-chat="person1" id="msg">
+                <div class="conversation-start">
+                </div>
+
+            </div>
+            <div class="write">
+                <a href="javascript:;" class="write-link attach"></a>
+                <input type="text" id="text"/>
+                <a href="javascript:;" class="write-link smiley"></a>
+                <a href="javascript:;" class="write-link send" id="sendButton"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const dataStr = sessionStorage.getItem('myInfo');
+    const parsedData = JSON.parse(dataStr);
+    console.log(parsedData.userId);
+    const username = parsedData.userId; // 用户名
+    const ws = new WebSocket('ws://localhost:8080/chat/' + username);
+    const toname = 3;
+
+    fetch('http://localhost:8080/user/getUserInfo/'+toname)
+        .then(response => response.json())
+        .then(data => {
+            const toName = data.data.username;
+            console.log(toName);
+            let part = document.getElementById(toname);
+            if(part===null){
+                var messageHTML = '<img src="/image/touxiang.jpg" alt="" />' +
+                    '<span class="name">'+toName+'</span>' +
+                    '<span class="preview">我想知道...</span>';
+                let ulElement=document.getElementById('people');
+                let newLi =document.createElement('li');
+                newLi.className='person active';
+                newLi.setAttribute('data-chat', 'person1');
+                newLi.innerHTML += messageHTML;
+                ulElement.append(newLi);
+            }//若没有跟该用户聊过天则新建一个
+            else{
+                console.log('The div exists.');
+            }
+        })
+        .catch(error => {
+            console.error('请求出错:', error);
+        });//将id转化为姓名
+    const divElement = document.getElementById('msg');
+    divElement.id = toname+"msg";//修改id
+    console.log(divElement);
+    ws.onopen = function() {
+        console.log("WebSocket 连接已建立");
+    };
+    ws.onmessage = function(event) {
+        console.log("收到消息:", event.data);
+        // 在这里处理接收到的消息
+    };
+
+    document.getElementById('sendButton').onclick = function() {
+        sendMessage();
+    };
+
+    function sendMessage() {
+        const text = document.getElementById('text').value;
+        const message = {
+            from: username,
+            to: toname,
+            text: text
+        };
+        let timestamp=Date.now();
+        let date = new Date(timestamp);
+        let month = ('0' + (date.getMonth() + 1)).slice(-2);
+        let day = ('0' + date.getDate()).slice(-2);
+        let hours = ('0' + date.getHours()).slice(-2);
+        let minutes = ('0' + date.getMinutes()).slice(-2);
+        let seconds = ('0' + date.getSeconds()).slice(-2);
+        let customFormattedDate = `${month}-${day} ${hours}:${minutes}:${seconds}`;//获得时间
+        ws.send(JSON.stringify(message));
+        console.log("发送消息:", message);
+        let parentElement = document.getElementById(toname+'msg');
+        let newDiv = document.createElement('div');
+        let timeDiv =document.createElement('div');
+        timeDiv.className="conversation-start";
+        timeDiv.innerHTML='<span>'+customFormattedDate+'</span>';
+        newDiv.className = 'bubble me';
+        newDiv.innerHTML = message.text;
+        parentElement.appendChild(timeDiv);
+        parentElement.appendChild(newDiv);
+
+    }
+
+    ws.onmessage = function (msg) {
+        let timestamp=Date.now();
+        let date = new Date(timestamp);
+        let month = ('0' + (date.getMonth() + 1)).slice(-2);
+        let day = ('0' + date.getDate()).slice(-2);
+        let hours = ('0' + date.getHours()).slice(-2);
+        let minutes = ('0' + date.getMinutes()).slice(-2);
+        let seconds = ('0' + date.getSeconds()).slice(-2);
+        let customFormattedDate = `${month}-${day} ${hours}:${minutes}:${seconds}`;//获得时间
+        let data = JSON.parse(msg.data);
+        let parentElement = document.getElementById(toname+'msg');
+        let newDiv = document.createElement('div');
+        let timeDiv =document.createElement('div');
+        newDiv.className = 'bubble you';
+        newDiv.innerHTML = data.text;
+        timeDiv.className="conversation-start";
+        timeDiv.innerHTML='<span>'+customFormattedDate+'</span>';
+        parentElement.appendChild(timeDiv);
+        parentElement.appendChild(newDiv);
+    }
+
+</script>
+<script src="/js/talk.js"></script>
+<script src="/js/carousel.js"></script>
+<script src="/js/sidebar.js"></script>
+<SCRIPT SRC="/js/getUserInfo.js"></SCRIPT>
+<script src="/js/updateTopLab.js"></script>
+</body>
+</html>
