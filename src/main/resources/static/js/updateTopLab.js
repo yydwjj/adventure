@@ -17,7 +17,7 @@ getUserInfo().then(data => {
         const menuUrls = {
             '个人信息': `/profile`,
             '我的简历': `/resume`,
-            '我的队伍': `/team`,
+            '我的队伍': `/myteam`,
             '历史任务': `/history`
         };
         // 为“发布”按钮添加点击事件监听器
