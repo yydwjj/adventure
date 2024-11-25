@@ -66,6 +66,10 @@ public class ShowController {
         return "forward:/competition.html";
     }
 
+    /**
+     * 队伍列表页
+     * @return  请求转发到队伍列表页
+     */
     @GetMapping(value = "team")
     public String team(){
         return "forward:/team.html";
@@ -73,16 +77,31 @@ public class ShowController {
 
     /**
      * 队伍详情页
-     * @param teamid
-     * @return
+     * @param teamid    要查看的队伍id
+     * @return  请求转发到队伍该id的队伍详情
      */
     @GetMapping(value = "teaminfo/{teamid}")
     public String teamInfo(@PathVariable int teamid){
         return "forward:/teaminfo.html";
     }
 
+    /**
+     * 对话页
+     * @return  请求转发到对话页
+     */
     @GetMapping(value = "teaminfo/{teamid}/talk/{uid}")
     public String talk(){
         return "forward:/talk.html";
     }
+
+    /**
+     * 人才列表页
+     * @return 请求转发到人才列表页
+     */
+    @GetMapping(value = "talent")
+    public String talent(){
+        return "forward:/talent.html";
+    }
+
+
 }
