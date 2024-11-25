@@ -122,4 +122,9 @@ public class ShowController {
     public String showresumeById(){
         return "forward:/ResumeInfo.html";
     }
+
+    @GetMapping(value = "myteam")
+    public String myTeam(){
+        return "forward:/myTeam.html";
+    }
 }
