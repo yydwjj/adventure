@@ -81,7 +81,11 @@
 <script src="/js/updateTopLab.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const teamId = 17; // 这里假设teamId为17，实际应用中应动态获取
+        // 获取当前 URL 的路径部分
+        const path = window.location.pathname;
+        // 提取 id
+        const parts = path.split('/');
+        const teamId = parts[parts.length - 1];
         fetch(`/team/info/${teamId}`)
             .then(response => response.json())
             .then(data => {
@@ -94,32 +98,40 @@
 
                     // 更新工作职位
                     const jobsContainer = document.querySelector('.need');
-                    jobsContainer.innerHTML = '';
-                    teamData.jobs.forEach(job => {
-                        const jobLink = document.createElement('a');
-                        jobLink.href = '#';
-                        jobLink.innerText = job.jobTitle;
-                        jobsContainer.appendChild(jobLink);
-                        jobsContainer.appendChild(document.createTextNode(', ')); // 添加逗号分隔符
-                    });
-                    // 移除最后一个多余的逗号
-                    if (jobsContainer.lastChild.textContent === ', ') {
-                        jobsContainer.removeChild(jobsContainer.lastChild);
+                    if (teamData.jobs.length > 0) {
+                        jobsContainer.innerHTML = '';
+                        teamData.jobs.forEach(job => {
+                            const jobLink = document.createElement('a');
+                            jobLink.href = '#';
+                            jobLink.innerText = job.jobTitle;
+                            jobsContainer.appendChild(jobLink);
+                            jobsContainer.appendChild(document.createTextNode(', ')); // 添加逗号分隔符
+                        });
+                        // 移除最后一个多余的逗号
+                        if (jobsContainer.lastChild.textContent === ', ') {
+                            jobsContainer.removeChild(jobsContainer.lastChild);
+                        }
+                    } else {
+                        jobsContainer.innerText = '暂无职位需求';
                     }
 
                     // 更新小队成员
                     const membersContainer = document.querySelector('.teammumber');
-                    membersContainer.innerHTML = '';
-                    teamData.teamMembers.forEach(member => {
-                        const memberLink = document.createElement('a');
-                        memberLink.href = '#';
-                        memberLink.innerText = member.username;
-                        membersContainer.appendChild(memberLink);
-                        membersContainer.appendChild(document.createTextNode(', ')); // 添加逗号分隔符
-                    });
-                    // 移除最后一个多余的逗号
-                    if (membersContainer.lastChild.textContent === ', ') {
-                        membersContainer.removeChild(membersContainer.lastChild);
+                    if (teamData.teamMembers.length > 0) {
+                        membersContainer.innerHTML = '';
+                        teamData.teamMembers.forEach(member => {
+                            const memberLink = document.createElement('a');
+                            memberLink.href = '#';
+                            memberLink.innerText = member.username;
+                            membersContainer.appendChild(memberLink);
+                            membersContainer.appendChild(document.createTextNode(', ')); // 添加逗号分隔符
+                        });
+                        // 移除最后一个多余的逗号
+                        if (membersContainer.lastChild.textContent === ', ') {
+                            membersContainer.removeChild(membersContainer.lastChild);
+                        }
+                    } else {
+                        membersContainer.innerText = '暂无小队成员';
                     }
 
                     // 修改超链接

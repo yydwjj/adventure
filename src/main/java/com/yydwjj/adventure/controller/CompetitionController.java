@@ -10,7 +10,7 @@ import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.CompetitionService;
 
 @RestController
-@RequestMapping("/api/competition")
+@RequestMapping("/competition")
 public class CompetitionController {
 
     @Autowired
