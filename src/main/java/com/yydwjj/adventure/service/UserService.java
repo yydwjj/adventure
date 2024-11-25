@@ -11,7 +11,10 @@ public interface UserService {
 
     Result register(User user);
 
-    Result getUserInfo(String token);
+    Result getLoginUserInfo(String token);
 
     Result update(User user);
+
+    Result getUserInfo(int id);
+
 }
