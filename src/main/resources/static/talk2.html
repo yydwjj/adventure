@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -87,13 +87,9 @@
     console.log(parsedData.userId);
     const username = parsedData.userId; // 用户名
     const ws = new WebSocket('ws://localhost:8080/chat/' + username);
-    const url = window.location.href;
-    const startIndex = url.lastIndexOf('/') + 1; // 找到最后一个 "/" 后的位置
-    const targetValue = url.substring(startIndex); // 截取后面的部分作为要找的值
-    console.log(targetValue);
-    const toname = targetValue;
+    const toname = 3;
 
-    fetch('http://localhost:8080/user/getUserInfo/'+targetValue)
+    fetch('/user/getUserInfo/'+toname)
         .then(response => response.json())
         .then(data => {
             const toName = data.data.username;
