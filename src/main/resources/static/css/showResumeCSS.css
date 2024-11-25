@@ -204,3 +204,20 @@ header {
 .detail{
     padding-bottom:20px;
 }
+
+#showThis {
+        padding: 3px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: rgba(125, 182, 191, 1);
+        color: white;
+        margin:10px;
+        white-space: nowrap;
+}
+#showThis a{
+    color:white;
+}
+#showThis:hover {
+        background: #377F7F;
+}

@@ -66,4 +66,9 @@ public class ShowController {
     public String showresume(){
         return "forward:/showResume.html";
     }
+
+    @GetMapping(value = "resume/{id}")
+    public String showresumeById(){
+        return "forward:/ResumeInfo.html";
+    }
 }

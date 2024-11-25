@@ -33,4 +33,7 @@ public interface ResumeMapper {
 
     @Select("select * from adventure.resume where adventure.resume.user_id=#{userId} order by resume_id desc limit 1")
     Resume showResumes(Long userId);
+
+    @Select("select * from adventure.resume where adventure.resume.resume_id=#{resumeId} limit 1")
+    Resume showResumesById(int resumeId);
 }

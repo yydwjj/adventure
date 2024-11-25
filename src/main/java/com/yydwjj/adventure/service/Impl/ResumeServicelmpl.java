@@ -54,5 +54,14 @@ public class ResumeServicelmpl implements ResumeService {
         return Result.ok(showresume);
     }
 
+    @Override
+    public Result showResumeById(int resumeId) {
+        Resume showresume = resumemapper.showResumesById(resumeId);
+        if (showresume==null) {
+            return Result.build(null,507,"无简历");
+        }
+        return Result.ok(showresume);
+    }
+
 
 }

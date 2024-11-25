@@ -24,4 +24,9 @@ public interface ResumeService {
     * 获取要预览的简历信息
     * */
     Result showResume(Long userId);
+
+    /*
+    * 通过简历ID获取信息
+    * */
+    Result showResumeById(int resumeId);
 }

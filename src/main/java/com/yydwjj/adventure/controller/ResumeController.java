@@ -59,15 +59,12 @@ public class ResumeController {
 
         return resumeservice.showResume(userId);
     }
-//    // 根据ID获取单份简历信息的接口
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Resume> getResumeById(@PathVariable("id") Long id) {
-//        Optional<Resume> resumeOptional = resumeMapper.findById(id);
-//        if (resumeOptional.isPresent()) {
-//            return new ResponseEntity<>(resumeOptional.get(), HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
+    // 根据ID获取单份简历信息的接口
+    @GetMapping("info/{id}")
+    public Result getResumeById(@PathVariable int id ) {
+        Result result = resumeservice.showResumeById(id);
+        return result;
+    }
 //
 //     // 更新简历信息的接口
 //    @PutMapping("/{id}")
