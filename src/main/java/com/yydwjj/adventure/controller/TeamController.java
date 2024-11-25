@@ -50,4 +50,13 @@ public class TeamController {
     public Result<TeamInfo> getTeamInfo(@PathVariable Long teamId) {
         return Result.ok(teamService.getTeamInfo(teamId));
     }
+
+    /**
+     * 我管理的小队
+     */
+    @GetMapping("/lead")
+    public List<Map<String, Object>> getLeadTeam(@RequestHeader String token) {
+        Long userId = jwtHelper.getUserId(token);
+        return teamService.getLeadTeam(Math.toIntExact(userId));
+    }
 }

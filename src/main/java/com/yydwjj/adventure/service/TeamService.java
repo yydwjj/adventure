@@ -26,4 +26,6 @@ public interface TeamService {
     Result<List<Team>> getTeamsByCaptionId(int captionId);
 
     TeamInfo getTeamInfo(long teamId);
+
+    List<Map<String, Object>> getLeadTeam(int id);
 }

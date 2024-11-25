@@ -80,4 +80,9 @@ public class TeamServiceImpl implements TeamService {
     public TeamInfo getTeamInfo(long teamId) {
         return teamMapper.getTeamInfoById(teamId);
     }
+
+    @Override
+    public List<Map<String, Object>> getLeadTeam(int id) {
+        return teamMapper.getMyLeadTeamByUid(id);
+    }
 }
