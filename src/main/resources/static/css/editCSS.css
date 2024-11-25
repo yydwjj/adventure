@@ -1,0 +1,254 @@
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 基础样式：设置字体、页面宽高和隐藏水平滚动 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #E6F5F7;
+}
+
+/* 链接样式：去掉默认下划线 */
+a {
+    text-decoration: none;
+}
+/*不显示小圆点*/
+li {
+    list-style: none;
+}
+
+/*顶部导航栏*/
+header {
+    /*background-color: #333;*/
+    position: fixed;
+    width: 100%;
+    color: black;
+    background-color: White;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+}
+
+.navbar {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.navigation {
+    list-style: none;
+    display: flex;
+}
+
+.navigation li {
+    margin-right: 20px;
+}
+
+.navigation a {
+    font-size: 16px;
+    line-height: 20px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.search-bar input[type="text"] {
+    padding: 5px 10px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    background-color: rgba(239,239,239,1);
+    color: rgba(136,136,136,1);
+    font-size: 14px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+
+    width: 40px;
+    height: 40px;
+    background-color: rgba(239,239,239,1);
+}
+.search-bar button img {
+    width: 25px;
+    height: 22px;
+}
+
+
+.publish-btn {
+    width: 97px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(125,182,191,1);
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto;
+    border: 1px solid rgba(34,191,167,1);
+}
+
+.login-register a {
+    width: 84px;
+    height: 60px;
+    line-height: 20px;
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+    text-align: center;
+}
+
+.navbar-menu img{
+    width: 24px;
+    height: 24px;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -200px; /* 初始隐藏在右侧 */
+    width: 10%;
+    height: 100%;
+    background-color: #f5f5f5;
+    transition: right 0.3s ease; /* 平滑展开 */
+    padding-top: 20px;
+    z-index: 1;
+}
+
+/* 侧边栏列表样式 */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* 侧边栏项样式 */
+.sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 侧边栏图标样式 */
+.sidebar img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+/* 侧边栏菜单项文本样式 */
+.menu-item span {
+    line-height: 20px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 14px;
+    text-align: center;
+    font-family: 'PingFang SC', light;
+}
+
+/* 侧边栏切换按钮样式 */
+#sidebarToggle {
+    z-index: 1000; /* 使切换按钮位于最前 */
+}
+
+/*主要模块*/
+#main-block{
+    padding-top:6%;
+}
+.resume-form {
+    margin: 20px auto; /* 自动margin确保垂直居中 */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    max-width: 1000px; /* 设置最大宽度，防止内容过宽 */
+    display:fixed;
+}
+.info{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(4,1fr);
+}
+.form-group {
+    padding:20px;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+#advantages,#experience{
+    width: 440px; /* 固定宽度 */
+    height: 100px; /* 固定高度 */
+    padding: 8px;
+    box-sizing: border-box; /* 包括padding和border在内的总宽度和高度 */
+    white-space: pre-wrap; /* 保留空白符序列，但是允许在单词内换行 */
+    word-wrap: break-word; /* 允许在单词内换行 */
+    overflow-wrap: break-word; /* 允许在单词内换行，同word-wrap */
+    resize: none; /* 禁止调整大小 */
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-exit, .btn-save {
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 10px 60px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-exit {
+    background-color: #ccc;
+    color: white;
+}
+
+.btn-save {
+    background-color:  rgba(125, 182, 191, 1);
+    color: white;
+}
+.btn-exit:hover {
+    background-color: black;
+}
+.btn-save:hover {
+    background-color: #377F7F;
+}

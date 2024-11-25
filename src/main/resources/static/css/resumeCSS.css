@@ -1,0 +1,364 @@
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 基础样式：设置字体、页面宽高和隐藏水平滚动 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #E6F5F7;
+}
+
+/* 链接样式：去掉默认下划线 */
+a {
+    text-decoration: none;
+}
+/*不显示小圆点*/
+li {
+    list-style: none;
+}
+
+/*顶部导航栏*/
+header {
+    /*background-color: #333;*/
+    position: fixed;
+    width: 100%;
+    color: black;
+    background-color: White;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+}
+
+.navbar {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.navigation {
+    list-style: none;
+    display: flex;
+}
+
+.navigation li {
+    margin-right: 20px;
+}
+
+.navigation a {
+    font-size: 16px;
+    line-height: 20px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.search-bar input[type="text"] {
+    padding: 5px 10px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    background-color: rgba(239,239,239,1);
+    color: rgba(136,136,136,1);
+    font-size: 14px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+
+    width: 40px;
+    height: 40px;
+    background-color: rgba(239,239,239,1);
+}
+.search-bar button img {
+    width: 25px;
+    height: 22px;
+}
+
+
+.publish-btn {
+    width: 97px;
+    height: 40px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,1);
+    color: rgba(125,182,191,1);
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto;
+    border: 1px solid rgba(34,191,167,1);
+}
+
+.login-register a {
+    width: 84px;
+    height: 60px;
+    line-height: 20px;
+    color: rgba(16,16,16,1);
+    font-size: 14px;
+    text-align: center;
+}
+
+.navbar-menu img{
+    width: 24px;
+    height: 24px;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -200px; /* 初始隐藏在右侧 */
+    width: 10%;
+    height: 100%;
+    background-color: #f5f5f5;
+    transition: right 0.3s ease; /* 平滑展开 */
+    padding-top: 20px;
+    z-index: 1;
+}
+
+/* 侧边栏列表样式 */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* 侧边栏项样式 */
+.sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 侧边栏图标样式 */
+.sidebar img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+/* 侧边栏菜单项文本样式 */
+.menu-item span {
+    line-height: 20px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 14px;
+    text-align: center;
+    font-family: 'PingFang SC', light;
+}
+
+/* 侧边栏切换按钮样式 */
+#sidebarToggle {
+    z-index: 1000; /* 使切换按钮位于最前 */
+}
+
+/*居中*/
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*主题板块*/
+#main-block{
+    padding: 15%;
+    padding-top:6%;
+    display:grid;
+    grid-template-columns: repeat(15,1fr);
+    grid-template-areas:"a a a b b b b b b b b b c c c";
+}
+
+
+    /*左侧栏*/
+    #left-block{
+        grid-area:a;
+    }
+    #left1{
+        background-color:white;
+        border-radius: 20px ;
+        margin:10px;
+        padding-bottom:10px;
+        height:280px;
+    }
+    #left1-title{
+        border-radius:20px 20px 0 0;
+        padding:10px;
+        background-color:#EFEFEF;
+    }
+    #left1>a>div{
+        margin: 20px auto;
+        height:50px;
+    }
+    #left1 a div:hover{
+        background-color:#BBBBBB;
+    }
+
+    /*中间板块*/
+    #middle1 a{
+        color:white;
+    }
+    #middle-block{
+            overflow: auto;
+            grid-area:b;
+    }
+    #middle1{
+
+        margin: 10px auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    /*中间部分标题*/
+    #middle1-title{
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 20px 20px 0 0;
+            padding: 10px;
+            background-color: #EFEFEF;
+            align-items: center;
+
+        }
+    #middle1-title span{
+        width:75%;
+    }
+    #middle1-title button {
+        padding: 3px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: rgba(125, 182, 191, 1);
+        color: white;
+        margin:10px;
+        white-space: nowrap;
+    }
+
+    #middle1-title button:hover {
+        background: #377F7F;
+    }
+    /*基本信息*/
+    .profile {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .info {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .info h1 {
+        margin: 0;
+        font-size: 60px;
+        width:30%
+
+    }
+    .info div {
+        margin: 5px 0;
+        width:25%
+    }
+    .contact {
+        display: flex;
+        align-items: center;
+        margin: 5px ;
+    }
+    .icon {
+        margin-right: 10px;
+        font-size: 1.5em;
+    }
+    /*简历信息*/
+    .sections {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .section {
+        width: 100%;
+        padding: 10px;
+        background: #E6F5F7;
+        border-radius: 5px;
+        border-left: 4px solid #54BCBD;
+        margin:20px
+    }
+
+    .section h3 {
+        margin-top: 0;
+        color: #377F7F;
+
+    }
+
+    .detailInfo{
+        padding-left:40px;
+        padding-right:40px;
+    }
+
+    #personal-experience{
+        padding-bottom:50px;
+    }
+    /*中间板块
+
+
+
+    div[id^="infor-title"] {
+        width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #e9f0f5;
+            border-radius: 5px;
+        border-left: 2px solid #00FFFF;
+    }
+
+    }*/
+    /*右边栏*/
+    #right-block{
+        grid-area:c;
+    }
+    #right1{
+        background-color:white;
+        border-radius: 20px;
+        margin:10px;
+        height:360px;
+    }
+    #right1-title{
+                border-radius:20px 20px 0 0;
+                padding:10px;
+                background-color:#EFEFEF;
+    }
+    #right2{
+        background-color:white;
+        border-radius: 20px;
+        margin:10px;
+        height:360px;
+    }
+    #right2-title{
+                    border-radius:20px 20px 0 0;
+                    padding:10px;
+                    background-color:#EFEFEF;
+        }
