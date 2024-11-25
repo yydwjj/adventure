@@ -12,6 +12,7 @@ import java.util.List;
 public interface TaskMapper {
 
 
+    @Select("select * from adventure.task where task_id = #{id}")
     Task getTaskById(int id);
 
     @Select("select * from adventure.task order by task_id desc ")
