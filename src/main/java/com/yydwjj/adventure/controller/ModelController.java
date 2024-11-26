@@ -46,7 +46,23 @@ public class ModelController {
         Task task = (Task) taskResult.getData();
         String taskName = task.getTaskName();
         String taskInfo = task.getTaskInfo();
-        String userMessage = "Please recommend the team member roles needed for participating in the following competition, and include a brief description of the task:\n" +
+        String userMessage = "Please recommend the team member roles needed for participating in the following competition, and include a brief description and a simple requirement of the task:\n" +
+                "- Competition Name："+taskName+"\n" +
+                "- Task Description："+taskInfo;
+        try {
+            return modelService.getChatCompletion("deepseek-chat", "You are a helpful assistant and speak chinese and short,simple", userMessage);
+        } catch (Exception e) {
+            return "调用大模型 API 时出错: " + e.getMessage();
+        }
+    }
+
+    @GetMapping("/teams")
+    public String teamsSuggest(@RequestParam int taskId){
+        Result taskResult = taskService.getTask((int) taskId);
+        Task task = (Task) taskResult.getData();
+        String taskName = task.getTaskName();
+        String taskInfo = task.getTaskInfo();
+        String userMessage = "I want to form a team to participate in a competition. Its description is the competition information. Generate a simple and generic team introduction template for me\n" +
                 "- Competition Name："+taskName+"\n" +
                 "- Task Description："+taskInfo;
         try {
