@@ -1,0 +1,226 @@
+/* 在现有的 styles.css 中添加以下样式 */
+
+/* 发布岗位页面样式 */
+.page-title {
+    text-align: center;
+    margin: 30px 0;
+    color: #333;
+}
+
+.job-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.job-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.form-section-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.add-job-btn-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.add-job-btn {
+    background: #fff;
+    border: 2px dashed #00b38a;
+    color: #00b38a;
+    padding: 12px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-job-btn:hover {
+    background: #f0f9f6;
+}
+
+.add-job-btn span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.submit-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.submit-btn {
+    background: #00b38a;
+    color: #fff;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #009a74;
+}
+
+/* 添加弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 300px;
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.modal-buttons button:first-child {
+    background: #f5f5f5;
+    color: #666;
+}
+
+.modal-buttons button:last-child {
+    background: #00b38a;
+    color: white;
+}
+
+.modal-buttons button:hover {
+    opacity: 0.9;
+}
+/* 左侧弹出容器样式 */
+#response-container {
+    position: fixed;
+    top: 50%;
+    left: -400px; /* 初始隐藏在左侧 */
+    transform: translateY(-50%);
+    width: 300px;
+    max-height: 80%;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+#response-container.visible {
+    left: 10px; /* 弹出时的位置 */
+}
+
+#response-container .close-btn,
+#response-container .toggle-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #888;
+}
+
+/* 进度条样式 */
+#progress-bar {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    position: relative;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+#progress-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #4caf50;
+    animation: progress-animation 3s infinite;
+}
+
+@keyframes progress-animation {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* 加载文字部分 */
+#loading-message {
+    margin: 15px 0;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}

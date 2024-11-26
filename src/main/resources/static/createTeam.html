@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险者工会</title>
+    <link rel="stylesheet" href="/css/postCss.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="/icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="/icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="/icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>&Aogon;</div>
+
+<div id="create-team-container">
+    <h4>创建队伍</h4>
+
+    <!-- 创建队伍表单 -->
+    <form action="/team/create" method="POST" id="team_form">
+        <!-- 队伍名称 -->
+        <label for="team_name">队伍名称:</label>
+        <input type="text" id="team_name" name="teamName" required>
+        <br><br>
+
+        <!-- 竞赛名称、级别和等级 -->
+        <label for="competition_name">竞赛名称:</label>
+        <input type="text" id="competition_name" name="" readonly value="">
+        <label for="competition_level">竞赛级别:</label>
+        <input type="text" id="competition_level" name="" readonly value="">
+        <label for="competition_grade">竞赛等级:</label>
+        <input type="text" id="competition_grade" name="" readonly value="">
+        <br><br>
+
+        <!-- 队伍介绍 -->
+        <label for="team_info">队伍介绍:</label>
+        <textarea id="team_info" name="teamInfo" rows="5" cols="33" required></textarea>
+        <br><br>
+
+        <!-- 提交按钮 -->
+        <button type="submit">创建队伍</button>
+    </form>
+</div>
+
+<!-- 脚本引入 -->
+<!--<script src="../../static/js/carousel.js"></script>-->
+<script src="/js/sidebar.js"></script>
+
+<!--从数据库中获取任务分类和分类等级信息，并更新下拉框中的value和text-->
+<!--更新页面中的竞赛数据-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取 URL 中的 taskId 参数
+        const urlParams = new URLSearchParams(window.location.pathname.split('/')[2]);
+        const taskId = window.location.pathname.split('/').pop();
+
+        if (taskId) {
+            // 发送 AJAX 请求获取任务信息
+            fetch(`/task/info/${taskId}`)
+                .then(response => response.json())
+                .then(data => {
+                    taskData = data.data[0];
+                    // 更新页面上的输入框
+                    document.getElementById('competition_name').value = taskData.taskName;
+                    document.getElementById('competition_level').value = taskData.levelName;
+                    document.getElementById('competition_grade').value = taskData.categoryName;
+                })
+                .catch(error => console.error('Error fetching task info:', error));
+        } else {
+            console.error('Task ID not found in URL');
+        }
+    });
+
+    <!--提交表单-->
+
+    // 表单提交事件处理
+    document.getElementById('team_form').addEventListener('submit', function(event) {
+        event.preventDefault(); // 阻止默认表单提交行为
+
+
+        const urlParams = new URLSearchParams(window.location.pathname.split('/')[2]);
+        const taskId = window.location.pathname.split('/').pop();
+
+        // 获取表单数据
+        const teamName = document.getElementById('team_name').value;
+        const teamInfo = document.getElementById('team_info').value;
+
+        // 构建请求数据
+        const teamData = {
+            teamName: teamName,
+            teamInfo: teamInfo,
+            taskId: taskId
+        };
+
+        // 发送 POST 请求
+        fetch('/team/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'token': localStorage.getItem('authToken') // 获取 token
+            },
+            body: JSON.stringify(teamData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200) {
+                    const teamId = data.data.teamId; // 读取 teamId
+                    alert('队伍创建成功, 请发布岗位吧！');
+                    // 跳转到发布岗位页面
+                    window.location.href = `/postJob/${teamId}`;
+                } else {
+                    alert('队伍创建失败: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error creating team:', error));
+    });
+</script>
+<!--通用方法 更新顶部和侧边的按钮-->
+<script src="/js/getUserInfo.js"></script>
+<script src="/js/updateTopLab.js"></script>
+<script src="/js/modelCreateTeam.js"></script>
+</body>
+</html>

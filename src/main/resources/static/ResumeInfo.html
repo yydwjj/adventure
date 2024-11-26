@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历附件预览</title>
+    <link rel="stylesheet" href="/css/showResumeCSS.css">
+</head>
+<body>
+<!-- 顶部导航栏 -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="/icon/LogoIcon.svg" alt="Logo">
+            </div>
+            <ul class="navigation">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">组队</a></li>
+                <li><a href="#">人才</a></li>
+                <li><a href="#">任务</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索...">
+                <button type="submit"><img src="/icon/搜索.svg" alt="搜索"></button>
+            </div>
+            <button class="publish-btn">发布</button>
+            <div class="login-register">
+                <a href="#">登录 / 注册</a>
+            </div>
+            <div class="navbar-menu" id="sidebarToggle">
+                <img src="/icon/菜单_o.svg" alt="菜单">
+            </div>
+        </nav>
+    </header>
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="/icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>&Aogon;</div>
+    <div id="main-block">
+        <div class="resume-preview">
+            <div id="title">
+                <span>简历附件预览</span>
+                <a href="/talent"><button>返回</button></a>
+            </div>
+            <div class="profile">
+                <div class="info">
+                    <h2 id="name"></h2>
+                    <div class="field">
+                        <img src="/icon/school.svg" alt="school icon" class="icon">
+                        <span id="school"></span>
+                    </div>
+                    <div class="field">
+                        <img src="/icon/major.svg" alt="major icon" class="icon">
+                        <span id="major"></span>
+                    </div>
+                    <div class="field">
+                        <img src="/icon/phone.svg" alt="phone icon" class="icon">
+                        <span id="phone"></span>
+                    </div>
+                    <div class="field">
+                        <img src="/icon/position.svg" alt="position icon" class="icon">
+                        <span id="desired-position"></span>
+                    </div>
+                    <div class="field">
+                        <img src="/icon/email.svg" alt="email icon" class="icon">
+                        <span id="email"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section" >
+                <h3>个人优势</h3>
+            </div>
+            <div id="personal-strengths" class="detail"></div>
+            <div class="section" >
+                <h3>相关经历</h3>
+            </div>
+            <div id="related-experience" class="detail"></div>
+            <div id="button-container"> <!-- 新增按钮容器 -->
+    <!--            <button id="showThis">展示</button> &lt;!&ndash; 展示按钮 &ndash;&gt;-->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/js/sidebar.js"></script>
+    <!--获取用户信息-->
+    <!--方法引入-->
+    <script src="/js/getUserInfo.js"></script>
+    <!--将修改共享模块的方法封装在方法中-->
+    <script src="/js/updateTopLab.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const pathSegments = window.location.pathname.split('/').filter(segment => segment !== '');
+            const id = pathSegments.pop();
+
+            try {
+                const response = await fetch(`/resume/info/${id}`, { method: 'GET' });
+                if (response.ok) {
+                    const { data: resumeData } = await response.json();
+
+                    // 更新字段的值和默认值
+                    const updateField = (id, value, defaultValue) => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.textContent = value || defaultValue;
+                        }
+                    };
+
+                    updateField('name', resumeData.name, '暂无姓名信息');
+                    updateField('school', resumeData.school, '暂无学校信息');
+                    updateField('major', resumeData.major, '暂无专业信息');
+                    updateField('phone', resumeData.phoneNumber, '暂无电话号码');
+                    updateField('email', resumeData.email, '暂无邮箱信息');
+                    updateField('desired-position', resumeData.desiredPosition, '暂无期望职位信息');
+                    updateField('personal-strengths', resumeData.personalStrengths, '未填写个人优势');
+                    updateField('related-experience', resumeData.previousExperience, '暂无相关经历');
+                } else {
+                    console.error('获取简历数据失败:', response.statusText);
+                }
+            } catch (error) {
+                console.error('网络错误:', error);
+            }
+        });
+    </script>
+</body>
+</html>

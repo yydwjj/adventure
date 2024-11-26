@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线个人简历</title>
+    <link rel="stylesheet" href="/css/resumeCSS.css">
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="/icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="/icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="/icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>&Aogon;</div>
+<!--主体板块-->
+<div id="main-block">
+    <!--左侧栏-->
+    <div id="left-block">
+        <div id="left1">
+            <div id="left1-title" class="center">
+                <span>简历目录</span>
+            </div>
+            <a >
+                <div id="left1-button2" class="center">期望职位</div>
+            </a>
+            <a >
+                <div id="left1-button3" class="center">个人优势</div>
+            </a>
+            <a >
+                <div id="left1-button5" class="center">个人经历</div>
+            </a>
+        </div>
+    </div>
+    <!--中间简历部分-->
+    <div id="middle-block">
+        <div id="middle1">
+            <div id="middle1-title">
+                <span>我的在线目录</span>
+                <a href="edit.html"><button>编辑</button></a>
+                <a href="showResume.html"><button>预览</button></a>
+            </div>
+            <!-- 基本信息 -->
+            <div class="profile">
+                <div class="info">
+                    <h1 id="name"></h1>
+                    <div class="contact">
+                        <span class="icon">🎓</span>
+                        <span id="school"></span>
+                    </div>
+                    <div class="contact">
+                        <span class="icon">🎓</span>
+                        <span id="major"></span>
+                    </div>
+                    <div class="contact">
+                        <span class="icon">📞</span>
+                        <span id="phone"></span>
+                    </div>
+                    <div class="contact">
+                        <span class="icon">✉️</span>
+                        <span id="email"></span>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 简历信息 -->
+            <div class="sections">
+                <div class="section">
+                    <h3>期望职位</h3>
+                </div>
+                <div id="desired-position" class="detailInfo"></div>
+                <div class="section">
+                    <h3>个人优势</h3>
+                </div>
+                <div id="personal-strengths" class="detailInfo"></div>
+                <div class="section">
+                    <h3>个人经历</h3>
+                </div>
+                <div id="personal-experience" class="detailInfo"></div>
+            </div>
+        </div>
+    </div>
+    <!--右侧栏-->
+    <div id="right-block">
+        <div id="right1">
+            <div id="right1-title" class="center">
+                <span>我的简历</span>
+            </div>
+
+        </div>
+        <div id="right2">
+            <div id="right2-title" class="center">
+                <span>已投简历</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/sidebar.js"></script>
+
+<!--获取用户信息-->
+<!--方法引入-->
+<script src="/js/getUserInfo.js"></script>
+<!--将修改共享模块的方法封装在方法中-->
+<script src="/js/updateTopLab.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async function () {
+
+      // 获取 localStorage 中的 authToken
+        const authToken = localStorage.getItem('authToken');
+
+      // 发送请求获取基本信息
+      try {
+        const InfoResponse = await fetch('/resume/lastInfo',{
+                method: 'GET',
+                headers:{
+                    'token' :authToken
+                }
+        });
+
+        if (InfoResponse.ok) {
+          const Info = await InfoResponse.json();
+          const resumeData = Info.data;
+
+          // 处理姓名展示，添加默认值逻辑
+          const nameElement = document.getElementById('name');
+          if (nameElement) {
+            nameElement.textContent = resumeData.name || '暂无姓名信息';
+          }
+
+          // 处理学校信息展示
+          const schoolElement = document.getElementById('school');
+          if (schoolElement) {
+            schoolElement.textContent = resumeData.school || '暂无学校信息';
+          }
+
+          // 处理专业信息展示
+          const majorElement = document.getElementById('major');
+          if (majorElement) {
+            majorElement.textContent = resumeData.major || '暂无专业信息';
+          }
+
+          // 处理电话号码展示
+          const phoneElement = document.getElementById('phone');
+          if (phoneElement) {
+            phoneElement.textContent = resumeData.phoneNumber || '暂无电话号码';
+          }
+
+          // 处理邮箱信息展示
+          const emailElement = document.getElementById('email');
+          if (emailElement) {
+            emailElement.textContent = resumeData.email || '暂无邮箱信息';
+          }
+
+          // 处理期望职位信息展示
+          const desiredPositionElement = document.getElementById('desired-position');
+          if (desiredPositionElement) {
+            desiredPositionElement.textContent = resumeData.desiredPosition || '暂无期望职位信息';
+          }
+
+          // 处理个人优势信息展示
+          const personalStrengthsElement = document.getElementById('personal-strengths');
+          if (personalStrengthsElement) {
+            personalStrengthsElement.textContent = resumeData.personalStrengths || '暂无个人优势信息';
+          }
+
+          // 处理个人经历信息展示
+          const personalExperienceElement = document.getElementById('personal-experience');
+          if (personalExperienceElement) {
+            personalExperienceElement.textContent = resumeData.previousExperience || '暂无个人经历信息';
+          }
+        } else {
+          console.error('获取基本信息失败:',InfoResponse.statusText);
+        }
+      } catch (error) {
+        console.error('网络错误（获取基本信息）:', error);
+      }
+    });
+</script>
+</body>
+
+</html>

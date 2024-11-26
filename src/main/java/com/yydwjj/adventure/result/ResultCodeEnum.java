@@ -1,12 +1,9 @@
 package com.yydwjj.adventure.result;
 
-import lombok.Getter;
-
 /**
  * 统一返回结果状态信息类
  *
  */
-@Getter
 public enum ResultCodeEnum {
 
     SUCCESS(200,"success"),
@@ -20,5 +17,11 @@ public enum ResultCodeEnum {
     private ResultCodeEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
+    }
+    public Integer getCode() {
+        return code;
+    }
+    public String getMessage() {
+        return message;
     }
 }
