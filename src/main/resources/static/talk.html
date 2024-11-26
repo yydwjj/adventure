@@ -63,57 +63,14 @@
                     <a href="javascript:;" class="search"></a>
                 </div>
                 <ul class="people" id="people">
-                    <li class="person" data-chat="person2">
-                        <img src="imgs/dog.png" alt="" />
-                        <span class="name">在东北玩泥巴</span>
-                        <span class="time">1:44 PM</span>
-                        <span class="preview">我以前被遗忘的感觉</span>
-                    </li>
-                    <li class="person" data-chat="person3">
-                        <img src="imgs/louis-ck.jpeg" alt="" />
-                        <span class="name">来爆一个傻佬</span>
-                        <span class="time">2:09 PM</span>
-                        <span class="preview">但我们可能需要一个新的地毯.</span>
-                    </li>
+
+
                 </ul>
             </div>
             <div class="right">
-                <div class="top"><span><span class="name"></span></span></div>
-                <div class="chat" data-chat="person1" id="msg">
-                </div>
-                <div class="chat" data-chat="person2" id="person2">
-                    <div class="conversation-start">
-                        <span>今天, 3:38 AM</span>
-                    </div>
-                    <div class="bubble you">
-                        Hey哥们!
-                    </div>
-                </div>
-                <div class="chat" data-chat="person3" id="person3">
-                    <div class="conversation-start">
-                        <span>昨天, 4:20 PM</span>
-                    </div>
-                    <div class="bubble you">
-                        妹的
-                    </div>
-                    <div class="bubble you">
+                <div class="top" id="top"><span><span class="name"></span></span></div>
 
-                        简直是糟糕的一天...
-                    </div>
-                    <div class="bubble me">
-                        ... 什么？.
 
-                    </div>
-                    <div class="bubble me">
-
-                        嗯……我在走廊上踩到了狗屎。
-                    </div>
-                    <div class="bubble you">
-
-                        你是来搞笑的?
-                    </div>
-
-                </div>
                 <div class="write">
                     <a href="javascript:;" class="write-link attach"></a>
                     <input type="text" id="text"/>
@@ -126,52 +83,113 @@
     <script>
         const dataStr = sessionStorage.getItem('myInfo');
         const parsedData = JSON.parse(dataStr);
-        console.log(parsedData.userId);
         const username = parsedData.userId; // 用户名
         const ws = new WebSocket('ws://localhost:8080/chat/' + username);
         const url = window.location.href;
         const startIndex = url.lastIndexOf('/') + 1; // 找到最后一个 "/" 后的位置
         const targetValue = url.substring(startIndex); // 截取后面的部分作为要找的值
         console.log(targetValue);
-        const toname = targetValue;
-
-        fetch('http://localhost:8080/user/getUserInfo/'+targetValue)
+        let toname = targetValue;
+        fetch('http://localhost:8080/talk/getAllTalk/'+username)
             .then(response => response.json())
             .then(data => {
-                 const toName = data.data.username;
-                console.log(toName);
-                let part = document.getElementById(toname);
-                if(part===null){
-                    var messageHTML = '<img src="/image/touxiang.jpg" alt="" />' +
-                        '<span class="name">'+toName+'</span>' +
-                        '<span class="preview">我想知道...</span>';
-                    let ulElement=document.getElementById('people');
-                    let newLi =document.createElement('li');
-                    newLi.className='person';
-                    newLi.setAttribute('data-chat', 'person'+toname);
-                    newLi.innerHTML += messageHTML;
-                    ulElement.append(newLi);
-                    //创建左侧
-
-                     document.querySelector('.chat[data-chat=person'+toname+']').classList.add('active-chat');
-                     document.querySelector('.person[data-chat=person'+toname+']').classList.add('active');
-                }//若没有跟该用户聊过天则新建一个
-
-                else{
-                    console.log('The div exists.');
+                console.log(data);
+                let count=0;
+                while(count<data.length){
+                    toname=data[count].toNameId;
+                    const toName = data[count].toName;
+                    let part = document.getElementById(toname+'msg');
+                    console.log(part)
+                    if(part===null&&username===data[count].userNameId){
+                        var messageHTML = '<img src="/image/touxiang.jpg" alt="" />' +
+                            '<span class="name">'+toName+'</span>' +
+                            '<span class="preview">我想知道...</span>';
+                        let ulElement=document.getElementById('people');
+                        let newLi =document.createElement('li');
+                        newLi.className='person';
+                        newLi.setAttribute('data-chat', 'person'+toname);
+                        newLi.id=toname+'msg';
+                        newLi.innerHTML += messageHTML;
+                        ulElement.append(newLi);
+                        //创建左侧对象
+                        var messageHTML2 = '<div class="chat" data-chat="person'+toname+'" id='+toname+'msg> </div>';
+                        var topElement = document.getElementById('top');
+                        if (topElement) {
+                            topElement.insertAdjacentHTML('afterend', messageHTML2);
+                        } else {
+                            console.error('未找到id为top的元素，请检查元素是否存在');
+                        }
+                        //创建右侧chat栏
+                    }//若没有跟该用户聊过天则新建一个
+                    else{
+                        console.log('No');
+                    }
+                    count++;
                 }
+
+                //将聊天记录加入对话
+                document.querySelector('.chat[data-chat=person'+toname+']').classList.add('active-chat');
+                document.querySelector('.person[data-chat=person'+toname+']').classList.add('active');
             })
             .then(data=>{
+                toname=1;
+                const personDivs = document.querySelectorAll('.person');
+                console.log(personDivs);
+                for (let i = 0; i < personDivs.length; i++) {
+                    console.log(personDivs[i].id.substring(0,1));
+                    personDivs[i].addEventListener('click', function () {
+                        toname=personDivs[i].id.substring(0,1);
+                        console.log(toname);
+                    });
+                }
+                //点击左侧元素时，修改toname
                 let script = document.createElement('script');
                 script.src = '/js/talk.js'
                 document.body.appendChild(script);
             })
             .catch(error => {
                 console.error('请求出错:', error);
-            });//将id转化为姓名
-            const divElement = document.getElementById('msg');
-        divElement.id = toname+'msg';//修改id
-        console.log(divElement);
+            });
+
+
+        // fetch('http://localhost:8080/user/getUserInfo/'+targetValue)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //          const toName = data.data.username;
+        //         console.log(toName);
+        //         let part = document.getElementById(toname);
+        //         if(part===null){
+        //             var messageHTML = '<img src="/image/touxiang.jpg" alt="" />' +
+        //                 '<span class="name">'+toName+'</span>' +
+        //                 '<span class="preview">我想知道...</span>';
+        //             let ulElement=document.getElementById('people');
+        //             let newLi =document.createElement('li');
+        //             newLi.className='person';
+        //             newLi.setAttribute('data-chat', 'person'+toname);
+        //             newLi.innerHTML += messageHTML;
+        //             ulElement.append(newLi);
+        //             var messageHTML2 = '<div class="chat" data-chat="person'+toname+'" id='+toname+'msg> </div>';
+        //             var topElement = document.getElementById('top');
+        //             if (topElement) {
+        //                 topElement.insertAdjacentHTML('afterend', messageHTML2);
+        //             } else {
+        //                 console.error('未找到id为top的元素，请检查元素是否存在');
+        //             }
+        //         }//若没有跟该用户聊过天则新建一个
+        //         else{
+        //             console.log('The div exists.');
+        //         }
+        //         document.querySelector('.chat[data-chat=person'+toname+']').classList.add('active-chat');
+        //         document.querySelector('.person[data-chat=person'+toname+']').classList.add('active');
+        //     })
+        //     .then(data=>{
+        //         let script = document.createElement('script');
+        //         script.src = '/js/talk.js'
+        //         document.body.appendChild(script);
+        //     })
+        //     .catch(error => {
+        //         console.error('请求出错:', error);
+        //     });//将id转化为姓名
         ws.onopen = function() {
             console.log("WebSocket 连接已建立");
         };
@@ -201,7 +219,7 @@
             let customFormattedDate = `${month}-${day} ${hours}:${minutes}:${seconds}`;//获得时间
             ws.send(JSON.stringify(message));
             console.log("发送消息:", message);
-            let parentElement = document.getElementById(toname+'msg');
+            let parentElement =  document.querySelector('.chat[data-chat=person'+toname+']');
             let newDiv = document.createElement('div');
             let timeDiv =document.createElement('div');
             timeDiv.className="conversation-start";
@@ -210,7 +228,7 @@
             newDiv.innerHTML = message.text;
             parentElement.appendChild(timeDiv);
             parentElement.appendChild(newDiv);
-
+            parentElement.scrollTop = parentElement.scrollHeight - parentElement.clientHeight;
         }
 
         ws.onmessage = function (msg) {
@@ -223,7 +241,7 @@
             let seconds = ('0' + date.getSeconds()).slice(-2);
             let customFormattedDate = `${month}-${day} ${hours}:${minutes}:${seconds}`;//获得时间
             let data = JSON.parse(msg.data);
-            let parentElement = document.getElementById(toname+'msg');
+            let parentElement =  document.querySelector('.chat[data-chat=person'+toname+']');
             let newDiv = document.createElement('div');
             let timeDiv =document.createElement('div');
             newDiv.className = 'bubble you';
@@ -232,6 +250,7 @@
             timeDiv.innerHTML='<span>'+customFormattedDate+'</span>';
             parentElement.appendChild(timeDiv);
             parentElement.appendChild(newDiv);
+            parentElement.scrollTop = parentElement.scrollHeight - parentElement.clientHeight;
         }
 
     </script>

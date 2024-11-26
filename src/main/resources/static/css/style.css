@@ -199,12 +199,12 @@ body {
   border-style: solid;
   border-color: var(--light);
   height: calc(100% - 48px);
-  justify-content: flex-end;
+  /*justify-content: flex-end;*/
   flex-direction: column;
 }
 .container .right .chat.active-chat {
-  display: block;
   display: flex;
+  overflow:scroll;
 }
 .container .right .chat.active-chat .bubble {
   transition-timing-function: cubic-bezier(0.4, -0.04, 1, 1);
@@ -259,11 +259,12 @@ body {
   background-color: #eceff1;
   width: calc(100% - 58px);
   border-radius: 5px;
+  box-shadow: -8px 8px 0px 21px white;
 }
 .container .right .write input {
   font-size: 16px;
   float: left;
-  width: 347px;
+  width: 350px;
   height: 40px;
   padding: 0 10px;
   color: var(--dark);
