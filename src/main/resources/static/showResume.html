@@ -32,6 +32,28 @@
                 </div>
             </nav>
         </header>
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="/icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>&Aogon;</div>
 <div id="main-block">
     <div class="resume-preview">
         <div id="title">
@@ -62,6 +84,13 @@
 
 </div>
 
+<script src="/js/sidebar.js"></script>
+
+<!--获取用户信息-->
+<!--方法引入-->
+<script src="/js/getUserInfo.js"></script>
+<!--将修改共享模块的方法封装在方法中-->
+<script src="/js/updateTopLab.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', async function () {
 

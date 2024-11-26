@@ -1,18 +1,28 @@
 package com.yydwjj.adventure.mapper;
 
-import com.yydwjj.adventure.entity.Resume;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
-import java.util.List;
+import com.yydwjj.adventure.entity.Resume;
 
 @Mapper
 public interface ResumeMapper {
-
-
-    Resume getResumeById(int id);
+    @Select("""
+        SELECT 
+            resume_id,
+            name,
+            major,
+            school,
+            desired_position,
+            personal_strengths
+        FROM resume
+        WHERE deleted_at IS NULL
+        ORDER BY created_at DESC
+    """)
+    List<Resume> getResumeList();
 
     @Select("select * from adventure.resume where adventure.resume.user_id=#userId order by resume_id desc ")
     List<Resume> findAllResumes(Long userId);

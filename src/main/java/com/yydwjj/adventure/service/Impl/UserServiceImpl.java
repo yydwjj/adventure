@@ -23,6 +23,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     JwtHelper jwtHelper;
 
+    @Override
+    public Result<User> getUserInfo(int id) {
+        User user = userMapper.selectById((long) id);
+        if(user == null){
+            return Result.build(null,506,"not found user");
+        }
+        return Result.ok(user);
+    }
 
     /**
      * 登录业务
@@ -82,7 +90,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result getUserInfo(String token) {
+    public Result getLoginUserInfo(String token) {
         Result result = null;
         if(!jwtHelper.isExpiration(token)){
             //token已经失效

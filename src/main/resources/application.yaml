@@ -22,3 +22,11 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*
+
+
+#deepseek大模型配置
+deepseek:
+  api:
+    key: sk-4b4087e8793b48bf995860db5711d1fa
+    base-url: https://api.deepseek.com

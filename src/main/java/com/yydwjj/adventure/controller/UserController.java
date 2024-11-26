@@ -46,8 +46,8 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "getUserInfo" ,method = RequestMethod.GET)
-    public Result getUserInfo(@RequestHeader String token) {
-        Result result = userService.getUserInfo(token);
+    public Result getLoginUserInfo(@RequestHeader String token) {
+        Result result = userService.getLoginUserInfo(token);
         return result;
     }
 
@@ -56,5 +56,10 @@ public class UserController {
         //可能获取token的意义不是很大
         Result result = userService.update(user);
         return result;
+    }
+
+    @GetMapping(value = "getUserInfo/{id}")
+    public Result getUserInfo(@PathVariable int id) {
+        return userService.getUserInfo(id);
     }
 }

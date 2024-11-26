@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yydwjj.adventure.mapper.JobPostMapper">
+    <insert id="batchInsert" parameterType="list">
+        INSERT INTO job_post (team_id, job_title, job_requirements, contact_info, created_at, updated_at)
+        VALUES
+        <foreach collection="jobs" item="job" separator=",">
+            (#{job.teamId}, #{job.jobTitle}, #{job.jobRequirements}, #{job.contactInfo}, #{job.createdAt}, #{job.updatedAt})
+        </foreach>
+    </insert>
+</mapper>

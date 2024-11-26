@@ -47,9 +47,60 @@ public class ShowController {
         return "forward:/presonifm.html";
     }
 
-    @GetMapping(value = "taskinfo/{id}")
-    public String taskInfo(){
+    @GetMapping(value = "taskinfo/{taskId}")
+    public String taskInfo(@PathVariable int taskId){
         return "forward:/taskinfo.html";
+    }
+    @GetMapping(value = "createTeam/{taskId}")
+    public String createTeam(@PathVariable int taskId){
+        return "forward:/createTeam.html";
+    }
+
+    @GetMapping(value = "postJob/{teamId}")
+    public String postJob(@PathVariable int teamId){
+        return "forward:/post-job.html";
+    }
+
+    @GetMapping(value = "tasks")
+    public String competition(){
+        return "forward:/competition.html";
+    }
+
+    /**
+     * 队伍列表页
+     * @return  请求转发到队伍列表页
+     */
+    @GetMapping(value = "team")
+    public String team(){
+        return "forward:/team.html";
+    }
+
+    /**
+     * 队伍详情页
+     * @param teamid    要查看的队伍id
+     * @return  请求转发到队伍该id的队伍详情
+     */
+    @GetMapping(value = "teaminfo/{teamid}")
+    public String teamInfo(@PathVariable int teamid){
+        return "forward:/teaminfo.html";
+    }
+
+    /**
+     * 对话页
+     * @return  请求转发到对话页
+     */
+    @GetMapping(value = "teaminfo/{teamid}/talk/{uid}")
+    public String talk(){
+        return "forward:/talk.html";
+    }
+
+    /**
+     * 人才列表页
+     * @return 请求转发到人才列表页
+     */
+    @GetMapping(value = "talent")
+    public String talent(){
+        return "forward:/talent.html";
     }
 
     @GetMapping(value = "resume")
@@ -67,8 +118,13 @@ public class ShowController {
         return "forward:/showResume.html";
     }
 
-    @GetMapping(value = "resume/{id}")
+    @GetMapping(value = "resumeinfo/{id}")
     public String showresumeById(){
         return "forward:/ResumeInfo.html";
+    }
+
+    @GetMapping(value = "myteam")
+    public String myTeam(){
+        return "forward:/myTeam.html";
     }
 }

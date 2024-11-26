@@ -130,6 +130,54 @@ header {
     height: 24px;
 }
 
+/* 侧边栏样式 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -200px; /* 初始隐藏在右侧 */
+    width: 10%;
+    height: 100%;
+    background-color: #f5f5f5;
+    transition: right 0.3s ease; /* 平滑展开 */
+    padding-top: 20px;
+    z-index: 1;
+}
+
+/* 侧边栏列表样式 */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* 侧边栏项样式 */
+.sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 侧边栏图标样式 */
+.sidebar img {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+/* 侧边栏菜单项文本样式 */
+.menu-item span {
+    line-height: 20px;
+    color: rgba(16, 16, 16, 1);
+    font-size: 14px;
+    text-align: center;
+    font-family: 'PingFang SC', light;
+}
+
+/* 侧边栏切换按钮样式 */
+#sidebarToggle {
+    z-index: 1000; /* 使切换按钮位于最前 */
+}
+
 /*主要模块*/
 #main-block{
     padding-top:6%;
