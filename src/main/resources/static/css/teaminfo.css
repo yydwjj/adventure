@@ -403,64 +403,81 @@ label{
 .input-group:hover .label, .input:focus {
     color: #05060fc2;
 }
-.contain {
-    height: auto;
-    border-radius: 6px;
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(16, 16, 16, 1);
-    font-size: 14px;
+/* 队伍最外层 */
+#show-team-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 160px auto 0;
+    gap: 30px; /* 创建间隔 */
     border: 1px solid rgba(187, 187, 187, 1);
-    margin: 10px auto 0;
-    width: 76%;
-    display: flex;
-
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    border-radius: 6px;
 }
-/*按钮样式*/
-.btn {
-    border: 1px solid;
-    background-color: transparent;
-    text-transform: uppercase;
+
+/* 队伍容器 */
+#team-container {
+    padding-left: 100px;
+    gap: 10px;
+}
+
+.info-container {
+    padding-left: 50px;
+}
+
+.team-info {
+    line-height: 60px;
+    font-size: 18px;
+}
+
+.team-title {
+    font-size: 28px;
+}
+
+.competition-name {
+    font-size: 18px;
+}
+
+.team-details-title {
+    font-size: 18px;
+    width: 72px;
+    border-bottom: 1px dotted #42424291;
+}
+
+.team-details {
+    width: 80%;
+    color: #4c4c4c;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    margin: 20px 0 0 50px;
+    margin-bottom: 40px;
+    /*border-bottom: 1px dotted #42424291;*/
+}
+
+/* 与队长交流按钮 */
+#contact-leader-button {
+    text-align: center; /* 文字居中 */
+    text-decoration: none; /* 无下划线 */
+    display: inline-block; /* 行内块级元素 */
+
+    cursor: pointer; /* 鼠标指针样式 */
+
+    transition: background-color 0.3s; /* 背景颜色过渡效果 */
+    width: 120px; /* 调整宽度以适应文本 */
+    height: 40px;
+    line-height: 20px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(125, 182, 191, 1);
     font-size: 14px;
-    font-weight: 300;
+    text-align: center;
+    font-family: Roboto;
+    border: 1px solid rgba(34, 191, 167, 1);
+}
 
-}
-.btn:hover {
-    color: white;
-    border: 0;
-    background-color: rgba(34, 191, 167, 1);
-
-    transition: all ease-in 0.5s;
-}
-.teamname{
-    font-size: 30px;
-    margin: 30px 40px 30px 40px;
-}
-.competitionname{
-    font-size: 30px;
-    margin: 20px 60px ;
-}
-.introduction{
-    font-size: 20px;
-    margin: 20px 100px ;
-}
-h2{
-    margin: 20px 60px ;
-}
-.teammumber{
-    font-size: 20px;
-    display: flex;
-    flex-wrap:wrap;
-    margin: 20px 100px ;
-}
-.teammleader{
-    font-size: 20px;
-    display: flex;
-    flex-wrap:wrap;
-    margin: 20px 100px ;
-}
-.need{
-    display: flex;
-    flex-wrap:wrap;
-    font-size: 20px;
-    margin: 20px 100px ;
+#contact-leader-button:hover {
+    color: rgba(136, 205, 195, 0.88); /* 悬停时的背景颜色 */
 }

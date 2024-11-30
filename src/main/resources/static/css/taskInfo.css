@@ -238,7 +238,7 @@ header {
 }
 
 #create-team-button:hover {
-    background-color: rgb(225, 237, 234); /* 悬停时的背景颜色 */
+    color: rgba(136, 205, 195, 0.88); /* 悬停时的背景颜色 */
 }
 
 
