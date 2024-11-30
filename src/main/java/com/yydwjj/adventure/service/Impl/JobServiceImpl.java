@@ -23,4 +23,13 @@ public class JobServiceImpl implements JobService {
         }
         return Result.build(null,506,"job not created");
     }
+
+    @Override
+    public Result<JobPost> get(int id) {
+        JobPost result = jobPostMapper.findById(id);
+        if (result != null) {
+            return Result.ok(result);
+        }
+        return Result.build(null,506,"job not found");
+    }
 }

@@ -127,4 +127,9 @@ public class ShowController {
     public String myTeam(){
         return "forward:/myTeam.html";
     }
+
+    @GetMapping(value = "job/{id}")
+    public String jobInfo(@PathVariable int id){
+        return "forward:/jobinfo.html";
+    }
 }

@@ -4,6 +4,7 @@ import com.yydwjj.adventure.entity.JobPost;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface JobPostMapper {
     int add(JobPost jobPost);
 
     int batchInsert(@Param("jobs") List<JobPost> jobs);
+    @Select("select * from adventure.job_post where job_id = #{id}")
+    JobPost findById(@Param("id") Integer id);
 }

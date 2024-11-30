@@ -260,3 +260,53 @@ header {
     border: 1px solid rgba(187, 187, 187, 1);
     border-radius: 6px;
 }
+
+/*岗位信息*/
+/* 职位最外层 */
+#show-job-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 160px auto 0;
+    gap: 30px; /* 创建间隔 */
+    border: 1px solid rgba(187, 187, 187, 1);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    border-radius: 6px;
+}
+
+/* 职位容器 */
+#job-container {
+    padding-left: 100px;
+    gap: 10px;
+}
+
+.info-container {
+    padding-left: 50px;
+}
+
+.job-info {
+    line-height: 60px;
+    font-size: 18px;
+}
+
+.job-title {
+    font-size: 28px;
+}
+
+.job-details-title {
+    font-size: 18px;
+    width: 72px;
+    border-bottom: 1px dotted #42424291;
+}
+
+.job-details {
+    width: 80%;
+    color: #4c4c4c;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 400;
+    margin: 20px 0 0 50px;
+    margin-bottom: 40px;
+}
