@@ -4,12 +4,10 @@ import com.yydwjj.adventure.entity.JobPost;
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -33,5 +31,10 @@ public class JobController {
         // 调用服务层批量插入
 
         return jobService.add(jobs);
+    }
+
+    @GetMapping(value = "info/{jid}")
+    public Result<JobPost> info(@PathVariable("jid") int jid) {
+         return jobService.get(jid);
     }
 }
