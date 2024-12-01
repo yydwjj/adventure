@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yydwjj.adventure.mapper.TaskMapper">
+    <select id="getTaskIdByTeamId" resultType="long">
+        SELECT task_id
+        FROM team
+        WHERE team_id IN
+        <foreach item="item" index="index" collection="teamIdList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getTaskInfosById" resultType="com.yydwjj.adventure.model.TaskInfo">
+        select r.task_id,r.task_name,r.publisher_id,u.username,r.task_level_id,l.level_name,r.task_category_id ,t.category_name,
+        r.registration_start,r.registration_end,r.task_start,r.task_end,r.participant_limit,r.location,r.created_at,r.updated_at,r.deleted_at,
+        r.task_info,r.is_exist from task as r
+        inner join task_categorie as t on t.task_category_id = r.task_category_id
+        INNER JOIN task_level as l on l.task_level_id = r.task_level_id
+        INNER JOIN `user` as u on u.user_id = r.publisher_id
+        where task_id in
+        <foreach collection="taskIdList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

@@ -28,4 +28,6 @@ public interface TeamService {
     TeamInfo getTeamInfo(long teamId);
 
     List<Map<String, Object>> getLeadTeam(int id);
+
+    Result getTeamMembers(long userId, Long taskId);
 }
