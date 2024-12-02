@@ -108,24 +108,10 @@ public class ShowController {
         return "forward:/resume.html";
     }
 
-    @GetMapping(value = "resumeEdit")
-    public String resumeEdit(){
-        return "forward:/edit.html";
-    }
-
-    @GetMapping(value = "showresume")
-    public String showresume(){
-        return "forward:/showResume.html";
-    }
 
     @GetMapping(value = "resumeinfo/{id}")
     public String showresumeById(){
         return "forward:/ResumeInfo.html";
-    }
-
-    @GetMapping(value = "editResume/{resumeid}")
-    public String editresumeById(){
-        return "forward:/editResume.html";
     }
 
     @GetMapping(value = "myteam")
