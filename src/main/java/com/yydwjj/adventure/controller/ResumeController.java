@@ -55,11 +55,13 @@ public class ResumeController {
         return resumeService.editresume(resume);
     }
 
-    //预览
-    @RequestMapping(value = "showResume")
-    public Result showResume(@RequestHeader String token){
-        Long userId = jwtHelper.getUserId(token);
-        return resumeService.showResume(userId);
+    //假删除简历
+    @PutMapping ("deleteResume/{id}")
+    public Result DeleteResume(@PathVariable int id) {
+        Resume resume = new Resume();
+        resume.setResumeId(id);
+        resume.setDeletedAt(new Timestamp(System.currentTimeMillis()));
+        return resumeService.deleteresume(resume);
     }
 
     // 根据ID获取单份简历信息的接口
@@ -69,6 +71,11 @@ public class ResumeController {
         return result;
     }
 
-
+    //预览
+    @RequestMapping(value = "showResume")
+    public Result showResume(@RequestHeader String token){
+        Long userId = jwtHelper.getUserId(token);
+        return resumeService.showResume(userId);
+    }
 
 }

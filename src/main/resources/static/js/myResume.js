@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             const result = await updateResponse.json();
                             console.log('简历更新成功:', result);
                             alert('简历更新成功！');
+                            location.reload();
                         } else {
                             const error = await updateResponse.json();
                             console.error('简历更新失败:', error);
@@ -168,14 +169,47 @@ document.addEventListener('DOMContentLoaded', async function () {
                     }
                 });
             }
+
+            // 获取删除按钮元素并添加点击事件监听器
+            const deleteBtn = document.getElementById('delete-btn');
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', async function () {
+                    const resumeId = document.getElementById('resume-id').textContent;
+                    if (resumeId) {
+                        try {
+                            const deleteResponse = await fetch(`/resume/deleteResume/${resumeId}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'token': authToken
+                                }
+                            });
+                            if (deleteResponse.ok) {
+                                const result = await deleteResponse.json();
+                                console.log('简历删除成功（假删除）:', result);
+                                alert('简历已成功删除！');
+                                // 假删除成功后重新加载页面，显示更新后的简历列表
+                                location.reload();
+                            } else {
+                                const error = await deleteResponse.json();
+                                console.error('简历删除失败:', error);
+                                alert('简历删除失败，请稍后重试！');
+                            }
+                        } catch (error) {
+                            console.error('网络错误（删除简历时）:', error);
+                            alert('网络出现问题，请稍后重试！');
+                        }
+                    } else {
+                        console.error('未获取到有效的简历id，请先选择要删除的简历');
+                        alert('未获取到有效的简历id，请先选择要删除的简历');
+                    }
+                });
+            }
         } else {
             console.error('获取简历列表失败:', response.statusText);
         }
     } catch (error) {
         console.error('网络错误（获取简历列表时）:', error);
     }
-
-
 });
 
 

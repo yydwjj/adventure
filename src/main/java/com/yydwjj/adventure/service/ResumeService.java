@@ -17,9 +17,9 @@ public interface ResumeService {
     Result createresume(Resume resume);
 
     /*
-     * 获取该用户的第一份简历
+     * 删除简历
      * */
-    Result getLastResume(Long userId);
+    Result deleteresume(Resume resume);
 
 
     /*

@@ -25,8 +25,9 @@ public interface ResumeMapper {
     """)
     List<Resume> getResumeList();
 
+    //寻找某个用户未被删除的所有简历
     @Select("select * from adventure.resume where adventure.resume.user_id=#{userId} "+
-            " and deleted_at IS NULL order by resume_id desc ")
+            " and deleted_at IS NULL order by updated_at desc ")
     List<Resume> findAllResumes(Long userId);
 
     //创建简历
@@ -55,6 +56,12 @@ public interface ResumeMapper {
             "    updated_at = #{updatedAt} " +
             "WHERE resume_id = #{resumeId}")
     int edit(Resume resume);
+
+    //假删除简历
+    @Update("UPDATE adventure.resume " +
+            "SET deleted_at = #{deletedAt} " +
+            "WHERE resume_id = #{resumeId}")
+    int delete(Resume resume);
 
     @Select("select * from adventure.resume where adventure.resume.user_id=#{userId} order by resume_id desc limit 1")
     Resume findLastResumes(Long userId);
