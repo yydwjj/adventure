@@ -32,7 +32,7 @@ public class ResumeServiceImpl implements ResumeService {
         return Result.ok(resumes);
     }
 
-    //    保存已编辑的简历
+    //    创建
     @Override
     public Result createresume(Resume resume) {
         int result=resumeMapper.create(resume);
@@ -71,6 +71,7 @@ public class ResumeServiceImpl implements ResumeService {
         return Result.ok(showresume);
     }
 
+    //编辑简历
     @Override
     public Result editresume(Resume resume) {
         int result=resumeMapper.edit(resume);

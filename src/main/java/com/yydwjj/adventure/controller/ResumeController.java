@@ -38,7 +38,7 @@ public class ResumeController {
     }
 
     // 新增简历信息
-    @RequestMapping(value="create",method= RequestMethod.PUT)
+    @PostMapping(value="create")
     public Result saveResume(@RequestBody Resume resume, @RequestHeader String token) {
         Long userId = jwtHelper.getUserId(token);
         resume.setUserId(userId);
@@ -54,13 +54,6 @@ public class ResumeController {
         resume.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         return resumeService.editresume(resume);
     }
-
-//    //加载最新简历
-//    @RequestMapping(value = "lastInfo")
-//    public Result getFirstResume(@RequestHeader String token){
-//        Long userId = jwtHelper.getUserId(token);
-//        return resumeService.getLastResume(userId);
-//    }
 
     //预览
     @RequestMapping(value = "showResume")

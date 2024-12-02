@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简历布局</title>
+  <link rel="stylesheet" href="/css/editCSS.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./icon/LogoIcon.svg" alt="Logo">
+            </div>
+            <ul class="navigation">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">组队</a></li>
+                <li><a href="#">人才</a></li>
+                <li><a href="#">任务</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索...">
+                <button type="submit"><img src="./icon/搜索.svg" alt="搜索"></button>
+            </div>
+            <button class="publish-btn">发布</button>
+            <div class="login-register">
+                <a href="#">登录 / 注册</a>
+            </div>
+            <div class="navbar-menu" id="sidebarToggle">
+                <img src="/icon/菜单_o.svg" alt="菜单">
+            </div>
+        </nav>
+    </header>
+    <!-- 侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li class="menu-item">
+                <img src="/icon/UserIcon.svg" alt="个人信息图标">
+                <span>个人信息</span>
+            </li>
+            <li class="menu-item">
+                <img src="/icon/ResumeIcon.svg" alt="我的简历图标">
+                <span>我的简历</span>
+            </li>
+            <li class="menu-item">
+                <img src="/icon/TeamIcon.svg" alt="我的队伍图标">
+                <span>我的队伍</span>
+            </li>
+            <li class="menu-item">
+                <img src="/icon/historyTask.svg" alt="历史任务图标">
+                <span>历史任务</span>
+            </li>
+        </ul>
+    </div>
+    <div>&Aogon;</div>
+    <div id="main-block">
+        <form class="resume-form" id="resume_form">
+            <div class="info">
+                <div class="form-group">
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name"  name="name" placeholder="请输入内容">
+                </div>
+                <div class="form-group">
+                    <label for="resumeName">简历名称：</label>
+                    <input type="text" id="resumeName" name="resumeName" placeholder="请输入内容">
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <label>性别：</label>-->
+<!--                    <input type="radio" name="gender" value="male"> 男-->
+<!--                    <input type="radio" name="gender" value="female"> 女-->
+<!--                </div>-->
+                <div class="form-group">
+                    <label for="college">学校：</label>
+                    <input type="text" id="college"  name="school" placeholder="请输入内容">
+                </div>
+                <div class="form-group">
+                    <label for="major">专业：</label>
+                    <input type="text" id="major" name="major" placeholder="请输入内容">
+                </div>
+                <div class="form-group">
+                    <label for="phone">电话：</label>
+                    <input type="text" id="phone" name="phoneNumber" placeholder="请输入内容">
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱：</label>
+                    <input type="email" id="email" name="email" placeholder="请输入内容">
+                </div>
+
+                <div class="form-group">
+                    <label for="position">期望职位</label>
+                    <input type="text" id="position" name="desiredPosition" placeholder="请输入内容">
+                </div>
+                <div class="form-group">
+                    <label for="advantages">个人优势</label>
+                    <textarea id="advantages" name="personalStrengths" placeholder="请输入"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="experience">个人经历</label>
+                    <textarea id="experience"  name="previousExperience" placeholder="请输入"></textarea>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn-exit" type="button">退出</button>
+                <button class="btn-save" type="submit">创建</button>
+            </div>
+        </form>
+    </div>
+    <!--    退出按钮-->
+    <script>
+        const btnExit = document.querySelector('.btn-exit');
+        btnExit.addEventListener('click', function (event) {
+        event.stopPropagation();
+        localStorage.removeItem('resumeData');
+        window.location.href = 'resume';
+        });
+    </script>
+    <script src="/js/resumeEdit.js"></script>
+    <!--获取用户信息-->
+    <!--方法引入-->
+    <script src="/js/getUserInfo.js"></script>
+    <!--将修改共享模块的方法封装在方法中-->
+    <script src="/js/updateTopLab.js"></script>
+</body>
+</html>

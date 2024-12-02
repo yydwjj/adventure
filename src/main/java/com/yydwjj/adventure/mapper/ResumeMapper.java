@@ -29,6 +29,7 @@ public interface ResumeMapper {
             " and deleted_at IS NULL order by resume_id desc ")
     List<Resume> findAllResumes(Long userId);
 
+    //创建简历
     @Insert("INSERT INTO adventure.resume (adventure.resume.user_id, "+
             "adventure.resume.resume_name, adventure.resume.name, "+
             "adventure.resume.phone_number, adventure.resume.email,"+
@@ -40,6 +41,7 @@ public interface ResumeMapper {
             "#{major},#{desiredPosition},#{personalStrengths},#{previousExperience},#{createdAt},#{updatedAt});")
     int create(Resume resume);
 
+    //编辑更新简历
     @Update("UPDATE adventure.resume " +
             "SET resume_name = #{resumeName}, " +
             "    name = #{name}, " +
