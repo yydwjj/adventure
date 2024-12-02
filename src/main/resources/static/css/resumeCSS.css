@@ -187,17 +187,15 @@ header {
 
 /*主题板块*/
 #main-block{
-    padding: 15%;
-    padding-top:6%;
-    display:grid;
-    grid-template-columns: repeat(15,1fr);
-    grid-template-areas:"a a a b b b b b b b b b c c c";
+    padding: 150px;
+    padding-top:100px;
+    display:flex;
 }
 
 
     /*左侧栏*/
     #left-block{
-        grid-area:a;
+        width:120px;
     }
     #left1{
         background-color:white;
@@ -218,14 +216,13 @@ header {
     #left1 a div:hover{
         background-color:#BBBBBB;
     }
-
     /*中间板块*/
     #middle1 a{
         color:white;
     }
     #middle-block{
             overflow: auto;
-            grid-area:b;
+            width:800px;
     }
     #middle1{
 
@@ -236,13 +233,12 @@ header {
     }
     /*中间部分标题*/
     #middle1-title{
-            display: flex;
-            margin-bottom: 20px;
-            border-radius: 20px 20px 0 0;
-            padding: 10px;
-            background-color: #EFEFEF;
-            align-items: center;
-
+                display: flex;
+                margin-bottom: 20px;
+                border-radius: 20px 20px 0 0;
+                background-color: #EFEFEF;
+                align-items: center;
+                justify-content: space-between;
         }
     #middle1-title span{
         width:75%;
@@ -318,27 +314,29 @@ header {
         padding-left:40px;
         padding-right:40px;
     }
-
-    #personal-experience{
-        padding-bottom:50px;
+    #resume-name{
+        padding-left:10px;
     }
-    /*中间板块
-
-
-
-    div[id^="infor-title"] {
-        width: 100%;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #e9f0f5;
-            border-radius: 5px;
-        border-left: 2px solid #00FFFF;
+    #personal-experience,#personal-strengths{
+        height:150px;
+    }
+    #desired-position,#personal-experience,#personal-strengths{
+        width:200px;
+    }
+    textarea {
+      border: 1px solid rgba(0, 0, 0, 0);
+      background: rgba(0, 0, 0, 0);
+      overflow: visible;/*将overflow设置为visible，表示内容超出文本域时直接显示，不裁剪也不添加滚动条。*/
+      resize: none;
+      height:auto;
+      padding-left:20px;
+      padding-right:20px;
     }
 
-    }*/
+
     /*右边栏*/
     #right-block{
-        grid-area:c;
+        width:120px;
     }
     #right1{
         background-color:white;
@@ -351,6 +349,25 @@ header {
                 padding:10px;
                 background-color:#EFEFEF;
     }
+     /* 为右侧栏我的简历部分添加样式，使其出现滚动条 */
+        #my-resume{
+          max-height: 300px; /* 设置最大高度，超出则出现滚动条 */
+          overflow-y: auto; /* 仅在垂直方向出现滚动条 */
+          border: 1px solid #ccc; /* 添加边框，可根据实际需求调整样式 */
+
+        }
+        /* 我的简历*/
+    #my-resume button{
+        padding:10px;
+        width:100%;
+        background: rgba(125, 182, 191, 1);
+    }
+    #my-resume button:hover{
+        background: #377F7F;
+    }
+
+
+    /*已发简历*/
     #right2{
         background-color:white;
         border-radius: 20px;

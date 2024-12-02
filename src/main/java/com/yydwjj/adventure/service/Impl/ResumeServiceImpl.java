@@ -24,7 +24,7 @@ public class ResumeServiceImpl implements ResumeService {
 
     //    寻找该用户的简历
     @Override
-    public Result getAllResumes(Long userId) {
+    public Result getMyResumes(Long userId) {
         List<Resume> resumes = resumeMapper.findAllResumes(userId);
         if (resumes.isEmpty()) {
             return Result.build(null,507,"无已有简历");
@@ -34,13 +34,13 @@ public class ResumeServiceImpl implements ResumeService {
 
     //    保存已编辑的简历
     @Override
-    public Result saveresume(Resume resume) {
-        int result=resumeMapper.save(resume);
+    public Result createresume(Resume resume) {
+        int result=resumeMapper.create(resume);
 
         if(result==1){
             return Result.ok(resume);
         }
-        return Result.build(null,507,"保存失败");
+        return Result.build(null,507,"创建失败");
     }
 
     //    获取该用户的第一份简历
@@ -70,4 +70,15 @@ public class ResumeServiceImpl implements ResumeService {
         }
         return Result.ok(showresume);
     }
+
+    @Override
+    public Result editresume(Resume resume) {
+        int result=resumeMapper.edit(resume);
+        if(result==1){
+            return Result.ok(resume);
+        }
+        return Result.build(null,507,"创建失败");
+    }
+
+
 }

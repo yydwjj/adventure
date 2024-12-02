@@ -30,40 +30,52 @@ public class ResumeController {
         return resumeService.getResumeList();
     }
 
-    // 获取所有简历信息的接口
-    @RequestMapping (value = "allResumes")
+    // 获取我的所有简历
+    @RequestMapping (value = "myResume")
     public Result getResumes(@RequestHeader String token) {
         Long UserId = jwtHelper.getUserId(token);
-        return resumeService.getAllResumes(UserId);
+        return resumeService.getMyResumes(UserId);
     }
 
-    // 保存简历信息的接口（对应前端表单提交保存操作）
-    @RequestMapping(value="save",method= RequestMethod.PUT)
+    // 新增简历信息
+    @RequestMapping(value="create",method= RequestMethod.PUT)
     public Result saveResume(@RequestBody Resume resume, @RequestHeader String token) {
         Long userId = jwtHelper.getUserId(token);
         resume.setUserId(userId);
         resume.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         resume.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-        return resumeService.saveresume(resume);
+        return resumeService.createresume(resume);
     }
 
-    @RequestMapping(value = "lastInfo")
-    public Result getFirstResume(@RequestHeader String token){
-        Long userId = jwtHelper.getUserId(token);
+    //修改编辑简历
+    @PutMapping ("editResume/{id}")
+    public Result EditResume(@PathVariable int id,@RequestBody Resume resume) {
 
-        return resumeService.getLastResume(userId);
+        resume.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        return resumeService.editresume(resume);
     }
 
+//    //加载最新简历
+//    @RequestMapping(value = "lastInfo")
+//    public Result getFirstResume(@RequestHeader String token){
+//        Long userId = jwtHelper.getUserId(token);
+//        return resumeService.getLastResume(userId);
+//    }
+
+    //预览
     @RequestMapping(value = "showResume")
     public Result showResume(@RequestHeader String token){
         Long userId = jwtHelper.getUserId(token);
-
         return resumeService.showResume(userId);
     }
+
     // 根据ID获取单份简历信息的接口
     @GetMapping("info/{id}")
     public Result getResumeById(@PathVariable int id ) {
         Result result = resumeService.showResumeById(id);
         return result;
     }
+
+
+
 }

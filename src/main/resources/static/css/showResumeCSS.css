@@ -252,7 +252,7 @@ header {
     padding-bottom:20px;
 }
 
-#showThis {
+#button-container button{
         padding: 3px 25px;
         border: none;
         border-radius: 5px;
@@ -262,10 +262,10 @@ header {
         margin:10px;
         white-space: nowrap;
 }
-#showThis a{
+#button-container button a{
     color:white;
 }
-#showThis:hover {
+#button-container button:hover {
         background: #377F7F;
 }
 

@@ -78,29 +78,29 @@
     <div id="middle-block">
         <div id="middle1">
             <div id="middle1-title">
-                <span>我的在线目录</span>
-                <a href="edit.html"><button>编辑</button></a>
-                <a href="showResume.html"><button>预览</button></a>
+                <textarea id="resume-name" placeholder="简历名称"></textarea>
+                <div id="resume-id" style="display:none;"></div>
+                <button id="save-btn">保存</button>
             </div>
             <!-- 基本信息 -->
             <div class="profile">
                 <div class="info">
-                    <h1 id="name"></h1>
+                    <textarea id="name" placeholder="姓名"></textarea>
                     <div class="contact">
                         <span class="icon">🎓</span>
-                        <span id="school"></span>
+                        <textarea id="school" placeholder="学校"></textarea>
                     </div>
                     <div class="contact">
                         <span class="icon">🎓</span>
-                        <span id="major"></span>
+                        <textarea id="major" placeholder="专业"></textarea>
                     </div>
                     <div class="contact">
                         <span class="icon">📞</span>
-                        <span id="phone"></span>
+                        <textarea id="phone" placeholder="电话"></textarea>
                     </div>
                     <div class="contact">
                         <span class="icon">✉️</span>
-                        <span id="email"></span>
+                        <textarea id="email" placeholder="邮箱"></textarea>
                     </div>
 
                 </div>
@@ -110,15 +110,15 @@
                 <div class="section">
                     <h3>期望职位</h3>
                 </div>
-                <div id="desired-position" class="detailInfo"></div>
+                <textarea id="desired-position" placeholder="期望职位"></textarea>
                 <div class="section">
                     <h3>个人优势</h3>
                 </div>
-                <div id="personal-strengths" class="detailInfo"></div>
+                <textarea id="personal-strengths" placeholder="个人优势"></textarea>
                 <div class="section">
                     <h3>个人经历</h3>
                 </div>
-                <div id="personal-experience" class="detailInfo"></div>
+                <textarea id="personal-experience" placeholder="个人经历"></textarea>
             </div>
         </div>
     </div>
@@ -128,7 +128,7 @@
             <div id="right1-title" class="center">
                 <span>我的简历</span>
             </div>
-
+            <div id="my-resume"></div>
         </div>
         <div id="right2">
             <div id="right2-title" class="center">
@@ -144,80 +144,10 @@
 <script src="/js/getUserInfo.js"></script>
 <!--将修改共享模块的方法封装在方法中-->
 <script src="/js/updateTopLab.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', async function () {
 
-      // 获取 localStorage 中的 authToken
-        const authToken = localStorage.getItem('authToken');
+<!--加载我的简历-->
+<script src="/js/myResume.js"></script>
 
-      // 发送请求获取基本信息
-      try {
-        const InfoResponse = await fetch('/resume/lastInfo',{
-                method: 'GET',
-                headers:{
-                    'token' :authToken
-                }
-        });
-
-        if (InfoResponse.ok) {
-          const Info = await InfoResponse.json();
-          const resumeData = Info.data;
-
-          // 处理姓名展示，添加默认值逻辑
-          const nameElement = document.getElementById('name');
-          if (nameElement) {
-            nameElement.textContent = resumeData.name || '暂无姓名信息';
-          }
-
-          // 处理学校信息展示
-          const schoolElement = document.getElementById('school');
-          if (schoolElement) {
-            schoolElement.textContent = resumeData.school || '暂无学校信息';
-          }
-
-          // 处理专业信息展示
-          const majorElement = document.getElementById('major');
-          if (majorElement) {
-            majorElement.textContent = resumeData.major || '暂无专业信息';
-          }
-
-          // 处理电话号码展示
-          const phoneElement = document.getElementById('phone');
-          if (phoneElement) {
-            phoneElement.textContent = resumeData.phoneNumber || '暂无电话号码';
-          }
-
-          // 处理邮箱信息展示
-          const emailElement = document.getElementById('email');
-          if (emailElement) {
-            emailElement.textContent = resumeData.email || '暂无邮箱信息';
-          }
-
-          // 处理期望职位信息展示
-          const desiredPositionElement = document.getElementById('desired-position');
-          if (desiredPositionElement) {
-            desiredPositionElement.textContent = resumeData.desiredPosition || '暂无期望职位信息';
-          }
-
-          // 处理个人优势信息展示
-          const personalStrengthsElement = document.getElementById('personal-strengths');
-          if (personalStrengthsElement) {
-            personalStrengthsElement.textContent = resumeData.personalStrengths || '暂无个人优势信息';
-          }
-
-          // 处理个人经历信息展示
-          const personalExperienceElement = document.getElementById('personal-experience');
-          if (personalExperienceElement) {
-            personalExperienceElement.textContent = resumeData.previousExperience || '暂无个人经历信息';
-          }
-        } else {
-          console.error('获取基本信息失败:',InfoResponse.statusText);
-        }
-      } catch (error) {
-        console.error('网络错误（获取基本信息）:', error);
-      }
-    });
-</script>
 </body>
 
 </html>

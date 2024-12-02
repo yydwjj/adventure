@@ -65,14 +65,10 @@
                     <label for="resumeName">简历名称：</label>
                     <input type="text" id="resumeName" name="resumeName" placeholder="请输入内容">
                 </div>
-<!--                <div class="form-group">-->
-<!--                    <label>性别：</label>-->
-<!--                    <input type="radio" name="gender" value="male"> 男-->
-<!--                    <input type="radio" name="gender" value="female"> 女-->
-<!--                </div>-->
+
                 <div class="form-group">
-                    <label for="college">学校：</label>
-                    <input type="text" id="college"  name="school" placeholder="请输入内容">
+                    <label for="school">学校：</label>
+                    <input type="text" id="school"  name="school" placeholder="请输入内容">
                 </div>
                 <div class="form-group">
                     <label for="major">专业：</label>
@@ -106,6 +102,47 @@
             </div>
         </form>
     </div>
+
+<!-- 加载已有信息-->
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+        const pathSegments = window.location.pathname.split('/').filter(segment => segment!== '');
+        const id = pathSegments.pop();
+
+        try {
+            const response = await fetch(`/resume/info/${id}`, { method: 'GET' });
+            if (response.ok) {
+            const { data: resumeData } = await response.json();
+
+            // 更新字段的值和默认值
+            const updateField = (id, value) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = value;
+                    } else if (element.tagName === 'SPAN') {
+                        element.textContent = value;
+                    }
+                }
+            };
+
+            updateField('name', resumeData.name);
+            updateField('resumeName', resumeData.resumeName);
+            updateField('school', resumeData.school);
+            updateField('major', resumeData.major);
+            updateField('phone', resumeData.phoneNumber);
+            updateField('email', resumeData.email);
+            updateField('position', resumeData.desiredPosition);
+            updateField('advantages', resumeData.personalStrengths);
+            updateField('experience', resumeData.previousExperience);
+            } else {
+            console.error('获取简历数据失败:', response.statusText);
+            }
+        } catch (error) {
+            console.error('网络错误:', error);
+        }
+    });
+    </script>
     <!--    退出按钮-->
     <script>
         const btnExit = document.querySelector('.btn-exit');
@@ -115,7 +152,7 @@
         window.location.href = 'resume';
         });
     </script>
-    <script src="/js/resumeEdit.js"></script>
+    <script src="/js/resumeCreate.js"></script>
     <!--获取用户信息-->
     <!--方法引入-->
     <script src="/js/getUserInfo.js"></script>

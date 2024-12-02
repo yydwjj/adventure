@@ -123,6 +123,11 @@ public class ShowController {
         return "forward:/ResumeInfo.html";
     }
 
+    @GetMapping(value = "editResume/{resumeid}")
+    public String editresumeById(){
+        return "forward:/editResume.html";
+    }
+
     @GetMapping(value = "myteam")
     public String myTeam(){
         return "forward:/myTeam.html";
