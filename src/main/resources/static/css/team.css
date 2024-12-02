@@ -550,12 +550,42 @@ header {
 /*历史任务信息列表容器*/
 .task-container{
     width: 100%;
-    background-color: rgba(255, 255, 255, 1);
+    /*background-color: rgba(255, 255, 255, 1);*/
+    background: linear-gradient(#fff 0%, #ffffff 80%, #70b9bb14 100%);
     border-radius: 15px;
     padding: 15px;
     margin: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.task-container .grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+/*标题*/
+.task-container h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+/*文字*/
+.task-container p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+/*任务介绍*/
+.task-container .task-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    white-space: pre-wrap; /* Preserve line breaks */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4em; /* Limit to 2 lines */
+    position: relative;
+}
+
 /* 隐藏用户列表和评论区域 */
 .user-list {
     position: relative;
@@ -593,13 +623,13 @@ header {
 }
 
 /* 超长任务信息隐藏 */
-.task-info {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1; /* 限制为三行 */
-}
+/*.task-info {*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    display: -webkit-box;*/
+/*    -webkit-box-orient: vertical;*/
+/*    -webkit-line-clamp: 1; !* 限制为三行 *!*/
+/*}*/
 
 .rating-box {
     background-color: #fff;
@@ -634,22 +664,22 @@ header {
     outline: none; /* 去除聚焦时的默认边框 */
 }
 .rating-box textarea:hover {
-    border: 1px solid #007bff; /* 鼠标悬停时显示轮廓 */
+    border: 1px solid rgb(196, 221, 216); /* 鼠标悬停时显示轮廓 */
     border-radius: 4px;
     padding: 9px; /* 调整内边距以保持一致 */
 }
 .submit-rating-btn {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
+    background-color: #ffffff;
+    color: #22bfa7;
+    border: 1px solid #22bfa7;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
 }
 .submit-rating-btn:hover {
-    background-color: #0056b3;
+    background-color: rgba(214, 246, 241, 0.88);
 }
 
 .user-list .user-item:focus ~ .rating-box {
