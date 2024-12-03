@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险者工会</title>
+    <link rel="stylesheet" href="/css/taskInfo.css">
+
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="/icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn">发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="/icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="/icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="/icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>&Aogon;</div>
+
+<div id="show-job-container">
+    <h4>职位详情</h4>
+    <div id="job-container">
+        <h6 class="job-title" id="job-title"></h6>
+        <div class="info-container">
+<!--            <p class="job-info" id="job-requirements"><strong>职位要求：</strong></p>-->
+            <p class="job-info" id="contact-info"><strong>联系方式：</strong></p>
+            <p class="job-info" id="created-at"><strong>创建时间：</strong></p>
+            <p class="job-info" id="updated-at"><strong>更新时间：</strong></p>
+        </div>
+        <div class="job-details-title">岗位介绍</div>
+        <div class="job-details">
+        </div>
+    </div>
+</div>
+
+<!-- 脚本引入 -->
+<!--<script src="../../static/js/carousel.js"></script>-->
+<script src="/js/sidebar.js"></script>
+<!--获取任务详情信息-->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 获取当前 URL 的路径部分
+        const path = window.location.pathname;
+        // 提取 id
+        const parts = path.split('/');
+        const jobId = parts[parts.length - 1];
+
+        fetch(`/job/info/${jobId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200 && data.message === 'success') {
+                    const jobData = data.data;
+
+                    // 更新职位标题
+                    document.getElementById('job-title').textContent = `${jobData.jobTitle}`;
+
+                    // 更新职位要求
+                    // document.getElementById('job-requirements').textContent = `职位要求：${jobData.jobRequirements}`;
+
+                    // 更新联系方式
+                    document.getElementById('contact-info').textContent = `联系方式：${jobData.contactInfo}`;
+
+                    // 更新创建时间
+                    document.getElementById('created-at').textContent = `创建时间：${formatDate(jobData.createdAt)}`;
+
+                    // 更新更新时间
+                    document.getElementById('updated-at').textContent = `更新时间：${formatDate(jobData.updatedAt)}`;
+
+                    // 更新详细信息
+                    document.querySelector('.job-details').textContent = jobData.jobRequirements || '暂无详细信息';
+
+                } else {
+                    console.error('Failed to load job information:', data.message);
+                }
+            })
+            .catch(error => console.error('Error fetching job information:', error));
+    });
+    // 辅助函数：格式化日期
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    }
+</script>
+<!--通用方法 更新顶部和侧边的按钮-->
+<script src="/js/getUserInfo.js"></script>
+<script src="/js/updateTopLab.js"></script>
+<!--创建队伍-->
+</body>
+</html>

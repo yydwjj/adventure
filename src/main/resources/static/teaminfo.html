@@ -50,30 +50,26 @@
         </li>
     </ul>
 </div>
-<div>&nbsp;</div>
-<div>
-    <h1>队伍详情</h1>
-</div>
-<div class="contain">
-    <div class="main">
-        <div class="teamname">冒险者小队</div>
-        <div class="competitionname">第一届大赛</div>
-        <div class="introduction">AnyonesLegend（简称：AL）于2021年12月1日正式成立，AL使用一个熊猫大侠的形象作为LOGO，
-
-            熊猫是中国最具代表性的动物，其中也涵盖了我们想将中华文化传递全球的愿景，熊猫大侠也诠释了
-
-            无所畏惧的中华侠义精神。AL英雄联盟职业战队作为LPL联盟成员之一，“不忘初心，荣耀彼此”是我
-
-            们的信念，我们也将不断超越自我，踏上传奇之路！</div>
-        <h2>队长</h2>
-        <div class="teammleader">队长</div>
-        <h2>小队成员</h2>
-        <div class="teammumber">成员a,成员b,成员c</div>
-        <h2>我们需要</h2>
-        <div class="need">美术家</div>
-        <center><a href="/talk"><button type="submit" id="submit" class="btn">与队长交流
-            <span class="ripple"></span></button></a></center>
+<div>&ang;</div>
+<div id="show-team-container">
+    <h4>队伍详情</h4>
+    <div id="team-container">
+        <h6 class="team-title" id="team-title">（队伍名称）</h6>
+        <p class="competition-name" id="competition-name">（竞赛名称）</p>
+        <div class="info-container">
+<!--            <p class="team-info" id="introduction1"><strong>队伍介绍：</strong> （队伍介绍）</p>-->
+            <p class="team-info" id="leader"><strong>队长：</strong> （队长）</p>
+            <p class="team-info" id="members"><strong>小队成员：</strong> （成员a, 成员b, 成员c）</p>
+            <p class="team-info" id="need"><strong>我们需要：</strong> （美术家）</p>
+        </div>
+        <div class="team-details-title">详细信息</div>
+        <div class="team-details" id="introduction">
+            <!-- 这里可以添加更多关于队伍的详细信息 -->
+        </div>
     </div>
+    <button id="contact-leader-button" class="btn">与队长交流
+        <span class="ripple"></span>
+    </button>
 </div>
 <script src="/js/carousel.js"></script>
 <script src="/js/sidebar.js"></script>
@@ -86,64 +82,97 @@
         // 提取 id
         const parts = path.split('/');
         const teamId = parts[parts.length - 1];
+
         fetch(`/team/info/${teamId}`)
             .then(response => response.json())
             .then(data => {
-                if (data.code === 200 && data.data) {
+                if (data.code === 200 && data.message === 'success') {
                     const teamData = data.data;
-                    document.querySelector('.teamname').innerText = teamData.teamName;
-                    document.querySelector('.introduction').innerText = teamData.teamInfo;
-                    document.querySelector('.competitionname').innerText = teamData.taskName;
-                    document.querySelector('.teammleader').innerText = `队长: ${teamData.captainName}`;
+
+                    // 更新队伍名称
+                    document.getElementById('team-title').textContent = `${teamData.teamName}`;
+
+                    // 更新竞赛名称
+                    document.getElementById('competition-name').textContent = `${teamData.taskName}`;
+
+                    // 更新队伍介绍
+                    document.getElementById('introduction').textContent = `${teamData.teamInfo}`;
+
+                    // 更新队长信息
+                    document.getElementById('leader').textContent = `队长：${teamData.captainName}`;
 
                     // 更新工作职位
-                    const jobsContainer = document.querySelector('.need');
+                    const jobsContainer = document.getElementById('need');
                     if (teamData.jobs.length > 0) {
-                        jobsContainer.innerHTML = '';
-                        teamData.jobs.forEach(job => {
-                            const jobLink = document.createElement('a');
-                            jobLink.href = '#';
-                            jobLink.innerText = job.jobTitle;
-                            jobsContainer.appendChild(jobLink);
-                            jobsContainer.appendChild(document.createTextNode(', ')); // 添加逗号分隔符
+                        let jobLinks = teamData.jobs.map(job => {
+                            const jobLink = `<a href="/job/${job.jobId}" class="job-link">${job.jobTitle}</a>`;
+                            return jobLink;
+                        }).join(', ');
+
+                        jobsContainer.innerHTML = `我们需要：${jobLinks}`;
+
+                        // 为每个职位链接添加 hover 事件
+                        const jobLinksElements = jobsContainer.querySelectorAll('.job-link');
+                        jobLinksElements.forEach((jobLink, index) => {
+                            const job = teamData.jobs[index];
+                            jobLink.addEventListener('mouseover', () => showTooltip(job));
+                            jobLink.addEventListener('mouseout', hideTooltip);
                         });
-                        // 移除最后一个多余的逗号
-                        if (jobsContainer.lastChild.textContent === ', ') {
-                            jobsContainer.removeChild(jobsContainer.lastChild);
-                        }
                     } else {
-                        jobsContainer.innerText = '暂无职位需求';
+                        jobsContainer.textContent = '我们需要：暂无职位需求';
                     }
 
                     // 更新小队成员
-                    const membersContainer = document.querySelector('.teammumber');
+                    const membersContainer = document.getElementById('members');
                     if (teamData.teamMembers.length > 0) {
-                        membersContainer.innerHTML = '';
-                        teamData.teamMembers.forEach(member => {
-                            const memberLink = document.createElement('a');
-                            memberLink.href = '#';
-                            memberLink.innerText = member.username;
-                            membersContainer.appendChild(memberLink);
-                            membersContainer.appendChild(document.createTextNode(', ')); // 添加逗号分隔符
-                        });
-                        // 移除最后一个多余的逗号
-                        if (membersContainer.lastChild.textContent === ', ') {
-                            membersContainer.removeChild(membersContainer.lastChild);
-                        }
+                        let memberLinks = teamData.teamMembers.map(member => `<a href="#">${member.username}</a>`).join(', ');
+                        membersContainer.innerHTML = `小队成员：${memberLinks}`;
                     } else {
-                        membersContainer.innerText = '暂无小队成员';
+                        membersContainer.textContent = '小队成员：暂无小队成员';
                     }
 
                     // 修改超链接
                     const captainId = teamData.captainId;
-                    const talkLink = document.querySelector('a[href="/talk"]');
-                    talkLink.href = `/teaminfo/${teamId}/talk/${captainId}`;
+                    document.getElementById('contact-leader-button').addEventListener('click',function (){
+                        window.location.href="/teaminfo/${teamId}/talk/${captainId}"
+                    });
                 } else {
                     console.error('Failed to load team information:', data.message);
                 }
             })
             .catch(error => console.error('Error fetching team information:', error));
     });
+    // 显示工具提示
+    function showTooltip(job) {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = `职位要求：${job.jobRequirements}\n联系方式：${job.contactInfo}\n创建时间：${formatDate(job.createdAt)}\n更新时间：${formatDate(job.updatedAt)}`;
+        document.body.appendChild(tooltip);
+
+        // 设置工具提示的位置
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+        tooltip.style.left = `${mouseX + 10}px`; // 10 是一个小的偏移量
+        tooltip.style.top = `${mouseY + 10}px`; // 10 是一个小的偏移量
+    }
+
+    // 隐藏工具提示
+    function hideTooltip() {
+        const tooltip = document.querySelector('.tooltip');
+        if (tooltip) {
+            tooltip.remove();
+        }
+    }
+    // 日期格式化函数
+    function formatDate(timestamp) {
+        const date = new Date(timestamp);
+        return `${date.getFullYear()}-${padZero(date.getMonth() + 1)}-${padZero(date.getDate())} ${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`;
+    }
+
+    // 补零函数
+    function padZero(num) {
+        return num < 10 ? `0${num}` : num;
+    }
 </script>
 </body>
 </html>

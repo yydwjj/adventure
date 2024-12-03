@@ -10,4 +10,10 @@ public interface JobService {
     Result<Integer> add(List<JobPost> job);
 
 
+    /**
+     * 根据id查询职位信息
+     * @param id
+     * @return
+     */
+    Result<JobPost> get(int id);
 }
