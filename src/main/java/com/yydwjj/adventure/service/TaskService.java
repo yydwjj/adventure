@@ -54,4 +54,11 @@ public interface TaskService {
      * @return
      */
     Result getTaskInfo(int id);
+
+    /**
+     * 根据用户id，获取用户参与的任务
+     * @param userId
+     * @return
+     */
+    Result getTaskById(Long userId);
 }

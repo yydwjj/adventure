@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒险者工会</title>
+    <link rel="stylesheet" href="css/team.css">
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="icon/LogoIcon.svg" alt="Logo">
+        </div>
+        <ul class="navigation">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">组队</a></li>
+            <li><a href="#">人才</a></li>
+            <li><a href="#">任务</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="搜索...">
+            <button type="submit"><img src="icon/搜索.svg" alt="搜索"></button>
+        </div>
+        <button class="publish-btn" onclick='location.href=("post-task")'>发布</button>
+        <div class="login-register">
+            <a href="#">登录 / 注册</a>
+        </div>
+        <div class="navbar-menu" id="sidebarToggle">
+            <img src="icon/菜单_o.svg" alt="菜单">
+        </div>
+    </nav>
+</header>
+
+<!-- 侧边栏 -->
+<div class="sidebar" id="sidebar">
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <img src="icon/UserIcon.svg" alt="个人信息图标">
+            <span>个人信息</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/ResumeIcon.svg" alt="我的简历图标">
+            <span>我的简历</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/TeamIcon.svg" alt="我的队伍图标">
+            <span>我的队伍</span>
+        </li>
+        <li class="menu-item">
+            <img src="icon/historyTask.svg" alt="历史任务图标">
+            <span>历史任务</span>
+        </li>
+    </ul>
+</div>
+<div>1</div>
+<div class="search-container">
+    <!--    搜索-->
+    <div class="search-frame">
+        <div class="search-box">
+            <input type="text" placeholder="请输入关键词" class="search-input">
+        </div>
+        <button class="search-button">搜索</button>
+    </div>
+    <!--    下拉框-->
+    <div class="filter-container">
+        <select class="filter-dropdown" data-type="level">
+            <option value="" disabled selected>竞赛等级</option>
+        </select>
+        <select class="filter-dropdown" data-type="category">
+            <option value="" disabled selected>竞赛类别</option>
+        </select>
+        <input type="date" class="filter-dropdown" id="registration_date" name="registrationDate">
+        <input type="date" class="filter-dropdown" id="task_date" name="taskDate">
+    </div>
+</div>
+
+<!--历史任务容器-->
+<div class="group-container" id="historyCompetitionContainer">
+
+</div>
+
+<!--侧边栏-->
+<script src="js/sidebar.js"></script>
+<!--页面信息更新-->
+<script>
+    // 初始化下拉列表
+    function initDropdowns() {
+        // 加载竞赛等级
+        fetch('/task/levels', {
+            method: 'GET'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('获取竞赛等级失败');
+            })
+            .then(result => {
+                const levelSelect = document.querySelector('select[data-type="level"]');
+
+                // 清除现有的选项
+                while (levelSelect.firstChild) {
+                    levelSelect.removeChild(levelSelect.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择竞赛级别';
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                levelSelect.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.taskLevelId;
+                    option.textContent = item.levelName;
+                    levelSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('获取竞赛等级失败:', error));
+
+        // 加载竞赛类别
+        fetch('/task/category', {
+            method: 'GET'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('获取竞赛类别失败');
+            })
+            .then(result => {
+                const categorySelect = document.querySelector('select[data-type="category"]');
+
+                // 清除现有的选项
+                while (categorySelect.firstChild) {
+                    categorySelect.removeChild(categorySelect.firstChild);
+                }
+
+                // 添加默认选项
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '请选择竞赛类别';
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                categorySelect.appendChild(defaultOption);
+
+                // 添加新的选项
+                result.data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.taskCategoryId;
+                    option.textContent = item.categoryName;
+                    categorySelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('获取竞赛类别失败:', error));
+    }
+    const jwtToken = localStorage.getItem('authToken');
+
+    // 加载竞赛列表
+    // 加载任务列表
+    fetch('/task/mytask', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'token': `${jwtToken}`
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.code !== 200) {
+                throw new Error(`Error: ${data.message}`);
+            }
+
+            const { teamMembers, tasks } = data.data;
+            const historyContainer = document.getElementById('historyCompetitionContainer');
+
+            // 动态生成任务信息
+            tasks.forEach(task => {
+                const taskDiv = document.createElement('div');
+                taskDiv.classList.add('task-container');
+                taskDiv.style.transition = 'height 0.3s ease'; // 添加过渡动画
+                taskDiv.innerHTML = `
+                <h3>${task.taskName}</h3>
+                <div class="grid-layout">
+                    <p>级别: ${task.levelName}</p>
+                    <p>开始时间: ${new Date(task.taskStart).toLocaleString()}</p>
+                    <p>分类: ${task.categoryName}</p>
+                    <p>结束时间: ${new Date(task.taskEnd).toLocaleString()}</p>
+                </div>
+                <p class="task-info" title="${task.taskInfo}">${task.taskInfo}</p>
+                <div class="user-list" style="position: relative; overflow: hidden; transition: height 0.3s ease;">
+                    ${(teamMembers[task.taskId] || []).map(user => `
+                        <div class="user-item" data-user-id="${user.userId}" style="z-index: 2; position: relative;">
+                            ${user.username}
+                        </div>
+                    `).join('')}
+                    <div class="rating-box" style="display: none; z-index: 1; position: absolute; top: 50px; left: 0; background: #fff; padding: 10px; border: 1px solid #ccc;">
+                        <label>评分: <input type="number" min="1" max="5" /></label>
+                        <textarea placeholder="输入评价"></textarea>
+                        <button class="submit-rating-btn">提交评价</button>
+                    </div>
+                </div>
+            `;
+
+                // 添加到容器
+                historyContainer.appendChild(taskDiv);
+
+                // 动态调整框高度
+                const userList = taskDiv.querySelector('.user-list');
+                const ratingBox = taskDiv.querySelector('.rating-box');
+
+                taskDiv.addEventListener('mouseenter', () => {
+                    userList.style.height = '40px'; // 基础高度
+                });
+                taskDiv.addEventListener('mouseleave', () => {
+                    userList.style.height = '0'; // 收回高度
+                    ratingBox.style.display = 'none'; // 隐藏评论框
+                    taskDiv.style.height = 'auto'; // 恢复默认高度
+                });
+
+                // 点击用户显示评论框
+                const userItems = taskDiv.querySelectorAll('.user-item');
+                userItems.forEach(userItem => {
+                    userItem.addEventListener('click', () => {
+                        userList.style.height = '300px'; // 扩展用户列表高度
+                        ratingBox.style.display = 'block'; // 显示评论框
+
+                        // 动态定位评论框：垂直位置根据用户项的 offsetTop，水平位置根据 offsetLeft
+                        ratingBox.style.top = `${userItem.offsetTop + 37}px`; // 垂直位置
+                        ratingBox.style.left = `${userItem.offsetLeft}px`; // 水平位置
+
+                        taskDiv.style.height = 'auto'; // 调整任务框高度适应新内容
+                    });
+                });
+                // 提交评价
+                const submitRatingBtn = taskDiv.querySelector('.submit-rating-btn');
+                submitRatingBtn.addEventListener('click', () => {
+                    const ratingInput = ratingBox.querySelector('input');
+                    const commentInput = ratingBox.querySelector('textarea');
+                    const selectedUserId = ratingBox.closest('.user-item')?.dataset?.userId;
+
+                    if (!selectedUserId) {
+                        alert('请选择用户后提交评价');
+                        return;
+                    }
+
+                    const rating = ratingInput.value;
+                    const comment = commentInput.value;
+
+                    if (!rating || !comment) {
+                        alert('请填写完整的评分和评价内容');
+                        return;
+                    }
+
+                    // 提交评价请求
+                    fetch('/submit-rating', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'token': `${jwtToken}`
+                        },
+                        body: JSON.stringify({
+                            userId: selectedUserId,
+                            rating: rating,
+                            comment: comment
+                        })
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`提交评价失败！Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(result => {
+                            if (result.code === 200) {
+                                alert('评价提交成功！');
+                                ratingInput.value = '';
+                                commentInput.value = '';
+                                ratingBox.style.display = 'none';
+                            } else {
+                                alert(`提交失败：${result.message}`);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('提交评价出错:', error);
+                            alert('提交评价时发生错误，请稍后重试。');
+                        });
+                });
+            });
+        })
+        .catch(error => {
+            console.error('加载任务列表出错:', error);
+            alert('加载任务列表失败，请稍后重试。');
+        });
+
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', () => {
+        initDropdowns();
+        loadCompetitions();
+    });
+</script>
+<!--获取用户信息-->
+<!--方法引入-->
+<script src="js/getUserInfo.js"></script>
+<!--将修改共享模块的方法封装在方法中-->
+<script src="js/updateTopLab.js"></script>
+</body>
+</html>

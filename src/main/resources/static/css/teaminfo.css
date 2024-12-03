@@ -415,6 +415,9 @@ label{
     padding-left: 20px;
     padding-bottom: 20px;
     border-radius: 6px;
+    /*  变化时的动画效果  */
+    /*    height: 300px;*/
+    transition: 0.7s ease;
 }
 
 /* 队伍容器 */
@@ -516,4 +519,91 @@ label{
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent white transparent;
+}
+
+/*管理队伍相关css*/
+#manage-members-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    display: none;
+}
+.manage-member-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.manage-member-info {
+    flex: 1;
+}
+.manage-member-actions {
+    display: flex;
+    gap: 10px;
+}
+.manage-member-actions button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.manage-member-actions .manage-edit-btn {
+    background-color: #007bff;
+    color: white;
+}
+.manage-member-actions .manage-delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+.manage-member-actions .manage-edit-btn:hover {
+    background-color: #0056b3;
+}
+.manage-member-actions .manage-delete-btn:hover {
+    background-color: #c82333;
+}
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.manage-add-member-card {
+    background-color: #f9f9f9;
+    border: 1px dashed #007bff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px; /* Smaller font size */
+    color: black; /* Black text color */
+}
+.manage-add-member-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.manage-add-member-form input,
+.manage-add-member-form select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.manage-add-member-form button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+.manage-add-member-form button:hover {
+    background-color: #218838;
 }

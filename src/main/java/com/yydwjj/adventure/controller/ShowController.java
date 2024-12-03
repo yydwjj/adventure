@@ -114,11 +114,17 @@ public class ShowController {
         return "forward:/ResumeInfo.html";
     }
 
+    //我的队伍
     @GetMapping(value = "myteam")
     public String myTeam(){
         return "forward:/myTeam.html";
     }
 
+    @GetMapping(value = "history")
+    public String history(){
+        return "forward:/historyTask.html";
+    }
+    // 职位详情页
     @GetMapping(value = "job/{id}")
     public String jobInfo(@PathVariable int id){
         return "forward:/jobinfo.html";

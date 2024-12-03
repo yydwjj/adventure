@@ -50,7 +50,8 @@ async function submitJobs() {
     forms.forEach(form => {
         const jobTitle = form.querySelector('input[name="jobTitle"]').value.trim();
         const jobDescription = form.querySelector('textarea[name="jobDescription"]').value.trim();
-        const jobRequirements = form.querySelector('textarea[name="jobRequirements"]').value.trim();
+        const jobRequirement = form.querySelector('textarea[name="jobRequirements"]').value.trim();
+        const jobRequirements = jobDescription+"\n"+jobRequirement;
         const contactInfo = form.querySelector('input[name="contactInfo"]').value.trim();
 
         if (jobTitle && jobDescription && jobRequirements && contactInfo) {

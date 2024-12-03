@@ -50,4 +50,8 @@ public interface TaskMapper {
             "INNER JOIN `user` as u on u.user_id = r.publisher_id\n" +
             "where task_id = #{id};")
     List<TaskInfo> findTaskInfoById(int id);
+
+    List<Long> getTaskIdByTeamId(List<Integer> teamIdList);
+
+    List<TaskInfo> getTaskInfosById(List<Long> taskIdList);
 }

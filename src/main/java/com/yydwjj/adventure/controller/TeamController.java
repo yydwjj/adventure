@@ -1,6 +1,7 @@
 package com.yydwjj.adventure.controller;
 
 import com.yydwjj.adventure.entity.Team;
+import com.yydwjj.adventure.entity.User;
 import com.yydwjj.adventure.model.TeamInfo;
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.TeamService;
@@ -59,4 +60,10 @@ public class TeamController {
         Long userId = jwtHelper.getUserId(token);
         return teamService.getLeadTeam(Math.toIntExact(userId));
     }
+
+//    @GetMapping("/users/{taskId}")
+//    public List<User> getTeamMembers(@PathVariable Long taskId, @RequestHeader String token) {
+//        long userId = jwtHelper.getUserId(token);
+//        teamService.getTeamMembers(userId,taskId);
+//    }
 }

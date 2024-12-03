@@ -85,4 +85,16 @@ public class TeamServiceImpl implements TeamService {
     public List<Map<String, Object>> getLeadTeam(int id) {
         return teamMapper.getMyLeadTeamByUid(id);
     }
+
+    @Override
+    public Result getTeamMembers(long userId, Long taskId) {
+        return null;
+    }
+
+//    @Override
+//    public Result getTeamMembers(long userId, Long taskId) {
+//        //获得参与队伍的队伍id
+//        teamMemberMapper.getUserJoinedTeamId(userId,taskId);
+//        //根据id返回队伍成员信息
+//    }
 }

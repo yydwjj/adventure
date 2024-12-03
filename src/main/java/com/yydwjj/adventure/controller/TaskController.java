@@ -96,4 +96,10 @@ public class TaskController {
         Result result = taskService.getTaskInfo(id);
         return result;
     }
+
+    @GetMapping(value = "mytask")
+    public Result getMyTask(@RequestHeader String token){
+        Long userId = jwtHelper.getUserId(token);
+        return taskService.getTaskById(userId);
+    }
 }
