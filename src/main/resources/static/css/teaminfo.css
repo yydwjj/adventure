@@ -461,7 +461,7 @@ label{
 }
 
 /* 与队长交流按钮 */
-#contact-leader-button {
+#contact-leader-button,.btn {
     text-align: center; /* 文字居中 */
     text-decoration: none; /* 无下划线 */
     display: inline-block; /* 行内块级元素 */
@@ -481,8 +481,9 @@ label{
     border: 1px solid rgba(34, 191, 167, 1);
 }
 
-#contact-leader-button:hover {
+#contact-leader-button:hover ,.btn:hover{
     color: rgba(136, 205, 195, 0.88); /* 悬停时的背景颜色 */
+    background-color: rgba(112, 185, 187, 0.06);
 }
 #need a{
     background-color: #f0f0f0;
@@ -530,7 +531,7 @@ label{
     width: 80%;
     display: none;
 }
-.manage-member-card {
+.member-card , .add-user-card{
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -539,8 +540,14 @@ label{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    background: linear-gradient(to left, #fff 0%, #70b9bb05 100%);
+    transition: 0.5s;
 }
-.manage-member-info {
+.member-card:hover, .add-user-card:hover {
+    background: linear-gradient(to left, #fff 0%, rgba(112, 185, 187, 0.11) 100%);
+}
+.member-card p {
     flex: 1;
 }
 .manage-member-actions {
@@ -553,57 +560,31 @@ label{
     border-radius: 4px;
     cursor: pointer;
 }
-.manage-member-actions .manage-edit-btn {
-    background-color: #007bff;
-    color: white;
-}
-.manage-member-actions .manage-delete-btn {
-    background-color: #dc3545;
-    color: white;
-}
 .manage-member-actions .manage-edit-btn:hover {
     background-color: #0056b3;
 }
 .manage-member-actions .manage-delete-btn:hover {
     background-color: #c82333;
 }
-select {
+.job-select {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    height: 40px;
 }
-.manage-add-member-card {
-    background-color: #f9f9f9;
-    border: 1px dashed #007bff;
+.user-id-input{
+    flex: 1;
+    height: 40px;
+    width: 100px;
+    outline-style: none;
+    border: 1px solid #c0c4cc;
     border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 16px; /* Smaller font size */
-    color: black; /* Black text color */
-}
-.manage-add-member-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.manage-add-member-form input,
-.manage-add-member-form select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.manage-add-member-form button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-}
-.manage-add-member-form button:hover {
-    background-color: #218838;
+    padding: 0;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-family: "Microsoft soft";
+    &:focus {
+        border-color: rgb(191 221 217);
+        outline: 0;
+    }
 }

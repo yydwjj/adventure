@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface TeamMemberMapper {
     @Insert("INSERT INTO team_member(team_id,user_id,permission_level ) " +
-            "VALUES (#{teamId},#{userId},1)")
+            "VALUES (#{teamId},#{userId},#{jobId})")
     @Options(useGeneratedKeys = true, keyProperty = "teamMemberId", keyColumn = "team_member_id")
     int addTeamMember(TeamMember teamMember);
 
@@ -19,4 +19,6 @@ public interface TeamMemberMapper {
     List<Integer> getUserTeamByUid(int userid);
 
 
+    @Select("select * from team_member where team_member_id = #{id}")
+    TeamMember getTeamMemberById(int id);
 }

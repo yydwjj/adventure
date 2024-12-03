@@ -2,8 +2,10 @@ package com.yydwjj.adventure.service.Impl;
 
 import com.yydwjj.adventure.entity.Team;
 import com.yydwjj.adventure.entity.TeamMember;
+import com.yydwjj.adventure.entity.User;
 import com.yydwjj.adventure.mapper.TeamMapper;
 import com.yydwjj.adventure.mapper.TeamMemberMapper;
+import com.yydwjj.adventure.mapper.UserMapper;
 import com.yydwjj.adventure.model.TeamInfo;
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.TeamMemberService;
@@ -18,9 +20,9 @@ public class TeamServiceImpl implements TeamService {
 
     @Autowired
     TeamMapper teamMapper;
-
     @Autowired
-    TeamMemberService teamMemberService;
+    UserMapper userMapper;
+
     @Autowired
     private TeamMemberMapper teamMemberMapper;
 
@@ -89,6 +91,37 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public Result getTeamMembers(long userId, Long taskId) {
         return null;
+    }
+
+    /**
+     * 返回队伍成员信息
+     * @param teamMember        队伍成员信息
+     * @return 队伍成员信息
+     */
+    @Override
+    public TeamMember addTeamMember(TeamMember teamMember) {
+        //队伍id
+        long teamId = teamMember.getTeamId();
+        //用户id
+        long userId = teamMember.getUserId();
+        User userById = userMapper.selectById(userId);
+        if(userById == null){
+            //用户不存在
+            return null;
+        }
+        //判断重复入队
+        List<User> teamMembersByTeamId = teamMapper.getTeamMembersByTeamId(teamId);
+        for(User user : teamMembersByTeamId){
+            if(user.getUserId() == userId){
+                //重复了
+                return null;
+            }
+        }
+        teamMember.setJobId(1);
+        teamMember.setPermissionLevel(1);
+        //没有重复 添加
+        int result= teamMemberMapper.addTeamMember(teamMember);
+        return teamMember;
     }
 
 //    @Override

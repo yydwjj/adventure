@@ -1,10 +1,13 @@
 package com.yydwjj.adventure.controller;
 
 import com.yydwjj.adventure.entity.Team;
+import com.yydwjj.adventure.entity.TeamMember;
 import com.yydwjj.adventure.entity.User;
+import com.yydwjj.adventure.mapper.UserMapper;
 import com.yydwjj.adventure.model.TeamInfo;
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.TeamService;
+import com.yydwjj.adventure.service.UserService;
 import com.yydwjj.adventure.utils.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +25,8 @@ public class TeamController {
 
     @Autowired
     TeamService teamService;
+    @Autowired
+    UserService userService;
     @Autowired
     JwtHelper jwtHelper;
 
@@ -66,4 +71,16 @@ public class TeamController {
 //        long userId = jwtHelper.getUserId(token);
 //        teamService.getTeamMembers(userId,taskId);
 //    }
+
+    //添加队伍成员
+    //如果成功，返回添加的用户信息
+    @PostMapping("addMember")
+    public Result<User> addTeamMember(@RequestBody TeamMember teamMember) {
+        TeamMember result = teamService.addTeamMember(teamMember);
+        if (result != null) {
+            return Result.ok((User) userService.getUserInfo((int) result.getUserId()).getData());
+        }else{
+            return Result.build(null,506,"Add team member failed");
+        }
+    }
 }

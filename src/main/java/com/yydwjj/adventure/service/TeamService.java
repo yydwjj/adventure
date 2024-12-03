@@ -1,6 +1,7 @@
 package com.yydwjj.adventure.service;
 
 import com.yydwjj.adventure.entity.Team;
+import com.yydwjj.adventure.entity.TeamMember;
 import com.yydwjj.adventure.model.TeamInfo;
 import com.yydwjj.adventure.result.Result;
 import java.util.List;
@@ -30,4 +31,11 @@ public interface TeamService {
     List<Map<String, Object>> getLeadTeam(int id);
 
     Result getTeamMembers(long userId, Long taskId);
+
+    /**
+     * 添加队伍成员信息
+     * @param teamMember        队伍成员信息
+     * @return  返回添加的结果
+     */
+    TeamMember addTeamMember(TeamMember teamMember);
 }

@@ -132,26 +132,30 @@
                     const userData =  JSON.parse(sessionStorage.myInfo);
                     const username = userData.username;
                     if(teamData.captainName === username){
+                        //创建队伍管理按钮
                         const Abutton = document.getElementById('contact-leader-button');
                         Abutton.innerText="管理队伍"
-                        //创造小队成员部分代码
-                        renderMembers();
-                        //点击时显示小队成员
-                        Abutton.addEventListener('click',function (){
-                            const manageContainer = document.getElementById("manage-members-container");
-                            const PaContent = document.getElementById("show-team-container");
-                            if(manageContainer.style.display === "block"){
-                                manageContainer.style.display = "none";
-                                const currentHeight = parseFloat(PaContent.style.height);
-                                const newHeight = currentHeight - 200;
-                                PaContent.style.height = `${newHeight}px`;
+                        let isExist = false;
+                        Abutton.addEventListener("click", function () {
+                            if(!isExist){
+                                createManageContainer(teamData);
+                                isExist = true;
                             }else {
-                                manageContainer.style.display = "block";
-                                const currentHeight = parseFloat(PaContent.style.height);
-                                const newHeight = currentHeight + 200;
-                                PaContent.style.height = `${newHeight}px`;
+                                const manageContainer = document.getElementById("manage-members-container");
+                                manageContainer.innerHTML="";
+                                manageContainer.style.display = "none";
+                                isExist = false;
                             }
                         });
+                        // 创建一个管理职务按钮
+                        const jobManageButton = document.createElement("button");
+                        jobManageButton.id = "job-manage-button";
+                        jobManageButton.className = "btn";
+                        jobManageButton.innerText = "管理职位";
+                        jobManageButton.addEventListener("click",function (){
+                            window.location.href = `/postJob/${teamData.teamId}`;
+                        })
+                        document.getElementById("show-team-container").appendChild(jobManageButton);
                     }
                     else{
                         document.getElementById('contact-leader-button').addEventListener('click',function (){
@@ -195,134 +199,140 @@
     function padZero(num) {
         return num < 10 ? `0${num}` : num;
     }
-    <!--管理队伍-->
-    function createManageJobSelect(jobs) {
-        const jobSelect = document.createElement('select');
-        jobs.forEach(job => {
-            const option = document.createElement('option');
-            option.value = job.jobTitle;
-            option.textContent = job.jobTitle;
-            jobSelect.appendChild(option);
-        });
-        return jobSelect;
-    }
+    // 创建管理队伍模块
+    function createManageContainer(teamData) {
+        const members = teamData.teamMembers; // 获取成员列表
+        const jobs = teamData.jobs; // 获取职位列表
 
-    function renderMembers() {
-        const membersContainer = document.getElementById('manage-members-container');
-        membersContainer.innerHTML = '';
+        // 获取容器
+        const manageContainer = document.getElementById("manage-members-container");
+        manageContainer.innerHTML = ""; // 清空容器内容
+        manageContainer.style.display = "block";
 
-        const teamMembers = mydata.data.teamMembers;
-        const jobs = mydata.data.jobs;
+        // 创建成员列表
+        members.forEach(member => {
+            const memberCard = document.createElement("div");
+            memberCard.className = "member-card";
 
-        teamMembers.forEach(member => {
-            const memberCard = document.createElement('div');
-            memberCard.className = 'manage-member-card';
+            const memberInfo = document.createElement("p");
+            memberInfo.textContent = `${member.username}`;
 
-            const memberInfo = document.createElement('div');
-            memberInfo.className = 'manage-member-info';
-            memberInfo.textContent = member.username;
-
-            const jobSelect = createManageJobSelect(jobs);
-
-            const actionsDiv = document.createElement('div');
-            actionsDiv.className = 'manage-member-actions';
-
-            const editBtn = document.createElement('button');
-            editBtn.className = 'manage-edit-btn';
-            editBtn.textContent = '修改';
-            editBtn.addEventListener('click', () => {
-                alert(`Editing ${member.username}`);
-            });
-
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'manage-delete-btn';
-            deleteBtn.textContent = '删除';
-            deleteBtn.addEventListener('click', () => {
-                if (confirm(`确定要删除 ${member.username} 吗？`)) {
-                    memberCard.remove();
+            // 创建职位下拉框
+            const jobSelect = document.createElement("select");
+            jobSelect.className = "job-select";
+            jobs.forEach(job => {
+                const option = document.createElement("option");
+                option.value = job.jobId;
+                option.textContent = job.jobTitle;
+                if (member.jobId === job.jobId) {
+                    option.selected = true; // 如果成员当前的职位匹配，设置为选中
                 }
+                jobSelect.appendChild(option);
             });
 
-            actionsDiv.appendChild(editBtn);
-            actionsDiv.appendChild(deleteBtn);
+            const modifyButton = document.createElement("button");
+            modifyButton.className = "btn modify-btn";
+            modifyButton.textContent = "修改";
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "btn delete-btn";
+            deleteButton.textContent = "删除";
 
             memberCard.appendChild(memberInfo);
-            memberCard.appendChild(jobSelect);
-            memberCard.appendChild(actionsDiv);
+            memberCard.appendChild(jobSelect); // 添加职位下拉框
+            memberCard.appendChild(modifyButton);
+            memberCard.appendChild(deleteButton);
 
-            membersContainer.appendChild(memberCard);
+            manageContainer.appendChild(memberCard);
         });
 
-        // Add the add member card
-        const addMemberCard = document.createElement('div');
-        addMemberCard.className = 'manage-member-card manage-add-member-card';
-        addMemberCard.textContent = '+';
-        addMemberCard.addEventListener('click', toggleAddForm);
+        // 创建添加用户的卡片
+        const addUserCard = document.createElement("div");
+        addUserCard.className = "add-user-card";
 
-        membersContainer.appendChild(addMemberCard);
+        const inputField = document.createElement("input");
+        inputField.type = "text";
+        inputField.placeholder = "输入用户ID";
+        inputField.className = "user-id-input";
+
+        // 创建职位下拉框
+        const jobSelect = document.createElement("select");
+        jobSelect.className = "job-select";
+        jobs.forEach(job => {
+            const option = document.createElement("option");
+            option.value = job.jobId;
+            option.textContent = job.jobTitle;
+            option.selected = true; // 也不管那麽多了，就先显示一个职位吧
+            jobSelect.appendChild(option);
+        });
+
+        const addButton = document.createElement("button");
+        addButton.className = "btn add-btn";
+        addButton.textContent = "添加";
+        addButton.addEventListener("click",addTeamMember);
+
+        addUserCard.appendChild(inputField);
+        addUserCard.appendChild(jobSelect)
+        addUserCard.appendChild(addButton);
+
+        manageContainer.appendChild(addUserCard);
     }
 
-    function toggleAddForm(event) {
-        const addMemberCard = event.target;
-        if (addMemberCard.querySelector('.manage-add-member-form')) {
-            addMemberCard.removeChild(addMemberCard.querySelector('.manage-add-member-form'));
-            addMemberCard.textContent = '+';
-        } else {
-            addMemberCard.textContent = '';
-            const form = createAddMemberForm();
-            addMemberCard.appendChild(form);
-        }
-    }
+    //增删改的实现
+    function addTeamMember(){
+        //从地址栏中获得队伍id
+        const path = window.location.pathname;
+        const parts = path.split('/');
+        const teamId = parts[parts.length - 1];
+        // 从 input 和 select 中获得输入的信息
+        const userIdInput = document.querySelector('.add-user-card .user-id-input');
+        const jobSelect = document.querySelector('.add-user-card .job-select');
 
-    function createAddMemberForm() {
-        const form = document.createElement('div');
-        form.className = 'manage-add-member-form';
+        const userId = userIdInput.value.trim();
+        const jobId = jobSelect.value;
 
-        const searchInput = document.createElement('input');
-        searchInput.type = 'text';
-        searchInput.placeholder = '搜索用户';
-
-        const jobSelect = createManageJobSelect(mydata.data.jobs);
-
-        const addButton = document.createElement('button');
-        addButton.textContent = 'Add Member';
-        addButton.addEventListener('click', addNewMember);
-
-        form.appendChild(searchInput);
-        form.appendChild(jobSelect);
-        form.appendChild(addButton);
-
-        return form;
-    }
-
-    function addNewMember() {
-        const searchUser = document.querySelector('#manage-members-container .manage-add-member-card .manage-add-member-form input').value;
-        const selectedJob = document.querySelector('#manage-members-container .manage-add-member-card .manage-add-member-form select').value;
-
-        if (!searchUser) {
-            alert('请输入用户名');
+        // 验证输入
+        if (!userId) {
+            alert("请输入用户ID");
             return;
         }
 
-        const newMember = {
-            userId: mydata.data.teamMembers.length + 1,
-            username: searchUser,
-            phoneNumber: '', // Assuming phone number is not required for adding via search
-            email: '',
-            schoolId: 0,
-            notes: null,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-            deletedAt: null,
-            userAvatarId: 0,
-            userPwd: 'defaultpassword',
-            jobTitle: selectedJob
+        if (!jobId) {
+            alert("请选择一个职位");
+            return;
+        }
+
+        // 构造添加的信息
+        const teamMember = {
+            userId: parseInt(userId, 10), // 确保 userId 是数字
+            teamId: parseInt(teamId, 10), // 确保 teamId 是数字
+            jobId: parseInt(jobId, 10) // 确保 jobId 是数字
         };
 
-        mydata.data.teamMembers.push(newMember);
-        renderMembers();
+        // 发出请求
+        fetch('/team/addMember', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(teamMember)
+        })
+            .then(response => response.json())
+            .then(result => {
+                if (result.code === 200) {
+                    alert(`添加成功！用户名：${result.data.username}`);
+                    // 清空输入框
+                    userIdInput.value = '';
+                    jobSelect.selectedIndex = 0; // 重置下拉框到第一个选项
+                } else {
+                    alert(`添加失败：${result.message}`);
+                }
+            })
+            .catch(error => {
+                alert("添加成员时发生错误，请稍后再试！");
+                console.error("Error:", error);
+            });
     }
-
 </script>
 </body>
 </html>

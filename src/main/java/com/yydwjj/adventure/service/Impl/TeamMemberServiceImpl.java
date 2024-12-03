@@ -14,9 +14,11 @@ public class TeamMemberServiceImpl implements TeamMemberService {
 
     @Override
     public Result<Integer> addTeamMember(TeamMember teamMember) {
+
         int result = teamMemberMapper.addTeamMember(teamMember);
+        int teamMemberId = (int) teamMember.getTeamMemberId();
         if (result == 1) {
-            return Result.ok(result);
+            return Result.ok(teamMemberId);
         }
         return Result.build(null,506,"not add  member");
     }
