@@ -245,7 +245,7 @@ header {
         width:75%;
     }
     #middle1-title button,#show-btn,#delete-btn,#create-btn{
-        padding: 3px 25px;
+        padding: 3px 30px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -257,6 +257,7 @@ header {
 
     #middle1-title button:hover,#show-btn:hover,#delete-btn:hover,#create-btn:hover {
         background: #377F7F;
+        box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
     }
     /*基本信息*/
     .profile {
@@ -334,6 +335,7 @@ header {
       padding-right:20px;
       font-size:1rem;
       font-family: "黑体", sans-serif;
+      outline: none;
     }
     #name{
         font-weight: bold;
@@ -380,12 +382,15 @@ header {
     #my-resume button{
         padding:10px;
         width:100%;
-        background: rgba(125, 182, 191, 1);
         border:2px solid white;
-        border-radius:2px;
+        background: #E6F5F7;
+        border-radius: 10px;
+        border-left: 4px solid #54BCBD;
+        font-color:white;
     }
     #my-resume button:hover{
-        background: #377F7F;
+    background: rgb(168 212 219);
+    box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
     }
 
 
