@@ -71,6 +71,13 @@ public class ResumeController {
         return result;
     }
 
+    //根据ID查询他人评价再显示
+    @GetMapping("evaluation/{id}")
+    public Result getEvaluationById(@PathVariable int id ) {
+        Result result = resumeService.getEvaluationById(id);
+        return result;
+    }
+
     //预览
     @RequestMapping(value = "showResume")
     public Result showResume(@RequestHeader String token){
