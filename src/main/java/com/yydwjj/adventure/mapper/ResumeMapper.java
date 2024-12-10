@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.yydwjj.adventure.entity.Resume;
@@ -46,4 +47,21 @@ public interface ResumeMapper {
 
     @Select("select * from adventure.resume where adventure.resume.resume_id=#{resumeId} limit 1")
     Resume showResumesById(int resumeId);
+
+    @Select("SELECT " +
+            "resume_id AS resumeId, " +
+            "name, " +
+            "major, " +
+            "school, " +
+            "desired_position AS desiredPosition, " +
+            "personal_strengths AS personalStrengths " +
+            "FROM resume " +
+            "WHERE (name LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR major LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR school LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR desired_position LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR personal_strengths LIKE CONCAT('%', #{keyword}, '%')) " +
+            "AND deleted_at IS NULL " +
+            "ORDER BY created_at DESC")
+    List<Resume> searchResumesByKeyword(@Param("keyword") String keyword);
 }

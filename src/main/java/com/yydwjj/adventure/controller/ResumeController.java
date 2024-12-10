@@ -66,4 +66,9 @@ public class ResumeController {
         Result result = resumeService.showResumeById(id);
         return result;
     }
+
+    @GetMapping("/search")
+    public Result searchResumes(@RequestParam String keyword) {
+        return resumeService.searchResumes(keyword);
+    }
 }
