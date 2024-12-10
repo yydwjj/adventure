@@ -1,7 +1,11 @@
 package com.yydwjj.adventure.service.Impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.yydwjj.adventure.entity.Evaluation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +65,30 @@ public class ResumeServiceImpl implements ResumeService {
         }
         return Result.build(null,507,"删除失败");
     }
+
+    //查找他人对该用户的评价
+    @Override
+    public Result getEvaluationById(int ResumeId) {
+        int userId = resumeMapper.getUserIdByResumeId(ResumeId);
+        List<Evaluation> result=resumeMapper.getEvaluationById(userId);
+        if(result.isEmpty()){
+            return Result.build(null,507,"没有评价");
+        }
+        List<HashMap<String,Object>> EvaList = new ArrayList<>();
+        for(Evaluation eva : result) {
+            HashMap<String,Object> evaluatorMap = new HashMap<>();
+            String evaluatorName = resumeMapper.getEvaluatorName(eva.getEvaluatorId());
+            evaluatorMap.put("evaluatorName",evaluatorName);
+            evaluatorMap.put("content",eva.getContent());
+            evaluatorMap.put("rating",eva.getRating());
+            evaluatorMap.put("created_data",eva.getUpdatedAt());
+            EvaList.add(evaluatorMap);
+        }
+
+        return Result.ok(EvaList);
+    }
+
+
     @Override
     public Result showResume(Long userId) {
         Resume showresume = resumeMapper.showResumes(userId);

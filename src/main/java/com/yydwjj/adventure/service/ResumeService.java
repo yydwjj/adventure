@@ -32,6 +32,11 @@ public interface ResumeService {
      * */
     Result showResumeById(int resumeId);
 
+    /*
+    *寻找他人对该用户的评价
+    * */
+    Result getEvaluationById(int userId);
+
     Result editresume(Resume resume);
 
 
