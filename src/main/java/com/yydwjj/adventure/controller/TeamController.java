@@ -59,4 +59,9 @@ public class TeamController {
         Long userId = jwtHelper.getUserId(token);
         return teamService.getLeadTeam(Math.toIntExact(userId));
     }
+
+    @GetMapping("/search")
+    public List<Map<String, Object>> searchTeams(@RequestParam String keyword) {
+        return teamService.searchTeams(keyword);
+    }
 }

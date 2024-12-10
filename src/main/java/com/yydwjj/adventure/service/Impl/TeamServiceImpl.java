@@ -10,6 +10,8 @@ import com.yydwjj.adventure.service.TeamMemberService;
 import com.yydwjj.adventure.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -84,5 +86,14 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public List<Map<String, Object>> getLeadTeam(int id) {
         return teamMapper.getMyLeadTeamByUid(id);
+    }
+
+    @Override
+    public List<Map<String, Object>> searchTeams(String keyword) {
+        List<Long> teamIds = teamMapper.getTeamIdsByKeyword(keyword);
+        if (teamIds.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return teamMapper.getTeamsByIds(teamIds);
     }
 }
