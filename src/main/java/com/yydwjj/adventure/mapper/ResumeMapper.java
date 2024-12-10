@@ -2,6 +2,7 @@ package com.yydwjj.adventure.mapper;
 
 import java.util.List;
 
+import com.yydwjj.adventure.entity.Evaluation;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -72,4 +73,14 @@ public interface ResumeMapper {
     @Select("select * from adventure.resume where adventure.resume.resume_id=#{resumeId} limit 1")
     Resume showResumesById(int resumeId);
 
+    //找评价
+    @Select("select * from adventure.evaluation " +
+            " where adventure.evaluation.evaluatee_id=#{userId} limit 2")
+    List<Evaluation> getEvaluationById(int userId);
+
+    @Select("select username from user where user_id=#{evaluatorId}")
+    String getEvaluatorName(long evaluatorId);
+
+    @Select("select user_id from resume where resume_id=#{resumeId}")
+    int getUserIdByResumeId(int resumeId);
 }
