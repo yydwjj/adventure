@@ -247,6 +247,68 @@
         initDropdowns();
         loadCompetitions();
     });
+
+    function displayCompetitions(competitions) {
+        const container = document.getElementById('competitionContainer');
+        container.innerHTML = ''; // 清空现有内容
+
+        competitions.forEach(competition => {
+            const element = document.createElement('div');
+            element.className = 'group-info';
+            element.onclick = () => {
+                window.location.href = `/taskinfo/${competition.taskId}`;
+            };
+            element.style.cursor = 'pointer';
+
+            element.innerHTML = `
+                <div class="group-top">
+                    <div class="group-left">
+                        <p class="competition-name">竞赛名称: ${competition.taskName}</p>
+                        <p class="job-title">竞赛级别: <span class="job-name">${competition.levelName}</span></p>
+                        <p class="job-title">竞赛类别: <span class="job-name">${competition.categoryName}</span></p>
+                    </div>
+                    <div class="group-right">
+                        <p>报名时间: ${formatDate(competition.registrationStart)} ~ ${formatDate(competition.registrationEnd)}</p>
+                        <p>竞赛时间: ${formatDate(competition.taskStart)} ~ ${formatDate(competition.taskEnd)}</p>
+                    </div>
+                    <button class="contact-button" onclick="event.stopPropagation(); window.location.href='/taskinfo/${competition.taskId}'">报名</button>
+                </div>
+                <div class="green-space">
+                    <div class="left-content">
+                        <span>${competition.taskInfo}</span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(element);
+        });
+    }
+
+    function searchCompetitions() {
+        const keyword = document.querySelector('.search-input').value;
+        fetch(`/competition/search?keyword=${encodeURIComponent(keyword)}`)
+            .then(response => response.json())
+            .then(result => {
+                if (result.code === 200) {
+                    displayCompetitions(result.data); // 使用返回的数据更新页面显示
+                }
+            })
+            .catch(error => console.error('搜索竞赛数据失败:', error));
+    }
+
+    // 绑定搜索按钮的点击事件和输入框的回车事件
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = document.querySelector('.search-button');
+
+        searchButton.addEventListener('click', searchCompetitions);
+        searchInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                searchCompetitions();
+            }
+        });
+
+        loadCompetitions(); // 页面加载时获取所有竞赛信息
+    });
 </script>
 <!--方法引入-->
 <script src="js/getUserInfo.js"></script>

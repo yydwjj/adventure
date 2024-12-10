@@ -3,10 +3,8 @@ package com.yydwjj.adventure.mapper;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import com.yydwjj.adventure.entity.Task;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface CompetitionMapper {
@@ -69,4 +67,25 @@ public interface CompetitionMapper {
             @Result(column = "category_name", property = "categoryName")
     })
     Map<String, Object> getCompetitionInfo(Integer id);
+
+    @Select("SELECT " +
+            "t.task_id AS taskId, " +
+            "t.task_name AS taskName, " +
+            "tl.level_name AS levelName, " +
+            "tc.category_name AS categoryName, " +
+            "t.registration_start AS registrationStart, " +
+            "t.registration_end AS registrationEnd, " +
+            "t.task_start AS taskStart, " +
+            "t.task_end AS taskEnd, " +
+            "t.task_info AS taskInfo " +
+            "FROM task t " +
+            "LEFT JOIN task_level tl ON t.task_level_id = tl.task_level_id " +
+            "LEFT JOIN task_categorie tc ON t.task_category_id = tc.task_category_id " +
+            "WHERE (t.task_name LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR tl.level_name LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR tc.category_name LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR t.task_info LIKE CONCAT('%', #{keyword}, '%')) " +
+            "AND t.is_exist = 1 " +
+            "ORDER BY t.created_at DESC")
+    List<Map<String, Object>> searchCompetitionsByKeyword(@Param("keyword") String keyword);
 }
