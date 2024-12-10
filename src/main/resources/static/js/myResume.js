@@ -16,38 +16,39 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (response.ok) {
             const resumes = await response.json();
             const MyResumeList = document.getElementById('my-resume');
-
             // 创建按钮数组，用于后续获取第一个按钮的id
             const resumeButtons = [];
-            resumes.data.forEach(resume => {
-                const resumeButton = document.createElement('button');
-                resumeButton.textContent = resume.resumeName; // 展示简历名称
-                resumeButton.id = resume.resumeId; // 将简历Id藏入按钮Id中
-                // 为每个简历按钮添加点击事件监听器
-                resumeButton.addEventListener('click', async function () {
-                    const resumeId = this.id;
-                    try {
-                        const InfoResponse = await fetch(`/resume/info/${resumeId}`, {
-                            method: 'GET',
-                            headers: {
-                                'token': authToken
+            if (resumes.data != null ) {
+                resumes.data.forEach(resume => {
+                    const resumeButton = document.createElement('button');
+                    resumeButton.textContent = resume.resumeName; // 展示简历名称
+                    resumeButton.id = resume.resumeId; // 将简历Id藏入按钮Id中
+                    // 为每个简历按钮添加点击事件监听器
+                    resumeButton.addEventListener('click', async function () {
+                        const resumeId = this.id;
+                        try {
+                            const InfoResponse = await fetch(`/resume/info/${resumeId}`, {
+                                method: 'GET',
+                                headers: {
+                                    'token': authToken
+                                }
+                            });
+                            if (InfoResponse.ok) {
+                                const Info = await InfoResponse.json();
+                                const resumeData = Info.data;
+                                // 调用通用函数展示各个字段信息
+                                updateResumeInfo(resumeData, resumeId);
+                            } else {
+                                console.error('获取基本信息失败:', InfoResponse.statusText);
                             }
-                        });
-                        if (InfoResponse.ok) {
-                            const Info = await InfoResponse.json();
-                            const resumeData = Info.data;
-                            // 调用通用函数展示各个字段信息
-                            updateResumeInfo(resumeData, resumeId);
-                        } else {
-                            console.error('获取基本信息失败:', InfoResponse.statusText);
+                        } catch (error) {
+                            console.error('网络错误（获取基本信息）:', error);
                         }
-                    } catch (error) {
-                        console.error('网络错误（获取基本信息）:', error);
-                    }
+                    });
+                    resumeButtons.push(resumeButton);
+                    MyResumeList.appendChild(resumeButton);
                 });
-                resumeButtons.push(resumeButton);
-                MyResumeList.appendChild(resumeButton);
-            });
+            }
 
             // 获取第一个简历按钮对应的id，如果有按钮的话
             const firstResumeId = resumeButtons.length > 0? resumeButtons[0].id : null;

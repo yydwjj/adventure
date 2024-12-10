@@ -213,6 +213,7 @@ header {
     #left1>a>div{
         margin: 20px auto;
         height:50px;
+        color:black;
     }
     #left1 a div:hover{
         background-color:#BBBBBB;
@@ -372,12 +373,12 @@ header {
                 width:100%;
     }
      /* 为右侧栏我的简历部分添加样式，使其出现滚动条 */
-        #my-resume{
-          max-height: 250px; /* 设置最大高度，超出则出现滚动条 */
-          overflow-y: auto; /* 仅在垂直方向出现滚动条 */
-          border: 1px ; /* 添加边框，可根据实际需求调整样式 */
-
-        }
+    #my-resume{
+        max-height: 250px; /* 设置最大高度，超出则出现滚动条 */
+        overflow-y: auto; /* 仅在垂直方向出现滚动条 */
+        border: 1px ; /* 添加边框，可根据实际需求调整样式 */
+        width:100%;
+    }
         /* 我的简历*/
     #my-resume button{
         padding:10px;

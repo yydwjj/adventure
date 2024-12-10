@@ -13,6 +13,7 @@ body {
     height: 100%;
     overflow-x: hidden;
     background: linear-gradient(to bottom,#E6F5F7,white);
+    background-repeat: no-repeat;
 }
 
 a{
@@ -199,6 +200,7 @@ header {
 }
 .task-title{
     font-size: 28px;
+    border-left: 6px solid rgba(34, 191, 167, 1);
 }
 .username{
     font-size: 18px;
