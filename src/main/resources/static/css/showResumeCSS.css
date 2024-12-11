@@ -256,32 +256,34 @@ header {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 10px;
+    padding:10px;
     border-bottom: 2px solid rgba(125, 182, 191, 1);
 }
 .evaluatorName{
-    font-size: 36px;
+    font-size: 22px;
     font-weight: 600;
+    margin-left: 10px;
 }
 .CreateData{
     height: 20px;
-    line-height: 50px;
+    width: 100%;
     margin-top: 6px;
     font-size: 14px;
     color: #b0b0b0;
+    margin-left: 20px;
 }
 .content{
     width:100%;
-
-    margin-left:20px
+    margin-left:20px;
     color: #5e5e5e;
     font-size: 18px;
 }
 .rating{
-    font-size: 25px;
-    margin-left: 85%;
-    color: #d41212;
-    margin-bottom: 20px;
-    font-family: "黑体";
+    margin-left: 80%;
+    margin-bottom: -10px;
+}
+.rating img{
+    width: 100%;
 }
 /*按钮*/
 #button-container button{
