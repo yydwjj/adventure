@@ -31,7 +31,7 @@ body {
   width: var(--wrapper);
   height: 800px;
   -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 .container {
@@ -42,7 +42,7 @@ body {
   height: 75%;
   background-color: var(--white);
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .container .left {
   float: left;
@@ -67,7 +67,7 @@ body {
   content: '';
   background-color: var(--light);
   -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 .container .left input {
   float: left;
@@ -119,7 +119,7 @@ body {
   content: '';
   background-color: var(--light);
   -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 .container .left .people .person img {
   float: left;
@@ -199,55 +199,55 @@ body {
   border-style: solid;
   border-color: var(--light);
   height: calc(100% - 48px);
-  justify-content: flex-end;
+  /*justify-content: flex-end;*/
   flex-direction: column;
 }
 .container .right .chat.active-chat {
-  display: block;
   display: flex;
+  overflow:scroll;
 }
 .container .right .chat.active-chat .bubble {
   transition-timing-function: cubic-bezier(0.4, -0.04, 1, 1);
 }
 .container .right .chat.active-chat .bubble:nth-of-type(1) {
   -webkit-animation-duration: 0.15s;
-          animation-duration: 0.15s;
+  animation-duration: 0.15s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(2) {
   -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
+  animation-duration: 0.3s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(3) {
   -webkit-animation-duration: 0.45s;
-          animation-duration: 0.45s;
+  animation-duration: 0.45s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(4) {
   -webkit-animation-duration: 0.6s;
-          animation-duration: 0.6s;
+  animation-duration: 0.6s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(5) {
   -webkit-animation-duration: 0.75s;
-          animation-duration: 0.75s;
+  animation-duration: 0.75s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(6) {
   -webkit-animation-duration: 0.9s;
-          animation-duration: 0.9s;
+  animation-duration: 0.9s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(7) {
   -webkit-animation-duration: 1.05s;
-          animation-duration: 1.05s;
+  animation-duration: 1.05s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(8) {
   -webkit-animation-duration: 1.2s;
-          animation-duration: 1.2s;
+  animation-duration: 1.2s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(9) {
   -webkit-animation-duration: 1.35s;
-          animation-duration: 1.35s;
+  animation-duration: 1.35s;
 }
 .container .right .chat.active-chat .bubble:nth-of-type(10) {
   -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
+  animation-duration: 1.5s;
 }
 .container .right .write {
   position: absolute;
@@ -259,11 +259,12 @@ body {
   background-color: #eceff1;
   width: calc(100% - 58px);
   border-radius: 5px;
+  box-shadow: -8px 8px 0px 21px white;
 }
 .container .right .write input {
   font-size: 16px;
   float: left;
-  width: 347px;
+  width: 350px;
   height: 40px;
   padding: 0 10px;
   color: var(--dark);
@@ -322,7 +323,7 @@ body {
   height: 6px;
   content: '\00a0';
   -webkit-transform: rotate(29deg) skew(-35deg);
-          transform: rotate(29deg) skew(-35deg);
+  transform: rotate(29deg) skew(-35deg);
 }
 .container .right .bubble.you {
   float: left;
@@ -330,7 +331,7 @@ body {
   background-color: var(--blue);
   align-self: flex-start;
   -webkit-animation-name: slideFromLeft;
-          animation-name: slideFromLeft;
+  animation-name: slideFromLeft;
 }
 .container .right .bubble.you:before {
   left: -3px;
@@ -342,7 +343,7 @@ body {
   background-color: #eceff1;
   align-self: flex-end;
   -webkit-animation-name: slideFromRight;
-          animation-name: slideFromRight;
+  animation-name: slideFromRight;
 }
 .container .right .bubble.me:before {
   right: -3px;
