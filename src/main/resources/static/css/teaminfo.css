@@ -20,6 +20,7 @@ body {
 /* 链接样式：去掉默认下划线 */
 a {
     text-decoration: none;
+    color: black;
 }
 /*不显示小圆点*/
 li {

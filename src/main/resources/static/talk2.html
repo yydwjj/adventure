@@ -70,7 +70,7 @@
             <div class="top" id="top"><span><span class="name"></span></span></div>
             <div class="chat active-chat" data-chat="person0" id="0msg" style="visibility: hidden"></div>
 
-            <div class="write">
+            <div class="write" id="write" style="visibility: hidden">
                 <a href="javascript:;" class="write-link attach"></a>
                 <input type="text" id="text"/>
                 <a href="javascript:;" class="write-link smiley"></a>
@@ -183,10 +183,10 @@
             const personDivs = document.querySelectorAll('.person');
             for (let i = 0; i < personDivs.length; i++) {
                 personDivs[i].addEventListener('click', function () {
-                    toname=personDivs[i].id.substring(0,1);
-                    console.log(toname);
+                    toname=personDivs[i].id.substring(0,personDivs[i].id.length-1);
                     let choosediv=document.getElementById('write');
                     choosediv.style.visibility='visible';
+                    console.log(choosediv);
                 });
             }
             //点击左侧元素时，修改toname并显示聊天框

@@ -183,7 +183,7 @@
                 const personDivs = document.querySelectorAll('.person');
                 for (let i = 0; i < personDivs.length; i++) {
                     personDivs[i].addEventListener('click', function () {
-                        toname = personDivs[i].id.substring(0, 1);
+                        toname=personDivs[i].id.substring(0,personDivs[i].id.length-1);
                         console.log(toname);
                         let choosediv=document.getElementById('write');
                         choosediv.style.visibility='visible';
