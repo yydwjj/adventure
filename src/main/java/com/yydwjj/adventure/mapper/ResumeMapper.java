@@ -76,7 +76,7 @@ public interface ResumeMapper {
 
     //找评价
     @Select("select * from adventure.evaluation " +
-            " where adventure.evaluation.evaluatee_id=#{userId} limit 2")
+            " where adventure.evaluation.evaluatee_id=#{userId} order by evaluation_time")
     List<Evaluation> getEvaluationById(int userId);
 
     @Select("select username from user where user_id=#{evaluatorId}")
@@ -101,4 +101,7 @@ public interface ResumeMapper {
             "AND deleted_at IS NULL " +
             "ORDER BY created_at DESC")
     List<Resume> searchResumesByKeyword(@Param("keyword") String keyword);
+
+    @Select("select resume.user_id from resume where resume_id = #{rid}")
+    int getUidByRid(int rid);
 }

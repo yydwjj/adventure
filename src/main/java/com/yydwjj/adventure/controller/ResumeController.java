@@ -90,4 +90,9 @@ public class ResumeController {
     public Result searchResumes(@RequestParam String keyword) {
         return resumeService.searchResumes(keyword);
     }
+
+    @GetMapping("/user/{rid}")
+    public Result getUserIdByRid(@PathVariable int rid) {
+        return resumeService.getUidByRid(rid);
+    }
 }

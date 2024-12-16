@@ -42,4 +42,6 @@ public interface ResumeService {
 
 
     Result searchResumes(String keyword);
+
+    Result getUidByRid(int rid);
 }

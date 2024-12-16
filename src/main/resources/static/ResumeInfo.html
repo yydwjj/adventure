@@ -193,5 +193,55 @@
             }
         });
     </script>
+<!--获得简历的拥有者id-->
+<script>
+    // 页面加载时执行
+    window.addEventListener('load', async () => {
+        try {
+            // 从当前URL中提取rid
+            const pathSegments = window.location.pathname.split('/').filter(segment => segment !== '');
+            const rid = pathSegments.pop();
+
+            if (!rid) {
+                throw new Error('无法找到有效的rid');
+            }
+
+            // 构建API请求URL
+            const apiUrl = `/resume/user/${rid}`;
+
+            // 使用fetch发送GET请求
+            const response = await fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            // 检查请求是否成功
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            // 解析JSON响应
+            const data = await response.json();
+            const uid = data.data;
+
+            if (typeof uid !== 'number') {
+                throw new Error('无效的用户ID');
+            }
+
+            // 为按钮设置点击事件
+            document.getElementById('talking').addEventListener('click', () => {
+                // 构造跳转URL
+                const redirectUrl = `/teaminfo/0/talk/${uid}`;
+                // 导航到新页面
+                window.location.href = redirectUrl;
+            });
+        } catch (error) {
+            console.error('请求失败:', error);
+            alert(`请求失败: ${error.message}`);
+        }
+    });
+</script>
 </body>
 </html>

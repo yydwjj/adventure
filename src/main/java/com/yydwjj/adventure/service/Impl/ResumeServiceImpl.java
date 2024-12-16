@@ -114,4 +114,10 @@ public class ResumeServiceImpl implements ResumeService {
         List<Resume> resumes = resumeMapper.searchResumesByKeyword(keyword);
         return Result.ok(resumes);
     }
+
+    @Override
+    public Result getUidByRid(int rid) {
+        int uid = resumeMapper.getUidByRid(rid);
+        return Result.ok(uid);
+    }
 }
