@@ -93,4 +93,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 将新的li元素添加到ul中
     sidebarMenu.appendChild(newMenuItem);
+    const logOutItem = document.createElement('li');
+    logOutItem.className = 'menu-item';
+
+    // 创建a元素，设置跳转链接
+    const logOutLink = document.createElement('a');
+    logOutLink.href = '#.';
+
+    // 创建img元素
+    const logOutImg = document.createElement('img');
+    logOutImg.src = '/icon/logOut.svg'; // 请替换为你自己的图标路径
+    logOutImg.alt = '退出';
+
+    // 创建span元素
+    const logOutSpan = document.createElement('span');
+    logOutSpan.textContent = '退出登录';
+
+    // 将img和span添加到a元素中
+    logOutLink.appendChild(logOutImg);
+    logOutLink.appendChild(logOutSpan);
+
+    // 将a元素添加到新的li元素中
+    logOutItem.appendChild(logOutLink);
+    logOutItem.addEventListener('click',function(event){
+        // 阻止默认行为（如果需要）
+        event.preventDefault();
+
+        // 询问用户是否确认退出登录
+        const isConfirmed = confirm('您确定要退出登录吗？');
+
+        if (isConfirmed) {
+            // 删除本地存储的 authToken
+            localStorage.removeItem('authToken');
+            // 或者如果你使用的是 sessionStorage
+            // sessionStorage.removeItem('authToken');
+
+            // 重定向到 /index 页面
+            window.location.href = '/index';
+        } else {
+            // 用户选择不退出，什么也不做
+            console.log('用户选择取消退出登录');
+        }
+    })
+
+    // 将新的li元素添加到ul中
+    sidebarMenu.appendChild(logOutItem);
 });
