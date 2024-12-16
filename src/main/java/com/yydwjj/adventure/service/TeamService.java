@@ -30,6 +30,8 @@ public interface TeamService {
 
     List<Map<String, Object>> getLeadTeam(int id);
 
+    List<Map<String, Object>> searchTeams(String keyword);
+
     Result getTeamMembers(long userId, Long taskId);
 
     /**

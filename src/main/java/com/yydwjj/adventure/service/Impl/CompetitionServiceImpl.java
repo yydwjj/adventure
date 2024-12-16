@@ -3,6 +3,7 @@ package com.yydwjj.adventure.service.Impl;
 import java.util.List;
 import java.util.Map;
 
+import com.yydwjj.adventure.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,11 @@ public class CompetitionServiceImpl implements CompetitionService {
     public Result getCompetitionInfo(Integer id) {
         Map<String, Object> info = competitionMapper.getCompetitionInfo(id);
         return Result.ok(info);
+    }
+
+    @Override
+    public Result searchCompetitions(String keyword) {
+        List<Map<String, Object>> competitions = competitionMapper.searchCompetitionsByKeyword(keyword);
+        return Result.ok(competitions);
     }
 }

@@ -83,4 +83,9 @@ public class TeamController {
             return Result.build(null,506,"Add team member failed");
         }
     }
+
+    @GetMapping("/search")
+    public List<Map<String, Object>> searchTeams(@RequestParam String keyword) {
+        return teamService.searchTeams(keyword);
+    }
 }

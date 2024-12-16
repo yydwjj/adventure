@@ -1,10 +1,7 @@
 package com.yydwjj.adventure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.CompetitionService;
@@ -24,5 +21,10 @@ public class CompetitionController {
     @GetMapping("/info/{id}")
     public Result getCompetitionInfo(@PathVariable Integer id) {
         return competitionService.getCompetitionInfo(id);
+    }
+
+    @GetMapping("/search")
+    public Result searchCompetitions(@RequestParam String keyword) {
+        return competitionService.searchCompetitions(keyword);
     }
 }

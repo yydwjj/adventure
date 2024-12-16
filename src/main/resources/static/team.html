@@ -120,6 +120,9 @@
 </div>
 
 
+<!-- 发布按钮 -->
+<button class="publish-button">发布</button>
+
 <!--翻页-->
 <div class="pagination">
     <button class="page-button" id="prev-page">上一页</button>
@@ -267,7 +270,7 @@
         initDropdowns();
     });
 
-    function displayTeams(teams) {
+   function displayTeams(teams) {
         const container = document.querySelector('.group-container');
         container.innerHTML = ''; // 清空现有内容
 

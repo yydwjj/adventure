@@ -70,4 +70,10 @@ public class ResumeServiceImpl implements ResumeService {
         }
         return Result.ok(showresume);
     }
+
+    @Override
+    public Result searchResumes(String keyword) {
+        List<Resume> resumes = resumeMapper.searchResumesByKeyword(keyword);
+        return Result.ok(resumes);
+    }
 }

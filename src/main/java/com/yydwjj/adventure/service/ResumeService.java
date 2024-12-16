@@ -31,4 +31,6 @@ public interface ResumeService {
      * 通过简历ID获取信息
      * */
     Result showResumeById(int resumeId);
+
+    Result searchResumes(String keyword);
 }

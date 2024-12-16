@@ -124,4 +124,75 @@ public interface TeamMapper {
             "GROUP BY t.team_id, task.task_name, u.username, tl.level_name, tc.category_name " +
             "ORDER BY t.created_at DESC")
     List<Map<String, Object>> getMyLeadTeamByUid(int id);
+
+    @Select("SELECT " +
+            "CONVERT(t.team_id, UNSIGNED) AS teamId, " +
+            "t.team_name AS teamName, " +
+            "t.team_info AS teamInfo, " +
+            "task.task_name AS taskName, " +
+            "GROUP_CONCAT(DISTINCT jp.job_title SEPARATOR ', ') AS jobTitle, " +  // 使用 GROUP_CONCAT 合并岗位信息
+            "u.username AS captainName, " +
+            "tl.level_name AS levelName, " +
+            "tc.category_name AS categoryName " +
+            "FROM team t " +
+            "LEFT JOIN task ON t.task_id = task.task_id " +
+            "LEFT JOIN job_post jp ON t.team_id = jp.team_id " +
+            "LEFT JOIN user u ON t.captain_id = u.user_id " +
+            "LEFT JOIN task_level tl ON task.task_level_id = tl.task_level_id " +
+            "LEFT JOIN task_categorie tc ON task.task_category_id = tc.task_category_id " +
+            "WHERE t.is_public = 1 " +
+            "AND t.team_state = 1 " +
+            "AND t.deleted_at IS NULL " +
+            "AND (" +
+            "t.team_name LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR t.team_info LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR task.task_name LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR jp.job_title LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR u.username LIKE CONCAT('%', #{keyword}, '%') " +
+            ") " +
+            "GROUP BY t.team_id, t.team_name, t.team_info, task.task_name, u.username, tl.level_name, tc.category_name " +
+            "ORDER BY t.created_at DESC")
+    List<Map<String, Object>> searchTeamsByKeyword(@Param("keyword") String keyword);
+
+//    根据关键字搜索小组id
+    @Select("SELECT DISTINCT t.team_id " +
+            "FROM team t " +
+            "LEFT JOIN job_post jp ON t.team_id = jp.team_id " +
+            "LEFT JOIN task ON t.task_id = task.task_id " +
+            "LEFT JOIN user u ON t.captain_id = u.user_id " +
+            "WHERE t.is_public = 1 " +
+            "AND t.team_state = 1 " +
+            "AND t.deleted_at IS NULL " +
+            "AND (t.team_name LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR t.team_info LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR task.task_name LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR jp.job_title LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR u.username LIKE CONCAT('%', #{keyword}, '%'))")
+    List<Long> getTeamIdsByKeyword(@Param("keyword") String keyword);
+
+//    根据id搜索小组信息
+    @Select("<script>" +
+            "SELECT " +
+            "CONVERT(t.team_id, UNSIGNED) AS teamId, " +
+            "t.team_name AS teamName, " +
+            "t.team_info AS teamInfo, " +
+            "task.task_name AS taskName, " +
+            "GROUP_CONCAT(DISTINCT jp.job_title SEPARATOR ', ') AS jobTitle, " +
+            "u.username AS captainName, " +
+            "tl.level_name AS levelName, " +
+            "tc.category_name AS categoryName " +
+            "FROM team t " +
+            "LEFT JOIN task ON t.task_id = task.task_id " +
+            "LEFT JOIN job_post jp ON t.team_id = jp.team_id " +
+            "LEFT JOIN user u ON t.captain_id = u.user_id " +
+            "LEFT JOIN task_level tl ON task.task_level_id = tl.task_level_id " +
+            "LEFT JOIN task_categorie tc ON task.task_category_id = tc.task_category_id " +
+            "WHERE t.team_id IN " +
+            "<foreach item='id' collection='teamIds' open='(' separator=',' close=')'>" +
+            "#{id}" +
+            "</foreach> " +
+            "GROUP BY t.team_id, t.team_name, t.team_info, task.task_name, u.username, tl.level_name, tc.category_name " +
+            "ORDER BY t.created_at DESC" +
+            "</script>")
+    List<Map<String, Object>> getTeamsByIds(@Param("teamIds") List<Long> teamIds);
 }
