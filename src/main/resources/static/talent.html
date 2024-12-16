@@ -149,8 +149,7 @@
     </div>
 </div>
 
-<!-- 发布按钮 -->
-<button class="publish-button">发布</button>
+
 
 <!--翻页-->
 <div class="pagination">
@@ -220,6 +219,66 @@
     document.addEventListener('DOMContentLoaded', () => {
         loadResumes();
         initDropdowns();
+    });
+
+    // 人才信息搜索
+    function displayResumes(resumes) {
+        const container = document.querySelector('.group-container');
+        container.innerHTML = ''; // 清空现有内容
+
+        resumes.forEach(resume => {
+            const element = document.createElement('div');
+            element.className = 'group-info';
+            element.onclick = () => {
+                window.location.href = `/resumeinfo/${resume.resumeId}`;
+            };
+            element.style.cursor = 'pointer';
+
+            element.innerHTML = `
+                <div class="group-top">
+                    <div class="group-left">
+                        <p class="competition-name">姓名: ${resume.name}</p>
+                        <p>专业: ${resume.major}</p>
+                    </div>
+                    <div class="group-right">
+                        <p>学校: ${resume.school}</p>
+                        <p>期望岗位: ${resume.desiredPosition}</p>
+                    </div>
+                    <button class="contact-button" onclick="event.stopPropagation();">联系我</button>
+                </div>
+                <div class="green-space">
+                    <div class="left-content">
+                        <span>个人优势: ${resume.personalStrengths}</span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(element);
+        });
+    }
+
+    function searchResumes() {
+        const keyword = document.querySelector('.search-input').value;
+        fetch(`/resume/search?keyword=${encodeURIComponent(keyword)}`)
+            .then(response => response.json())
+            .then(result => {
+                displayResumes(result.data); // 使用返回的数据更新页面显示
+            })
+            .catch(error => console.error('搜索简历数据失败:', error));
+    }
+
+    // 绑定搜索按钮的点击事件和输入框的回车事件
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = document.querySelector('.search-button');
+
+        searchButton.addEventListener('click', searchResumes);
+        searchInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                searchResumes();
+            }
+        });
+
+        loadResumes(); // 页面加载时获取所有人才信息
     });
 </script>
 <!--方法引入-->
