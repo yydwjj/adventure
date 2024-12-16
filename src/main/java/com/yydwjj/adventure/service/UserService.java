@@ -1,5 +1,6 @@
 package com.yydwjj.adventure.service;
 
+import com.yydwjj.adventure.entity.Evaluation;
 import com.yydwjj.adventure.entity.User;
 import com.yydwjj.adventure.result.Result;
 import org.springframework.stereotype.Service;
@@ -17,4 +18,5 @@ public interface UserService {
 
     Result getUserInfo(int id);
 
+    Result rant(String token, Evaluation evaluation);
 }

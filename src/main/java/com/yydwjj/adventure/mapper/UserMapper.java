@@ -1,5 +1,6 @@
 package com.yydwjj.adventure.mapper;
 
+import com.yydwjj.adventure.entity.Evaluation;
 import com.yydwjj.adventure.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -30,4 +31,8 @@ public interface UserMapper {
                     "phone_number = #{phoneNumber},updated_at = NOW(),notes = #{notes}," +
                     " school_id = #{schoolId} WHERE user_id = #{userId}")
     int updateById(User user);
+
+    @Update("insert into adventure.evaluation(evaluator_id,evaluatee_id,content,rating,adventure.evaluation.evaluation_time,adventure.evaluation.updated_at)" +
+            "value (#{evaluatorId},#{evaluateeId},#{content},#{rating},#{evaluationTime},#{updatedAt})")
+    int rant(Evaluation evaluation);
 }

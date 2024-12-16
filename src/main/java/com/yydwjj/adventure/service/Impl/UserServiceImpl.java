@@ -1,5 +1,6 @@
 package com.yydwjj.adventure.service.Impl;
 
+import com.yydwjj.adventure.entity.Evaluation;
 import com.yydwjj.adventure.entity.User;
 import com.yydwjj.adventure.mapper.UserMapper;
 import com.yydwjj.adventure.result.Result;
@@ -30,6 +31,22 @@ public class UserServiceImpl implements UserService {
             return Result.build(null,506,"not found user");
         }
         return Result.ok(user);
+    }
+
+    @Override
+    public Result rant(String token, Evaluation evaluation) {
+        Long evaluatorId = jwtHelper.getUserId(token);
+        evaluation.setEvaluatorId(evaluatorId);
+        evaluation.setJobId(1);
+        evaluation.setEvaluationTime(new Timestamp(System.currentTimeMillis()));
+        evaluation.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        int result = userMapper.rant(evaluation);
+
+        if(result == 0){
+            return Result.build(null,506,"rant failed");
+        }else{
+            return Result.ok(result);
+        }
     }
 
     /**

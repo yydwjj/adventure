@@ -1,8 +1,10 @@
 package com.yydwjj.adventure.controller;
 
+import com.yydwjj.adventure.entity.Evaluation;
 import com.yydwjj.adventure.entity.User;
 import com.yydwjj.adventure.result.Result;
 import com.yydwjj.adventure.service.UserService;
+import com.yydwjj.adventure.utils.JwtHelper;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -61,5 +63,10 @@ public class UserController {
     @GetMapping(value = "getUserInfo/{id}")
     public Result getUserInfo(@PathVariable int id) {
         return userService.getUserInfo(id);
+    }
+
+    @PostMapping(value = "rant")
+    public Result rant(@RequestHeader String token, @RequestBody Evaluation evaluation) {
+        return userService.rant(token,evaluation);
     }
 }
