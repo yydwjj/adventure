@@ -191,7 +191,7 @@
                 taskDiv.classList.add('task-container');
                 taskDiv.style.transition = 'height 0.3s ease'; // 添加过渡动画
                 taskDiv.innerHTML = `
-                <h3>${task.taskName}</h3>
+                <h3><a href="/taskinfo/${task.taskId}">${task.taskName}</a></h3>
                 <div class="grid-layout">
                     <p>级别: ${task.levelName}</p>
                     <p>开始时间: ${new Date(task.taskStart).toLocaleString()}</p>
@@ -250,6 +250,7 @@
                 // 提交评价
                 const submitRatingBtn = taskDiv.querySelector('.submit-rating-btn');
                 submitRatingBtn.addEventListener('click', () => {
+                    const allowedValues = [1, 2, 3, 4, 5];
                     const ratingInput = ratingBox.querySelector('input');
                     const commentInput = ratingBox.querySelector('textarea');
                     const selectedUserId = ratingBox.dataset.userId; // 直接从 ratingBox 获取用户 ID
@@ -259,11 +260,23 @@
                         return;
                     }
 
-                    const rating = ratingInput.value;
+                    const rating = parseInt(ratingInput.value, 10);
                     const comment = commentInput.value;
 
                     if (!rating || !comment) {
                         alert('请填写完整的评分和评价内容');
+                        return;
+                    }
+                    if (allowedValues.includes(rating)) {
+                        // 输入有效，可以继续处理表单或执行其他逻辑
+                        // validationMessage.textContent = ''; // 清除任何之前的错误消息
+                        // alert(`您选择了评分: ${value}`);
+                        // 这里可以添加进一步的处理逻辑，比如提交表单等
+                    } else {
+                        // 输入无效，给出提示信息
+                        alert('请输入1到5之间的整数。');
+                        ratingInput.value = ''; // 清空输入框
+                        // ratingInput.focus(); // 将焦点返回给输入框
                         return;
                     }
 
@@ -301,6 +314,7 @@
                             alert('提交评价时发生错误，请稍后重试。');
                         });
                 });
+
             });
         })
         .catch(error => {
