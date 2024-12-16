@@ -518,3 +518,151 @@ header {
     color: #70B9BB;
     cursor: not-allowed;
 }
+
+/*历史任务*/
+/*历史任务容器*/
+#historyCompetitionContainer{
+    width: 52%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0 auto;
+}
+/*历史任务信息列表容器*/
+.task-container{
+    width: 100%;
+    /*background-color: rgba(255, 255, 255, 1);*/
+    background: linear-gradient(#fff 0%, #ffffff 80%, #70b9bb14 100%);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.task-container .grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+/*标题*/
+.task-container h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+/*文字*/
+.task-container p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+/*任务介绍*/
+.task-container .task-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    white-space: pre-wrap; /* Preserve line breaks */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4em; /* Limit to 2 lines */
+    position: relative;
+}
+
+/* 隐藏用户列表和评论区域 */
+.user-list {
+    position: relative;
+    z-index: -1;
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s, z-index 0.3s;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.user-item {
+    z-index: 2;
+    position: relative;
+    background-color: #f0f0f0;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    max-height: 30px;
+}
+.user-item:hover {
+    background-color: #e0e0e0; /* Lighter gray on hover */
+}
+.user-item.active {
+    color: #007bff; /* Blue when clicked */
+    max-height: 30px;
+}
+.task-container:hover .user-list {
+    z-index: 1;
+    height: auto; /* 根据内容高度自动扩展 */
+}
+
+/* 超长任务信息隐藏 */
+/*.task-info {*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    display: -webkit-box;*/
+/*    -webkit-box-orient: vertical;*/
+/*    -webkit-line-clamp: 1; !* 限制为三行 *!*/
+/*}*/
+
+.rating-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left; /* 评分和评价靠左 */
+    border: 1px solid #e0e0e0; /* 浅灰色边框 */
+}
+.rating-box label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+}
+.rating-box input[type="number"] {
+    width: 50px;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #ccc; /* 仅保留下边框 */
+    text-align: center;
+    outline: none; /* 去除聚焦时的默认边框 */
+}
+.rating-box textarea {
+    width: calc(100% - 22px); /* 确保与左边距一致 */
+    height: 100px;
+    padding: 10px;
+    margin-top: 15px;
+    border: none; /* 去除边框 */
+    resize: vertical;
+    outline: none; /* 去除聚焦时的默认边框 */
+}
+.rating-box textarea:hover {
+    border: 1px solid rgb(196, 221, 216); /* 鼠标悬停时显示轮廓 */
+    border-radius: 4px;
+    padding: 9px; /* 调整内边距以保持一致 */
+}
+.submit-rating-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #22bfa7;
+    border: 1px solid #22bfa7;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.submit-rating-btn:hover {
+    background-color: rgba(214, 246, 241, 0.88);
+}
+
+.user-list .user-item:focus ~ .rating-box {
+    display: block;
+}

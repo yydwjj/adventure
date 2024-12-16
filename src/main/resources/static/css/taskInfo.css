@@ -10,9 +10,9 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 120vh;
     overflow-x: hidden;
-    background: linear-gradient(to bottom,#E6F5F7,white);
+    background: linear-gradient(to top, #e6f5f7ba, white);
     background-repeat: no-repeat;
 }
 

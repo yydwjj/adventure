@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 设置 carousel-container 的样式
-    carouselContainer.style.height = '200px'; // 调整高度
+    carouselContainer.style.height = '150px'; // 调整高度
     carouselContainer.style.marginBottom = '80px'; // 添加底部外边距
 
     function showSlides(n) {

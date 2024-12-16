@@ -43,6 +43,7 @@ getUserInfo().then(data => {
         name.innerHTML = `<a href="/login">登录 / 注册</a>`;
         console.log('Failed to fetch user info.');
     }
+    document.querySelector("header").style.borderBottom = '1px solid #0000002e';
     // 顶部超链接
     const navigationLinks = document.querySelectorAll('.navigation a');
     // 定义每个链接的新目标 URL

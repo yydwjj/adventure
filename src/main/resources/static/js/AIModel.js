@@ -48,11 +48,19 @@ function createResponseContainer() {
         // 展开按钮
         const toggleBtn = document.createElement('span');
         toggleBtn.className = 'toggle-btn';
-        toggleBtn.textContent = '智能推荐》';
+        toggleBtn.textContent = '《隐藏';
         toggleBtn.style.position = 'fixed';
         // toggleBtn.style.right = '50px';
-        toggleBtn.style.bottom = '120px';
+        toggleBtn.style.bottom = '100px';
+        let flag = false;
         toggleBtn.onclick = () => {
+            if(flag){
+                flag = false;
+                toggleBtn.textContent = '《隐藏';
+            }else{
+                flag = true;
+                toggleBtn.textContent = '展开》';
+            }
             container.classList.toggle('visible');
         };
         document.body.appendChild(toggleBtn);

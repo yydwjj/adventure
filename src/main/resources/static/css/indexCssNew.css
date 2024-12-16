@@ -260,6 +260,9 @@ header {
     max-width: 1266px;
     margin: 80px auto 0;
     gap: 50px; /* 创建间隔 */
+    border-top: 1px solid #e5dede;
+    border-bottom: 1px solid #e5dede;
+    border-radius: 10px;
 }
 /*排行榜*/
 #ranking-container{
@@ -488,6 +491,8 @@ header {
 .job-nav{
     width: 1226px;
     margin: 39px auto;
+    border-top: 1px solid #e5dede;
+    border-radius: 4px;
 }
 .job-nav .mainNav {
 
