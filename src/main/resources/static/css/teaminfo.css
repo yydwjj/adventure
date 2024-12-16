@@ -8,11 +8,13 @@
 /* 基础样式：设置字体、页面宽高和隐藏水平滚动 */
 body {
     font-family: Arial, sans-serif;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    background: linear-gradient(to bottom,#E6F5F7,white);
+    background-repeat: no-repeat;
 }
 
 /* 链接样式：去掉默认下划线 */
@@ -405,19 +407,18 @@ label{
 }
 /* 队伍最外层 */
 #show-team-container {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    margin: 160px auto 0;
-    gap: 30px; /* 创建间隔 */
-    border: 1px solid rgba(187, 187, 187, 1);
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    border-radius: 6px;
-    /*  变化时的动画效果  */
-    /*    height: 300px;*/
-    transition: 0.7s ease;
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        margin: 120px auto 60px;
+        gap: 30px;
+        border: 1px solid rgba(187, 187, 187, 1);
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+        border-radius: 6px;
+        background: white;
+        box-shadow: 5px 10px 18px rgba(136, 136, 136, 1);
 }
 
 /* 队伍容器 */
@@ -437,6 +438,7 @@ label{
 
 .team-title {
     font-size: 28px;
+    border-left: 6px solid rgba(34, 191, 167, 1);
 }
 
 .competition-name {

@@ -9,17 +9,17 @@ public interface ResumeService {
     /*
      * 获取所有简历
      * */
-    Result getAllResumes(Long userId);
+    Result getMyResumes(Long userId);
 
     /*
-     * 保存以编辑的简历
+     * 创建简历
      * */
-    Result saveresume(Resume resume);
+    Result createresume(Resume resume);
 
     /*
-     * 获取该用户的第一份简历
+     * 删除简历
      * */
-    Result getLastResume(Long userId);
+    Result deleteresume(Resume resume);
 
 
     /*
@@ -31,6 +31,15 @@ public interface ResumeService {
      * 通过简历ID获取信息
      * */
     Result showResumeById(int resumeId);
+
+    /*
+    *寻找他人对该用户的评价
+    * */
+    Result getEvaluationById(int userId);
+
+    Result editresume(Resume resume);
+
+
 
     Result searchResumes(String keyword);
 }

@@ -94,8 +94,12 @@
                 <h3>相关经历</h3>
             </div>
             <div id="related-experience" class="detail"></div>
+            <div class="section" >
+                <h3>他人评价</h3>
+            </div>
+            <div id="others-evaluation" class="detail"></div>
             <div id="button-container"> <!-- 新增按钮容器 -->
-    <!--            <button id="showThis">展示</button> &lt;!&ndash; 展示按钮 &ndash;&gt;-->
+                <button id="talking">沟通</button> <!-- 展示按钮 -->
             </div>
         </div>
 
@@ -112,6 +116,7 @@
             const pathSegments = window.location.pathname.split('/').filter(segment => segment !== '');
             const id = pathSegments.pop();
 
+            //寻找除了他人评价以外的信息
             try {
                 const response = await fetch(`/resume/info/${id}`, { method: 'GET' });
                 if (response.ok) {
@@ -133,6 +138,53 @@
                     updateField('desired-position', resumeData.desiredPosition, '暂无期望职位信息');
                     updateField('personal-strengths', resumeData.personalStrengths, '未填写个人优势');
                     updateField('related-experience', resumeData.previousExperience, '暂无相关经历');
+                } else {
+                    console.error('获取简历数据失败:', response.statusText);
+                }
+            } catch (error) {
+                console.error('网络错误:', error);
+            }
+
+            //查找他人评价
+            try {
+                 const response = await fetch(`/resume/evaluation/${id}`, { method: 'GET' });
+                     if (response.ok) {
+                            const evaluations = await response.json();
+                            const MyEvaluationsList = document.getElementById('others-evaluation');
+                            if(evaluations.data != null){
+                                evaluations.data.forEach(evaluation => {
+                                    const evaluationDiv = document.createElement('div');//放评价
+                                    evaluationDiv.className = 'evaDiv';
+                                    //创建子元素放评论者姓名
+                                    const evaluatorName = document.createElement('div');
+                                    evaluatorName.className = 'evaluatorName';
+                                    evaluatorName.textContent = `${evaluation.evaluatorName}`;
+                                    // 创建子元素来显示时间
+                                    const CreatedData = document.createElement('div');
+                                    CreatedData.className = 'CreateData';
+                                    const date = new Date(evaluation.created_data);
+                                        // 转换日期格式
+                                    const formattedDate = date.toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+                                    CreatedData.textContent = `${formattedDate}`;
+                                    // 创建子元素来显示评价内容
+                                    const content = document.createElement('div');
+                                    content.className = 'content';
+                                    content.textContent = `${evaluation.content}`;
+                                    // 创建子元素来显示评分
+                                    const rating = document.createElement('div');
+                                    rating.className = 'rating';
+                                        //根据分数显示星星图片
+                                    const starImg = document.createElement('img');
+                                    starImg.src = `/image/star${evaluation.rating}.png`;
+                                    rating.appendChild(starImg);
+                                    // 将子元素添加到 evaluationDiv 中
+                                    evaluationDiv.appendChild(evaluatorName);
+                                    evaluationDiv.appendChild(CreatedData);
+                                    evaluationDiv.appendChild(content);
+                                    evaluationDiv.appendChild(rating);
+                                    MyEvaluationsList.appendChild(evaluationDiv);
+                                })
+                            }
                 } else {
                     console.error('获取简历数据失败:', response.statusText);
                 }

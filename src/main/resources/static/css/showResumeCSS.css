@@ -251,8 +251,42 @@ header {
 .detail{
     padding-bottom:20px;
 }
-
-#showThis {
+/*他人评价*/
+.evaDiv{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    padding:10px;
+    border-bottom: 2px solid rgba(125, 182, 191, 1);
+}
+.evaluatorName{
+    font-size: 22px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.CreateData{
+    height: 20px;
+    width: 100%;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #b0b0b0;
+    margin-left: 20px;
+}
+.content{
+    width:100%;
+    margin-left:20px;
+    color: #5e5e5e;
+    font-size: 18px;
+}
+.rating{
+    margin-left: 80%;
+    margin-bottom: -10px;
+}
+.rating img{
+    width: 100%;
+}
+/*按钮*/
+#button-container button{
         padding: 3px 25px;
         border: none;
         border-radius: 5px;
@@ -262,10 +296,10 @@ header {
         margin:10px;
         white-space: nowrap;
 }
-#showThis a{
+#button-container button a{
     color:white;
 }
-#showThis:hover {
+#button-container button:hover {
         background: #377F7F;
 }
 

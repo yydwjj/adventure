@@ -96,9 +96,9 @@ function main() {
     const container = createResponseContainer();
 
     // 展开按钮
-    const toggleBtn = document.createElement('span');
+    const toggleBtn = document.createElement('div');
     toggleBtn.className = 'toggle-btn';
-    toggleBtn.textContent = '推荐介绍》';
+    toggleBtn.textContent = '推荐介绍';
     toggleBtn.style.position = 'fixed';
     // toggleBtn.style.right = '50px';
     toggleBtn.style.bottom = '160px';
@@ -113,3 +113,5 @@ function main() {
 
 // 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', main);
+
+

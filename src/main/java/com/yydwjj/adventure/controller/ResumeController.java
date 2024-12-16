@@ -30,42 +30,61 @@ public class ResumeController {
         return resumeService.getResumeList();
     }
 
-    // 获取所有简历信息的接口
-    @RequestMapping (value = "allResumes")
+    // 获取我的所有简历
+    @RequestMapping (value = "myResume")
     public Result getResumes(@RequestHeader String token) {
         Long UserId = jwtHelper.getUserId(token);
-        return resumeService.getAllResumes(UserId);
+        return resumeService.getMyResumes(UserId);
     }
 
-    // 保存简历信息的接口（对应前端表单提交保存操作）
-    @RequestMapping(value="save",method= RequestMethod.PUT)
+    // 新增简历信息
+    @PostMapping(value="create")
     public Result saveResume(@RequestBody Resume resume, @RequestHeader String token) {
         Long userId = jwtHelper.getUserId(token);
         resume.setUserId(userId);
         resume.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         resume.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-        return resumeService.saveresume(resume);
+        return resumeService.createresume(resume);
     }
 
-    @RequestMapping(value = "lastInfo")
-    public Result getFirstResume(@RequestHeader String token){
-        Long userId = jwtHelper.getUserId(token);
+    //修改编辑简历
+    @PutMapping ("editResume/{id}")
+    public Result EditResume(@PathVariable int id,@RequestBody Resume resume) {
 
-        return resumeService.getLastResume(userId);
+        resume.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        return resumeService.editresume(resume);
     }
 
-    @RequestMapping(value = "showResume")
-    public Result showResume(@RequestHeader String token){
-        Long userId = jwtHelper.getUserId(token);
-
-        return resumeService.showResume(userId);
+    //假删除简历
+    @PutMapping ("deleteResume/{id}")
+    public Result DeleteResume(@PathVariable int id) {
+        Resume resume = new Resume();
+        resume.setResumeId(id);
+        resume.setDeletedAt(new Timestamp(System.currentTimeMillis()));
+        return resumeService.deleteresume(resume);
     }
+
     // 根据ID获取单份简历信息的接口
     @GetMapping("info/{id}")
     public Result getResumeById(@PathVariable int id ) {
         Result result = resumeService.showResumeById(id);
         return result;
     }
+
+    //根据ID查询他人评价再显示
+    @GetMapping("evaluation/{id}")
+    public Result getEvaluationById(@PathVariable int id ) {
+        Result result = resumeService.getEvaluationById(id);
+        return result;
+    }
+
+    //预览
+    @RequestMapping(value = "showResume")
+    public Result showResume(@RequestHeader String token){
+        Long userId = jwtHelper.getUserId(token);
+        return resumeService.showResume(userId);
+    }
+
 
     @GetMapping("/search")
     public Result searchResumes(@RequestParam String keyword) {

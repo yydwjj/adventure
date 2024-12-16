@@ -188,16 +188,15 @@ header {
 /*主题板块*/
 #main-block{
     padding: 15%;
-    padding-top:6%;
-    display:grid;
-    grid-template-columns: repeat(15,1fr);
-    grid-template-areas:"a a a b b b b b b b b b c c c";
+    padding-top:100px;
+    display:flex;
 }
 
 
     /*左侧栏*/
     #left-block{
-        grid-area:a;
+        width:15%;
+        font-family: "黑体", sans-serif;
     }
     #left1{
         background-color:white;
@@ -214,18 +213,18 @@ header {
     #left1>a>div{
         margin: 20px auto;
         height:50px;
+        color:black;
     }
     #left1 a div:hover{
         background-color:#BBBBBB;
     }
-
     /*中间板块*/
     #middle1 a{
         color:white;
     }
     #middle-block{
             overflow: auto;
-            grid-area:b;
+            width:70%;
     }
     #middle1{
 
@@ -236,19 +235,18 @@ header {
     }
     /*中间部分标题*/
     #middle1-title{
-            display: flex;
-            margin-bottom: 20px;
-            border-radius: 20px 20px 0 0;
-            padding: 10px;
-            background-color: #EFEFEF;
-            align-items: center;
-
+                display: flex;
+                margin-bottom: 20px;
+                border-radius: 20px 20px 0 0;
+                background-color: #EFEFEF;
+                align-items: center;
+                justify-content: space-between;
         }
     #middle1-title span{
         width:75%;
     }
-    #middle1-title button {
-        padding: 3px 25px;
+    #middle1-title button,#show-btn,#delete-btn,#create-btn{
+        padding: 3px 30px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -258,8 +256,9 @@ header {
         white-space: nowrap;
     }
 
-    #middle1-title button:hover {
+    #middle1-title button:hover,#show-btn:hover,#delete-btn:hover,#create-btn:hover {
         background: #377F7F;
+        box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
     }
     /*基本信息*/
     .profile {
@@ -273,20 +272,20 @@ header {
         flex-wrap: wrap;
         justify-content: space-around;
     }
-    .info h1 {
-        margin: 0;
-        font-size: 60px;
-        width:30%
-
-    }
     .info div {
         margin: 5px 0;
-        width:25%
+        width:50%;
+        padding-left:15px;
+        padding-right:15px;
     }
     .contact {
         display: flex;
         align-items: center;
         margin: 5px ;
+    }
+    .contact textarea,#resume-name{
+        height:30px;
+        line-height:28px;
     }
     .icon {
         margin-right: 10px;
@@ -296,9 +295,13 @@ header {
     .sections {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-around;
     }
-
+    #show-btn,#delete-btn{
+            width: 120px;
+            height: 30px;
+            font-size: 14px;
+    }
     .section {
         width: 100%;
         padding: 10px;
@@ -318,39 +321,81 @@ header {
         padding-left:40px;
         padding-right:40px;
     }
-
-    #personal-experience{
-        padding-bottom:50px;
+    #resume-name{
+        padding-left:10px;
     }
-    /*中间板块
-
-
-
-    div[id^="infor-title"] {
-        width: 100%;
-            margin-bottom: 20px;
-            padding: 10px;
-            background: #e9f0f5;
-            border-radius: 5px;
-        border-left: 2px solid #00FFFF;
+    /*简历文本显示框*/
+    textarea {
+      border: 1px solid rgba(0, 0, 0, 0);
+      background: rgba(0, 0, 0, 0);
+      overflow: visible;
+      resize: none;
+      height:auto;
+      width:auto;
+      padding-left:20px;
+      padding-right:20px;
+      font-size:1rem;
+      font-family: "黑体", sans-serif;
+      outline: none;
     }
-
-    }*/
+    #name{
+        font-weight: bold;
+        font-size:3rem;
+        width:100%;
+        height:60px;
+        margin:0 auto;
+        text-align: center;
+    }
+    #personal-experience,#personal-strengths{
+        min-height:150px;
+    }
+    #desired-position,#personal-experience,#personal-strengths{
+        width:100%;
+    }
     /*右边栏*/
     #right-block{
-        grid-area:c;
+        width:15%;
+        font-family: "黑体", sans-serif;
     }
     #right1{
         background-color:white;
         border-radius: 20px;
         margin:10px;
         height:360px;
+        display:flex;
+        align-items: center;
+        flex-direction: column;
     }
     #right1-title{
                 border-radius:20px 20px 0 0;
                 padding:10px;
                 background-color:#EFEFEF;
+                width:100%;
     }
+     /* 为右侧栏我的简历部分添加样式，使其出现滚动条 */
+    #my-resume{
+        max-height: 250px; /* 设置最大高度，超出则出现滚动条 */
+        overflow-y: auto; /* 仅在垂直方向出现滚动条 */
+        border: 1px ; /* 添加边框，可根据实际需求调整样式 */
+        width:100%;
+    }
+        /* 我的简历*/
+    #my-resume button{
+        padding:10px;
+        width:100%;
+        border:2px solid white;
+        background: #E6F5F7;
+        border-radius: 10px;
+        border-left: 4px solid #54BCBD;
+        font-color:white;
+    }
+    #my-resume button:hover{
+    background: rgb(168 212 219);
+    box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
+    }
+
+
+    /*已发简历*/
     #right2{
         background-color:white;
         border-radius: 20px;

@@ -1,7 +1,13 @@
 package com.yydwjj.adventure.service.Impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.yydwjj.adventure.entity.Evaluation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +28,9 @@ public class ResumeServiceImpl implements ResumeService {
         return Result.ok(list);
     }
 
-    //    寻找该用户的简历
+    //    寻找该用户的所有未被删除的简历
     @Override
-    public Result getAllResumes(Long userId) {
+    public Result getMyResumes(Long userId) {
         List<Resume> resumes = resumeMapper.findAllResumes(userId);
         if (resumes.isEmpty()) {
             return Result.build(null,507,"无已有简历");
@@ -32,26 +38,58 @@ public class ResumeServiceImpl implements ResumeService {
         return Result.ok(resumes);
     }
 
-    //    保存已编辑的简历
+    //    创建简历
     @Override
-    public Result saveresume(Resume resume) {
-        int result=resumeMapper.save(resume);
+    public Result createresume(Resume resume) {
+        int result=resumeMapper.create(resume);
 
         if(result==1){
             return Result.ok(resume);
         }
-        return Result.build(null,507,"保存失败");
+        return Result.build(null,507,"创建失败");
     }
 
-    //    获取该用户的第一份简历
+    //编辑简历
     @Override
-    public Result getLastResume(Long userId) {
-        Resume firstresume = resumeMapper.findLastResumes(userId);
-        if (firstresume==null) {
-            return Result.build(null,507,"无简历");
+    public Result editresume(Resume resume) {
+        int result=resumeMapper.edit(resume);
+        if(result==1){
+            return Result.ok(resume);
         }
-        return Result.ok(firstresume);
+        return Result.build(null,507,"编辑失败");
     }
+    //删除简历
+    @Override
+    public Result deleteresume(Resume resume) {
+        int result=resumeMapper.delete(resume);
+        if(result==1){
+            return Result.ok(resume);
+        }
+        return Result.build(null,507,"删除失败");
+    }
+
+    //查找他人对该用户的评价
+    @Override
+    public Result getEvaluationById(int ResumeId) {
+        int userId = resumeMapper.getUserIdByResumeId(ResumeId);
+        List<Evaluation> result=resumeMapper.getEvaluationById(userId);
+        if(result.isEmpty()){
+            return Result.build(null,507,"没有评价");
+        }
+        List<HashMap<String,Object>> EvaList = new ArrayList<>();
+        for(Evaluation eva : result) {
+            HashMap<String,Object> evaluatorMap = new HashMap<>();
+            String evaluatorName = resumeMapper.getEvaluatorName(eva.getEvaluatorId());
+            evaluatorMap.put("evaluatorName",evaluatorName);
+            evaluatorMap.put("content",eva.getContent());
+            evaluatorMap.put("rating",eva.getRating());
+            evaluatorMap.put("created_data",eva.getUpdatedAt());
+            EvaList.add(evaluatorMap);
+        }
+
+        return Result.ok(EvaList);
+    }
+
 
     @Override
     public Result showResume(Long userId) {

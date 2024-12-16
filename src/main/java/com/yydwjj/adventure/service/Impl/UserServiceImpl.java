@@ -68,7 +68,8 @@ public class UserServiceImpl implements UserService {
                     return Result.build(null,ResultCodeEnum.NOTLOGIN);
             } else if (!user.getUserPwd().equals(userByPhone.getUserPwd())) {
                 //用户密码错误
-                return Result.build(null,ResultCodeEnum.PASSWORD_ERROR);
+//                return Result.build(null,ResultCodeEnum.PASSWORD_ERROR);
+                return Result.build(null,507,"密码错了");
             } else {
                 String token = jwtHelper.createToken(Long.valueOf(userByPhone.getUserId()));
                 Map<String,String> data = new HashMap<>();
