@@ -122,7 +122,7 @@
                     // 更新小队成员
                     const membersContainer = document.getElementById('members');
                     if (teamData.teamMembers.length > 0) {
-                        let memberLinks = teamData.teamMembers.map(member => `<a href="#">${member.username}</a>`).join(', ');
+                        let memberLinks = teamData.teamMembers.map(member => `<a href="#.">${member.username}</a>`).join(', ');
                         membersContainer.innerHTML = `小队成员：${memberLinks}`;
                     } else {
                         membersContainer.textContent = '小队成员：暂无小队成员';
@@ -324,6 +324,7 @@
                     // 清空输入框
                     userIdInput.value = '';
                     jobSelect.selectedIndex = 0; // 重置下拉框到第一个选项
+                    location.reload(true);
                 } else {
                     alert(`添加失败：${result.message}`);
                 }
