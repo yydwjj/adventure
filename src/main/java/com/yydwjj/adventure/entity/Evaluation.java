@@ -1,6 +1,8 @@
 package com.yydwjj.adventure.entity;
 
+import lombok.Data;
 
+@Data
 public class Evaluation {
 
   private long evaluationId;

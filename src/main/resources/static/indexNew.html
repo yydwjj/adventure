@@ -55,64 +55,666 @@
         </li>
     </ul>
 </div>
+<br><br>
 
-<!-- 轮播图 -->
-<div class="carousel-container">
-    <div class="carousel-track">
-        <div class="carousel-slide active"><img src="image/advan1.jpg" alt="图片1"></div>
-        <div class="carousel-slide"><img src="image/advan2.jpg" alt="图片2"></div>
-        <div class="carousel-slide"><img src="image/advan3.jpg" alt="图片3"></div>
-    </div>
-    <button class="carousel-prev">上一张</button>
-    <button class="carousel-next">下一张</button>
-</div>
-
-<!-- 内容容器 -->
-<div id="context-container">
-    <!-- 排行榜 -->
-    <div id="ranking-container">
-        <div id="ranking-title">排行榜</div>
-        <ul id="ranking-user-list">
-            <li class="ranking-user-info" data-id="1"><a href="/talk2.html">1 小明</a></li>
-            <li class="ranking-user-info" data-id="2"><a href="">2 小军</a></li>
-            <li class="ranking-user-info" data-id="3"><a href="">3 小红</a></li>
-            <li class="ranking-user-info" data-id="4"><a href="">4 小李</a></li>
-
-        </ul>
-    </div>
-
-    <!-- 新闻内容 -->
-    <div id="news-container">
-        <div id="news-container-title">新闻</div>
-        <!--   新闻板块     -->
-        <div id="news-div">
-            <div class="news">
-                <span class="news-title">近300项北大成果促转化 这场校企双进实现“双向奔赴”</span>
-                <div class="news-feature">
-                    <div>学科竞赛</div>
-                    <div>优秀成果</div>
-                    <div>校企合作</div>
+<div class="job-nav container">
+    <div class="mainNav">
+        <div class="menu_box">
+            <div class="menu_main">
+                <div class="category-list">
+                    <h4>工科</h4>
+                    <a href="#">船舶海洋</a>
+                    <a href="#">计算机</a>
+                    <a href="#">环境能源</a>
+                    <span class="right-span glyphicon glyphicon-menu-right"></span>
                 </div>
-                <div class="news-context">11月29日，由北京大学科技开发部、北京大学前沿交叉学科研究院、成都市科学技术局联合主办的“校企双进·找矿挖宝”科技成果对接北京大学
-                    专场活动在京举行，旨在推动产业链、创新链、资金链、人才链深度融合，加快在科技创新和成果转化上的校院地协同创新发展。</div>
-                <div class="news-data">2024-10-1</div>
             </div>
-            <div class="news">
-                <span class="news-title">近300项北大成果促转化 这场校企双进实现“双向奔赴”</span>
-                <div class="news-feature">
-                    <div>学科竞赛</div>
-                    <div>优秀成果</div>
-                    <div>校企合作</div>
+            <div class="menu_sub hidden">
+                <dl>
+                    <dt>
+                        <span>船舶海洋</span>
+                    </dt>
+                    <dd>
+                        <a class="current" href="#">船舶设计</a>
+                        <a href="#">海洋工程</a>
+                        <a href="#">船舶制造</a>
+                        <a href="#">港口建设</a>
+                        <a href="#">水下机器人</a>
+                        <a href="#">船舶维护</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        计算机
+                    </dt>
+                    <dd>
+                        <a class="current" href="#">软件开发</a>
+                        <a href="#">人工智能</a>
+                        <a href="#">数据科学</a>
+                        <a href="#">网络安全</a>
+                        <a href="#">云计算</a>
+                        <a href="#">区块链技术</a>
+                        <a href="#">嵌入式系统</a>
+                        <a href="#">游戏开发</a>
+                        <a href="#">移动应用</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        环境能源
+                    </dt>
+                    <dd>
+                        <a href="#">可再生能源</a>
+                        <a href="#">环保科技</a>
+                        <a class="current" href="#">废物处理</a>
+                        <a href="#">水处理</a>
+                        <a href="#">碳捕获</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        航空航天
+                    </dt>
+                    <dd>
+                        <a href="#">航空工程</a>
+                        <a href="#">卫星技术</a>
+                        <a href="#">无人机</a>
+                        <a class="current" href="#">太空探索</a>
+                        <a href="#">飞行器设计</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        交通车辆
+                    </dt>
+                    <dd>
+                        <a href="#">汽车工程</a>
+                        <a href="#">电动汽车</a>
+                        <a href="#">自动驾驶</a>
+                        <a class="current" href="#">高速列车</a>
+                        <a href="#">智能交通</a>
+                        <a href="#">共享出行</a>
+                        <a href="#">摩托车设计</a>
+                        <a href="#">赛车工程</a>
+                        <a href="#">轨道交通</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        土木建筑
+                    </dt>
+                    <dd>
+                        <a href="#">建筑工程</a>
+                        <a href="#">桥梁设计</a>
+                        <a href="#">城市规划</a>
+                        <a href="#">结构工程</a>
+                        <a class="current" href="#">绿色建筑</a>
+                        <a href="#">土木施工</a>
+                        <a href="#">地震工程</a>
+                        <a href="#">建筑材料</a>
+                        <a href="#">基础设施</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="menu_box">
+            <div class="menu_main">
+                <div class="category-list">
+                    <h4>艺术</h4>
+                    <a href="#">视觉艺术</a>
+                    <a href="#">表演艺术</a>
+                    <a href="#">音乐艺术</a>
+                    <span class="right-span glyphicon glyphicon-menu-right"></span>
                 </div>
-                <div class="news-context">11月29日，由北京大学科技开发部、北京大学前沿交叉学科研究院、成都市科学技术局联合主办的“校企双进·找矿挖宝”科技成果对接北京大学
-                    专场活动在京举行，旨在推动产业链、创新链、资金链、人才链深度融合，加快在科技创新和成果转化上的校院地协同创新发展。</div>
-                <div class="news-data">2024-10-1</div>
             </div>
+            <div class="menu_sub hidden">
+                <dl>
+                    <dt>
+                        <span>视觉艺术</span>
+                    </dt>
+                    <dd>
+                        <a class="current" href="#">绘画与雕塑</a>
+                        <a href="#">摄影艺术</a>
+                        <a href="#">数字艺术</a>
+                        <a href="#">装置艺术</a>
+                        <a href="#">街头艺术</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        表演艺术
+                    </dt>
+                    <dd>
+                        <a href="#">戏剧表演</a>
+                        <a href="#">舞蹈编排</a>
+                        <a class="current" href="#">即兴喜剧</a>
+                        <a href="#">舞台设计</a>
+                        <a href="#">服装设计</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        音乐艺术
+                    </dt>
+                    <dd>
+                        <a href="#">古典音乐</a>
+                        <a href="#">流行音乐</a>
+                        <a class="current" href="#">爵士乐</a>
+                        <a href="#">民族音乐</a>
+                        <a href="#">电子音乐</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="menu_box">
+            <div class="menu_main">
+                <div class="category-list">
+                    <h4>医学</h4>
+                    <a href="#">内科</a>
+                    <a href="#">外科</a>
+                    <a href="#">妇产科</a>
+                    <a href="#">儿科</a>
+                    <a href="#">精神卫生</a>
+                    <a href="#">医疗器械</a>
+                    <span class="right-span glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+            <div class="menu_sub hidden">
+                <dl>
+                    <dt>
+                        <span>内科</span>
+                    </dt>
+                    <dd>
+                        <a href="#">心血管内科</a>
+                        <a href="#">呼吸内科</a>
+                        <a href="#">消化内科</a>
+                        <a href="#">内分泌科</a>
+                        <a href="#">神经内科</a>
+                        <a href="#">血液内科</a>
+                        <a href="#">肾内科</a>
+                        <a href="#">免疫内科</a>
+                        <a class="current" href="#">感染科</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        外科
+                    </dt>
+                    <dd>
+                        <a class="current" href="#">普通外科</a>
+                        <a href="#">心胸外科</a>
+                        <a href="#">神经外科</a>
+                        <a href="#">骨科</a>
+                        <a href="#">泌尿外科</a>
+                        <a href="#">整形外科</a>
+                        <a href="#">烧伤外科</a>
+                        <a href="#">血管外科</a>
+                        <a href="#">器官移植</a>
+                        <a href="#">微创外科</a>
+                        <a href="#">小儿外科</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        妇产科
+                    </dt>
+                    <dd>
+                        <a href="#">妇科肿瘤</a>
+                        <a href="#">生殖内分泌</a>
+                        <a href="#">围产医学</a>
+                        <a href="#">计划生育</a>
+                        <a class="current" href="#">高危妊娠管理</a>
+                        <a href="#">女性盆底功能障碍</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        儿科
+                    </dt>
+                    <dd>
+                        <a href="#">新生儿科</a>
+                        <a href="#">儿童保健</a>
+                        <a href="#">小儿呼吸</a>
+                        <a href="#">小儿心脏</a>
+                        <a class="current" href="#">小儿神经</a>
+                        <a href="#">小儿内分泌</a>
+                        <a href="#">小儿血液肿瘤</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        精神卫生
+                    </dt>
+                    <dd>
+                        <a href="#">临床心理学</a>
+                        <a href="#">精神病学</a>
+                        <a class="current" href="#">心理治疗</a>
+                        <a href="#">成瘾医学</a>
+                        <a href="#">老年精神健康</a>
+                        <a href="#">儿童青少年心理健康</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        医疗器械
+                    </dt>
+                    <dd>
+                        <a href="#">诊断设备</a>
+                        <a href="#">治疗设备</a>
+                        <a class="current" href="#">康复器材</a>
+                        <a href="#">医疗耗材</a>
+                        <a href="#">实验室仪器</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="menu_box">
+            <div class="menu_main">
+                <div class="category-list">
+                    <h4>数学</h4>
+                    <a href="#">纯数学</a>
+                    <a href="#">应用数学</a>
+                    <a href="#">统计学</a>
+                    <a href="#">运筹学与控制论</a>
+                    <span class="right-span glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+            <div class="menu_sub hidden">
+                <dl>
+                    <dt>
+                        <span>纯数学</span>
+                    </dt>
+                    <dd>
+                        <a class="current" href="#">代数</a>
+                        <a href="#">几何与拓扑</a>
+                        <a href="#">分析</a>
+                        <a href="#">数论</a>
+                        <a href="#">逻辑与集合论</a>
+                        <a href="#">组合数学</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        应用数学
+                    </dt>
+                    <dd>
+                        <a href="#">数值分析</a>
+                        <a href="#">微分方程</a>
+                        <a href="#">概率论</a>
+                        <a href="#">动力系统</a>
+                        <a class="current" href="#">计算数学</a>
+                        <a href="#">数学建模</a>
+                        <a href="#">离散数学</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        统计学
+                    </dt>
+                    <dd>
+                        <a href="#">描述统计学</a>
+                        <a href="#">推断统计学</a>
+                        <a href="#">回归分析</a>
+                        <a href="#">时间序列分析</a>
+                        <a class="current" href="#">贝叶斯统计</a>
+                        <a href="#">抽样理论</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        运筹学与控制论
+                    </dt>
+                    <dd>
+                        <a href="#">线性规划</a>
+                        <a href="#">非线性规划</a>
+                        <a href="#">整数规划</a>
+                        <a href="#">排队论</a>
+                        <a class="current" href="#">决策理论</a>
+                        <a href="#">优化算法</a>
+                        <a href="#">控制理论</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="menu_box">
+            <div class="menu_main">
+                <div class="category-list">
+                    <h4>物理</h4>
+                    <a href="#">经典物理</a>
+                    <a href="#">量子物理</a>
+                    <span class="right-span glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+            <div class="menu_sub hidden">
+                <dl>
+                    <dt>
+                        <span>经典物理</span>
+                    </dt>
+                    <dd>
+                        <a class="current" href="#">力学</a>
+                        <a href="#">热力学与统计物理</a>
+                        <a href="#">电磁学</a>
+                        <a href="#">光学</a>
+                        <a href="#">声学</a>
+                        <a href="#">流体力学</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        量子物理
+                    </dt>
+                    <dd>
+                        <a href="#">量子力学基础</a>
+                        <a href="#">量子场论</a>
+                        <a href="#">量子信息与计算</a>
+                        <a href="#">量子测量理论</a>
+                        <a class="current" href="#">量子纠缠</a>
+                        <a href="#">量子通信</a>
+                        <a href="#">量子密码学</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="menu_box">
+            <div class="menu_main ">
+                <div class="category-list ">
+                    <h4>思想政治</h4>
+                    <a href="#">党史教育</a>
+                    <a href="#">红色文化</a>
+                    <a href="#">社会实践</a>
+                    <span class="right-span glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+            <div class="menu_sub hidden">
+                <dl>
+                    <dt>党史教育</dt>
+                    <dd>
+                        <a href="#">中国共产党历史</a>
+                        <a href="#">革命先烈事迹</a>
+                        <a href="#">重要会议回顾</a>
+                        <a class="current" href="#">党的领导人</a>
+                        <a href="#">党章党规</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>红色文化</dt>
+                    <dd>
+                        <a href="#">红色故事</a>
+                        <a href="#">红色基地参观</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>社会实践</dt>
+                    <dd>
+                        <a class="current" href="#">志愿服务</a>
+                        <a href="#">调研活动</a>
+                        <a href="#">扶贫帮困</a>
+                        <a href="#">环保行动</a>
+                        <a href="#">创新创业</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="menu_box">
+            <div class="menu_main">
+                <div class="category-list">
+                    <h4>电子竞技</h4>
+                    <a href="#">MOBA</a>
+                    <a href="#">FPS</a>
+                    <a href="#">RTS</a>
+                    <a href="#">CCG</a>
+                    <a href="#">FTG</a>
+                    <a href="#">体育模拟</a>
+                    <span class="right-span glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+            <div class="menu_sub hidden">
+                <dl>
+                    <dt>MOBA</dt>
+                    <dd>
+                        <a href="#">英雄联盟</a>
+                        <a href="#">DOTA 2</a>
+                        <a class="current" href="#">王者荣耀</a>
+                        <a href="#">风暴英雄</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>FPS</dt>
+                    <dd>
+                        <a href="#">CS:GO</a>
+                        <a href="#">守望先锋</a>
+                        <a href="#">使命召唤：战区</a>
+                        <a href="#">彩虹六号：围攻</a>
+                        <a class="current" href="#">绝地求生</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>RTS</dt>
+                    <dd>
+                        <a href="#">星际争霸II</a>
+                        <a class="current" href="#">魔兽争霸III</a>
+                        <a href="#">命令与征服</a>
+                        <a href="#">红色警戒</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>CCG</dt>
+                    <dd>
+                        <a class="current" href="#">影之诗</a>
+                        <a href="#">炉石传说</a>
+                        <a href="#">万智牌Online</a>
+                        <a href="#">Artifact</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>FTG</dt>
+                    <dd>
+                        <a href="#">街头霸王V</a>
+                        <a href="#">铁拳7</a>
+                        <a href="#">龙珠FighterZ</a>
+                        <a class="current" href="#">灵魂能力VI</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>体育模拟</dt>
+                    <dd>
+                        <a href="#">FIFA系列</a>
+                        <a class="current" href="#">实况足球</a>
+                        <a href="#">NBA 2K系列</a>
+                        <a href="#">火箭联盟</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="home-banner">
+        <div class="carousel slide" data-interval="4000" id="myCarousel">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li class="slide-spot" data-slide-to="0" data-target="#myCarousel"></li>
+                <li class="slide-spot active" data-slide-to="1" data-target="#myCarousel"></li>
+                <li class="slide-spot" data-slide-to="2" data-target="#myCarousel"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item">
+                    <img alt="First slide" src="images/poster1.png">
+                </div>
+                <div class="item active">
+                    <img alt="Second slide" src="images/poster2.png">
+                </div>
+                <div class="item">
+                    <img alt="Third slide" src="images/poster3.png">
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <!--<a class="carousel-control left" href="#myCarousel"-->
+            <!--data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
+            <!--</a>-->
 
+            <!--<a class="carousel-control right" href="#myCarousel"-->
+            <!--data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+            <!--</a>-->
         </div>
     </div>
 </div>
 
+<!-- 内容容器 -->
+<div id="context-container">
+    <div class="content-head">
+        <span>热门任务类别</span>
+        <a href="#.">查看全部</a>
+    </div>
+    <div class="content-container">
+        <a href="#." class="content-adv" id="big-adv"><img src="images/content-adv11.jpg" alt="广告1" width="234px" height="600px"></a>
+        <!-- <a href="#." class="content-adv"><img src="" alt=""></a> -->
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product11.svg" alt="">
+                <span class="product-title">健康生命&医学</span>
+            </a>
+            <span class="product-descibe">关注人类健康与疾病治疗的科学与实践</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product12.svg" alt="">
+                <span class="product-title">商学</span>
+            </a>
+            <span class="product-descibe">研究商业活动与管理决策的学科</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product13.svg" alt="">
+                <span class="product-title">物理</span>
+            </a>
+            <span class="product-descibe">探索物质、能量及其相互作用的自然科学</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product14.svg" alt="">
+                <span class="product-title">外语</span>
+            </a>
+            <span class="product-descibe">学习不同国家和地区的语言交流工具</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product15.svg" alt="">
+                <span class="product-title">机械</span>
+            </a>
+            <span class="product-descibe">设计制造及应用机械装置的技术学科</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product16.svg" alt="">
+                <span class="product-title">船舶</span>
+            </a>
+            <span class="product-descibe">专注于船舶设计、建造与航海技术</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product17.svg" alt="">
+                <span class="product-title">计算机</span>
+            </a>
+            <span class="product-descibe">研究计算系统及其信息处理方法</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product18.svg" alt="">
+                <span class="product-title">数学</span>
+            </a>
+            <span class="product-descibe">探讨数量、结构、变化等抽象概念的科学</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+    </div>
+    <div id="foot-adv">
+        <a href="#."><img src="images/foot-adv1.jpg" alt="底部广告" width="1266px" height="121px"></a>
+    </div>
+</div>
+<!-- 内容容器 -->
+<div id="context-container">
+    <div class="content-head">
+        <span>队伍</span>
+        <a href="#.">查看全部</a>
+    </div>
+    <div class="content-container">
+        <a href="#." class="content-adv" id="big-adv"><img src="images/content-adv11.jpg" alt="广告1" width="234px" height="600px"></a>
+        <!-- <a href="#." class="content-adv"><img src="" alt=""></a> -->
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product11.svg" alt="">
+                <span class="product-title">健康生命&医学</span>
+            </a>
+            <span class="product-descibe">关注人类健康与疾病治疗的科学与实践</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product12.svg" alt="">
+                <span class="product-title">商学</span>
+            </a>
+            <span class="product-descibe">研究商业活动与管理决策的学科</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product13.svg" alt="">
+                <span class="product-title">物理</span>
+            </a>
+            <span class="product-descibe">探索物质、能量及其相互作用的自然科学</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product14.svg" alt="">
+                <span class="product-title">外语</span>
+            </a>
+            <span class="product-descibe">学习不同国家和地区的语言交流工具</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product15.svg" alt="">
+                <span class="product-title">机械</span>
+            </a>
+            <span class="product-descibe">设计制造及应用机械装置的技术学科</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product16.svg" alt="">
+                <span class="product-title">船舶</span>
+            </a>
+            <span class="product-descibe">专注于船舶设计、建造与航海技术</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product17.svg" alt="">
+                <span class="product-title">计算机</span>
+            </a>
+            <span class="product-descibe">研究计算系统及其信息处理方法</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+        <div class="content-product">
+            <a href="">
+                <img src="images/content-product18.svg" alt="">
+                <span class="product-title">数学</span>
+            </a>
+            <span class="product-descibe">探讨数量、结构、变化等抽象概念的科学</span>
+            <span class="product-cost">了解更多</span>
+        </div>
+    </div>
+    <div id="foot-adv">
+        <a href="#."><img src="images/foot-adv1.jpg" alt="底部广告" width="1266px" height="121px"></a>
+    </div>
+</div>
 <!-- 动画 -->
 <script src="js/carousel.js"></script>
 <script src="js/sidebar.js"></script>

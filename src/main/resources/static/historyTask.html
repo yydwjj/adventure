@@ -233,6 +233,10 @@
                 const userItems = taskDiv.querySelectorAll('.user-item');
                 userItems.forEach(userItem => {
                     userItem.addEventListener('click', () => {
+
+                        const userId = userItem.dataset.userId;
+                        ratingBox.dataset.userId = userId; // 将用户 ID 存储到 ratingBox
+
                         userList.style.height = '300px'; // 扩展用户列表高度
                         ratingBox.style.display = 'block'; // 显示评论框
 
@@ -248,7 +252,7 @@
                 submitRatingBtn.addEventListener('click', () => {
                     const ratingInput = ratingBox.querySelector('input');
                     const commentInput = ratingBox.querySelector('textarea');
-                    const selectedUserId = ratingBox.closest('.user-item')?.dataset?.userId;
+                    const selectedUserId = ratingBox.dataset.userId; // 直接从 ratingBox 获取用户 ID
 
                     if (!selectedUserId) {
                         alert('请选择用户后提交评价');
@@ -264,16 +268,16 @@
                     }
 
                     // 提交评价请求
-                    fetch('/submit-rating', {
+                    fetch('/user/rant', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                             'token': `${jwtToken}`
                         },
                         body: JSON.stringify({
-                            userId: selectedUserId,
+                            evaluateeId: selectedUserId,
                             rating: rating,
-                            comment: comment
+                            content: comment
                         })
                     })
                         .then(response => {
@@ -307,7 +311,7 @@
     // 页面加载完成后执行
     document.addEventListener('DOMContentLoaded', () => {
         initDropdowns();
-        loadCompetitions();
+        // loadCompetitions();
     });
 </script>
 <!--获取用户信息-->
